@@ -12,6 +12,16 @@
     .w3-bar-block .w3-bar-item{padding:16px;font-weight:bold}
     </style>
     <script>
+    function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+    </script>
+    <script>
     // Open and close the sidebar on medium and small screens
     function w3_open() {
         document.getElementById("mySidebar").style.display = "block";
@@ -47,6 +57,11 @@
         }
     }
     </script>
+    <style>
+    .w3-myfont {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+    }
+    </style>
   </head>
   <body>
     <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
@@ -54,16 +69,16 @@
       <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
       <%= link_to("Home", root_path, :class => "w3-bar-item w3-button") %>
 
-      <a class="w3-bar-item w3-button" href="#">로그인</a>
+      <a class="w3-bar-item w3-button" href="/login">로그인</a>
       <a class="w3-bar-item w3-button" href="#">로그아웃</a>
       <a class="w3-bar-item w3-button" href="#">회원가입</a>
       <div>
         <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">학식메뉴 펼치기 <i class="fa fa-caret-down"></i></a>
         <div id="demo" class="w3-hide">
-          <%= link_to("명진당", home_myongjin_restaraunt_path, :class => "w3-bar-item w3-button") %>
-          <%= link_to("학생식당", home_student_restaraunt_path, :class => "w3-bar-item w3-button") %>
-          <%= link_to("교직원식당", home_officer_restaraunt_path, :class => "w3-bar-item w3-button") %>
 
+          <a class="w3-bar-item w3-button" href="/home/myongjin_restaraunt">명진당</a>
+          <a class="w3-bar-item w3-button" href="/home/student_restaraunt">학생식당</a>
+          <a class="w3-bar-item w3-button" href="/home/officer_restaraunt">교직원식당</a>
         </div>
       </div>
     </nav>
@@ -74,11 +89,11 @@
 
     <div id="myTop" class="w3-container w3-top w3-theme w3-large">
       <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge" onclick="w3_open()"></i>
-      <span id="myIntro" class="w3-hide">MJU_menu : Introduction</span></p>
+      <span id="myIntro" class="w3-hide"><%= @menu_name%></span></p>
     </div>
 
     <header class="w3-container w3-theme" style="padding:64px 32px">
-      <h2 class="w3-xxlarge">★ 명지대학교 식당 메뉴 크로울러 ★</h1>
+      <h2 class="w3-myfont">MJU_menu_Crawler</h2>
     </header>
 
     <!-- 여기서부터 밑에는 본문내용 -->

@@ -1,9 +1,16 @@
+require 'nokogiri'
+require 'open-uri'
+
 class HomeController < ApplicationController
   def index
+    @menu_name = "MJU_menu : Introduction"
   end
 
   #--------학식 크롤러 ------------------------------------#
   def myongjin_restaraunt
+
+    @menu_name = "명진당 : Menu"
+
     doc = Nokogiri::HTML(open('http://www.mju.ac.kr/mbs/mjukr/jsp/restaurant/restaurant.jsp?configIdx=36337&id=mjukr_051002050000'))
       @restaurant_name = doc.css('tbody tr td')[0].text
       @restaurant_location = doc.css('tbody tr td')[1].text
@@ -18,19 +25,20 @@ class HomeController < ApplicationController
 
       @menu = []
       #메뉴를 변수에 저장
-      doc.css('td tr div[name=Monday_Data] p').each do |link|
+      #td tr div[name=Wedensday_Data] 저번 크롤링
+      doc.css('td tr td p').each do |link|
         @daily_menu_MON << link.content
       end
-      doc.css('td tr div[name=Tuesday_Data]').each do |link|
+      doc.css('td tr td p').each do |link|
         @daily_menu_TUE << link.content
       end
-      doc.css('td tr div[name=Wedensday_Data]').each do |link|
+      doc.css('td tr td p').each do |link|
         @daily_menu_WED << link.content
       end
-      doc.css('td tr div[name=Thursday_Data]').each do |link|
+      doc.css('td tr td p').each do |link|
         @daily_menu_THU << link.content
       end
-      doc.css('td tr div[name=Friday_Data]').each do |link|
+      doc.css('td tr td p').each do |link|
         @daily_menu_FRI << link.content
       end
 
@@ -41,6 +49,9 @@ class HomeController < ApplicationController
   end
 
   def student_restaraunt
+
+    @menu_name = "student_restaraunt : Menu"
+
     doc = Nokogiri::HTML(open('http://www.mju.ac.kr/mbs/mjukr/jsp/restaurant/restaurant.jsp?configIdx=36548&id=mjukr_051002020000'))
       @restaurant_name = doc.css('tbody tr td')[0].text
       @restaurant_location = doc.css('tbody tr td')[1].text
@@ -80,6 +91,9 @@ class HomeController < ApplicationController
   end
 
   def officer_restaraunt
+
+    @menu_name = "officer_restaraunt : Menu"
+
     doc = Nokogiri::HTML(open('http://www.mju.ac.kr/mbs/mjukr/jsp/restaurant/restaurant.jsp?configIdx=58976&id=mjukr_051002040000'))
       @restaurant_name = doc.css('tbody tr td')[0].text
       @restaurant_location = doc.css('tbody tr td')[1].text
