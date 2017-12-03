@@ -74,19 +74,19 @@ class BlogController < ApplicationController
 
       @menu = []
       #메뉴를 변수에 저장
-      doc.css('td tr div[name=Monday_Data]').each do |link|
+      doc.css('td tr div[name=Monday_Data] p').each do |link|
         @daily_menu_MON << link.content
       end
-      doc.css('td tr div[name=Tuesday_Data]').each do |link|
+      doc.css('td tr div[name=Tuesday_Data] p').each do |link|
         @daily_menu_TUE << link.content
       end
-      doc.css('td tr div[name=Wedensday_Data]').each do |link|
+      doc.css('td tr div[name=Wedensday_Data] p').each do |link|
         @daily_menu_WED << link.content
       end
-      doc.css('td tr div[name=Thursday_Data]').each do |link|
+      doc.css('td tr div[name=Thursday_Data] p').each do |link|
         @daily_menu_THU << link.content
       end
-      doc.css('td tr div[name=Friday_Data]').each do |link|
+      doc.css('td tr div[name=Friday_Data] p').each do |link|
         @daily_menu_FRI << link.content
       end
 
@@ -111,7 +111,7 @@ class BlogController < ApplicationController
 
       @menu = []
       #메뉴를 변수에 저장
-      doc.css('td tr div[name=Monday_Data]').each do |link|
+      doc.css('td tr div[name=Monday_Data] p').each do |link|
         @daily_menu_MON << link.content
       end
       doc.css('td tr div[name=Tuesday_Data]').each do |link|
@@ -130,6 +130,7 @@ class BlogController < ApplicationController
       doc.css('table [summary="월요일 식단내용"] td.txtc').each do |name|
         @menu << name.content
       end
+      puts @daily_menu_MON
   end
 
   def haksik_hg
