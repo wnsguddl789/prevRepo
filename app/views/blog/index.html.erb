@@ -1,0 +1,67 @@
+<div class="container">
+  <h3>TIMELINE</h2>
+  <p>글을 쓰면 여기에 나타납니당!</p>
+  <br>
+    <tbody>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>내용</th>
+            <th>작성된 시간</th>
+            <th>작성한 사람</th>
+            <th>삭제</th>
+            <th>수정</th>
+            <th>댓글작성</th>
+          </tr>
+        </thead>
+        <% @posts.each do |p| %>
+        <tr>
+          <td><%= p.id %>번</td>
+          <td><%= p.content %></td>
+          <td><%= p.updated_at %></td>
+          <td></td>
+          <td>
+            <a href="/blog/post_destroy?id=<%= p.id %>" onclick="alert('<%= p.id %>번째 글을 삭제하였습니다.');">삭제</a>
+          </td>
+          <td>
+            <a href="/blog/post_edit?id=<%= p.id %>" onclick="alert('<%= p.id %>번째 글을수정하겠습니다.')">수정</a>
+          </td>
+          <td>
+
+                <input type="hidden" name="post_id" value="<%= p.id%>">
+                <input type="text" name="msg" class="form-control reply_submit" placeholder="Press Enter">
+
+          </td>
+        </tr>
+      <% p.comments.each do |c| %>
+        <tr class="active">
+          <td>댓글</td>
+          <td><%= c.msg %></td>
+          <td><%= c.updated_at %></td>
+          <td></td>
+          <td>
+            <a href="/blog/comment_destroy?id=<%= c.id %>" onclick="alert('<%= c.id %>번째 글을 삭제하였습니다.');">삭제</a>
+          </td>
+          <td>
+            <a href="/blog/comment_edit?id=<%= c.id %>" onclick="alert('<%= c.id %>번째 글을수정하겠습니다.')">수정</a>
+          </td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+  </table>
+  </div>
+<script>
+$(".reply_submit").click(function(){
+  $.ajax({
+    method: "POST",
+    url: "/blog/comment"
+    data: { name: "John", location: "Boston" }
+  })
+  .done(function( msg ) {
+    alert( "Data Saved: " + msg);
+  })
+})
+</script>

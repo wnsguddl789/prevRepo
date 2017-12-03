@@ -1,0 +1,7 @@
+<h1>BLOG EDIT!!</h1>
+<p>edit post : <%=@post.id%></p>
+<form action="/blog/post_update" >
+  <input type="hidden" name="id" value="<%=@post.id%>">
+  <textarea name="naeyong"><%=@post.content%></textarea><br>
+  <input type="submit" onclick="alert('<%= @post.id %>번째 글의 수정이 완료되었습니다!');">
+</form>
