@@ -1,15 +1,163 @@
-<h2>MJU_menu는 어떤 서비스인가?</h2>
+<div class="w3-bar w3-green">
+  <button onclick="myFunction('Demo1')" class="w3-bar-item w3-button">
+  월요일</button>
+  <div id="Demo1" class="w3-hide w3-container w3-white">
+    <hr>
+    <ul class="w3-ul w3-border">
+      <li><h2>월요일 명진당 메뉴</h2></li>
+      <li><%= @menu[0]%></li>
+      <ol>
+        <%= @daily_menu_MON[0] %>
+      </ol>
+      <li><%= @menu[1]%></li>
+      <ol>
+        <%= @daily_menu_MON[1] %>
+      </ol>
+      <li><%= @menu[2]%></li>
+      <ol>
+        <%= @daily_menu_MON[2] %>
+      </ol>
+      <li><%= @menu[3]%></li>
+      <ol>
+        <%= @daily_menu_MON[3] %>
+      </ol>
+      <li><%= @menu[4]%></li>
+      <ol>
+        <%= @daily_menu_MON[4] %>
+      </ol>
+    </ul>
+    <hr>
+  </div>
 
-<p>MJU_menu 는 명지대학교 학생만을 위한 서비스입니다.</p>
 
-<div class="w3-container w3-sand w3-leftbar">
- <p><i>명지대학교 학생만을 위한 홈페이지를 제작하고싶었습니다.</p>
- <p><i>밥대생 플러스친구에는 자연캠퍼스 명진당 학식메뉴가 구현되어있지않아 만들게되었습니다.</p>
- <p><i>www.mju.ac.kr 에서 크롤링해서 트래픽에 문제없습니다.</p>
+  <button onclick="myFunction('Demo2')" class="w3-bar-item w3-button">
+  화요일</button>
+  <div id="Demo2" class="w3-hide w3-container w3-white">
+    <hr>
+    <ul class="w3-ul w3-border">
+      <li><h2>화요일 명진당 메뉴</h2></li>
+      <li><%= @menu[0]%></li>
+      <ol>
+        <%= @daily_menu_TUE[5] %>
+      </ol>
+      <li><%= @menu[1]%></li>
+      <ol>
+        <%= @daily_menu_TUE[6] %>
+      </ol>
+      <li><%= @menu[2]%></li>
+      <ol>
+        <%= @daily_menu_TUE[7] %>
+      </ol>
+      <li><%= @menu[3]%></li>
+      <ol>
+        <%= @daily_menu_TUE[8] %>
+      </ol>
+      <li><%= @menu[4]%></li>
+      <ol>
+        <%= @daily_menu_TUE[9] %>
+      </ol>
+    </ul>
+    <hr>
+  </div>
+
+  <button onclick="myFunction('Demo3')" class="w3-bar-item w3-button">
+  수요일</button>
+  <div id="Demo3" class="w3-hide w3-container w3-white">
+    <hr>
+    <ul class="w3-ul w3-border">
+      <li><h2>수요일 명진당 메뉴</h2></li>
+      <li><%= @menu[0]%></li>
+      <ol>
+        <%= @daily_menu_WED[10] %>
+      </ol>
+      <li><%= @menu[1]%></li>
+      <ol>
+        <%= @daily_menu_WED[11] %>
+      </ol>
+      <li><%= @menu[2]%></li>
+      <ol>
+        <%= @daily_menu_WED[12] %>
+      </ol>
+      <li><%= @menu[3]%></li>
+      <ol>
+        <%= @daily_menu_WED[13] %>
+      </ol>
+      <li><%= @menu[4]%></li>
+      <ol>
+        <%= @daily_menu_WED[14] %>
+      </ol>
+    </ul>
+    <hr>
+  </div>
+
+  <button onclick="myFunction('Demo4')" class="w3-bar-item w3-button">
+  목요일</button>
+  <div id="Demo4" class="w3-hide w3-container w3-white">
+    <hr>
+    <ul class="w3-ul w3-border">
+      <li><h2>목요일 명진당 메뉴</h2></li>
+      <li><%= @menu[0]%></li>
+      <ol>
+        <%= @daily_menu_THU[15] %>
+      </ol>
+      <li><%= @menu[1]%></li>
+      <ol>
+        <%= @daily_menu_THU[16] %>
+      </ol>
+      <li><%= @menu[2]%></li>
+      <ol>
+        <%= @daily_menu_THU[17] %>
+      </ol>
+      <li><%= @menu[3]%></li>
+      <ol>
+        <%= @daily_menu_THU[18] %>
+      </ol>
+      <li><%= @menu[4]%></li>
+      <ol>
+        <%= @daily_menu_THU[19] %>
+      </ol>
+    </ul>
+    <hr>
+  </div>
+
+  <button onclick="myFunction('Demo5')" class="w3-bar-item w3-button">
+  금요일</button>
+  <div id="Demo5" class="w3-hide w3-container w3-white">
+    <hr>
+    <ul class="w3-ul w3-border">
+      <li><h2>금요일 명진당 메뉴</h2></li>
+      <li><%= @menu[0]%></li>
+      <ol>
+        <%= @daily_menu_FRI[20] %>
+      </ol>
+      <li><%= @menu[1]%></li>
+      <ol>
+        <%= @daily_menu_FRI[21] %>
+      </ol>
+      <li><%= @menu[2]%></li>
+      <ol>
+        <%= @daily_menu_FRI[22] %>
+      </ol>
+      <li><%= @menu[3]%></li>
+      <ol>
+        <%= @daily_menu_FRI[23] %>
+      </ol>
+      <li><%= @menu[4]%></li>
+      <ol>
+        <%= @daily_menu_FRI[24] %>
+      </ol>
+    </ul>
+    <hr>
+  </div>
 </div>
 
-<hr>
-<h2>MJU_menu is Free</h2>
-<p>명지대학교 학생만을 위한 서비스이므로 명지대학교 학생이면 언제나 열람가능합니다.</p>
-
-<hr>
+<script>
+  function myFunction(id) {
+      var x = document.getElementById(id);
+      if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+      } else {
+          x.className = x.className.replace(" w3-show", "");
+      }
+  }
+</script>
