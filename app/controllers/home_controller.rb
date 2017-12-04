@@ -45,7 +45,6 @@ class HomeController < ApplicationController
       doc.css('table [summary="월요일 식단내용"] td.txtc').each do |name|
         @menu << name.content
       end
-      puts @daily_menu_MON
   end
 
   def student_restaraunt

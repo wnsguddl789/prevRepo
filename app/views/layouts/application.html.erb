@@ -76,9 +76,8 @@
         <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">학식메뉴 펼치기 <i class="fa fa-caret-down"></i></a>
         <div id="demo" class="w3-hide">
           <%= link_to("명진당", home_myongjin_restaraunt_path, :class => "w3-bar-item w3-button") %>
-          <a class="w3-bar-item w3-button" href="/home/myongjin_restaraunt">명진당</a>
-          <a class="w3-bar-item w3-button" href="/home/student_restaraunt">학생식당</a>
-          <a class="w3-bar-item w3-button" href="/home/officer_restaraunt">교직원식당</a>
+          <%= link_to("학생식당", home_student_restaraunt_path, :class => "w3-bar-item w3-button") %>
+          <%= link_to("교직원식당", home_officer_restaraunt_path, :class => "w3-bar-item w3-button") %>
         </div>
       </div>
     </nav>
