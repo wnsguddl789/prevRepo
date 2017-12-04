@@ -68,20 +68,14 @@
       <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="http://www.mju.ac.kr/mbs/mjukr/intro.jsp">명지대학교 홈페이지</a>
       <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
       <%= link_to("Home", root_path, :class => "w3-bar-item w3-button") %>
-
-      <% if user_signed_in? %>
-        <p class="w3-bar-item w3-button"><strong><%= current_user.email %></strong>님 안녕하세요!</p>
-        <%= link_to("Sing out",destroy_model_session_path, :class => "w3-bar-item w3-button")%>
-      <% else %>
-        <%= link_to("Sing in",model_session_path, :class => "w3-bar-item w3-button")%>
-        <%= link_to("Sing up",new_model_registration_path, :class => "w3-bar-item w3-button")%>
-      <% end %>
-
-
+      <%= link_to("Sing out",destroy_model_session_path, :class => "w3-bar-item w3-button")%>
+      <%= link_to("Sing in",model_session_path, :class => "w3-bar-item w3-button")%>
+      <%= link_to("Sing up",new_model_registration_path, :class => "w3-bar-item w3-button")%>
+      
       <div>
         <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">학식메뉴 펼치기 <i class="fa fa-caret-down"></i></a>
         <div id="demo" class="w3-hide">
-
+          <%= link_to("명진당", home_myongjin_restaraunt_path, :class => "w3-bar-item w3-button") %>
           <a class="w3-bar-item w3-button" href="/home/myongjin_restaraunt">명진당</a>
           <a class="w3-bar-item w3-button" href="/home/student_restaraunt">학생식당</a>
           <a class="w3-bar-item w3-button" href="/home/officer_restaraunt">교직원식당</a>
