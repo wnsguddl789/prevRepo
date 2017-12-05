@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class HomeController < ApplicationController
+
   def index
     @menu_name = "MJU_menu : Introduction"
   end
@@ -89,6 +90,7 @@ class HomeController < ApplicationController
 
   end
 
+
   def officer_restaraunt
 
     @menu_name = "officer_restaraunt : Menu"
@@ -126,5 +128,7 @@ class HomeController < ApplicationController
       doc.css('table [summary="월요일 식단내용"] td.txtc').each do |name|
         @menu << name.content
       end
+      
   end
+
 end

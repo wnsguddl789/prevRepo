@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :models
+  devise_for :users
   root 'home#index'
 
   devise_scope :model do
-     get "/models/sign_out" => "devise/sessions#destroy"
+     get "/users/sign_out" => "devise/sessions#destroy"
  end
 
   get 'home/myongjin_restaraunt'

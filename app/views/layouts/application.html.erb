@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <title>MJU_menu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -66,11 +70,24 @@
   <body>
     <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
       <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="http://www.mju.ac.kr/mbs/mjukr/intro.jsp">명지대학교 홈페이지</a>
-      <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-      <%= link_to("Home", root_path, :class => "w3-bar-item w3-button") %>
-      <%= link_to("Sing out",destroy_model_session_path, :class => "w3-bar-item w3-button")%>
-      <%= link_to("Sing in",model_session_path, :class => "w3-bar-item w3-button")%>
-      <%= link_to("Sing up",new_model_registration_path, :class => "w3-bar-item w3-button")%>
+      <a class="w3-bar-item w3-button w3-border-bottom w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+      
+
+      <% if user_signed_in? %>
+        <p class="w3-bar-item w3-button w3-border-bottom">안녕하세요^~^ <%= current_user.email %>님</p>
+        <%= link_to("Home", root_path, :class => "w3-bar-item w3-button") %>
+        <%= link_to("Sing out",destroy_user_session_path, :class => "w3-bar-item w3-button")%>
+
+      <% else %>
+        <p class="w3-bar-item w3-button w3-border-bottom">안녕하세요^~^  로그인해주세요!</p>
+        <%= link_to("Home", root_path, :class => "w3-bar-item w3-button") %>
+        <%= link_to("Sing in",user_session_path, :class => "w3-bar-item w3-button")%>
+        <%= link_to("Sing up",new_user_registration_path, :class => "w3-bar-item w3-button")%>
+      <% end %>
+
+
+      
+      
       
       <div>
         <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">학식메뉴 펼치기 <i class="fa fa-caret-down"></i></a>
@@ -106,6 +123,7 @@
       <h3>제작자</h3>
       <p>명지대학교</p>
       <p>15학번 60151902 박준형</p>
+
     </footer>
 
     </div>
