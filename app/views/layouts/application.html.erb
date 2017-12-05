@@ -71,7 +71,7 @@
     <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
       <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="http://www.mju.ac.kr/mbs/mjukr/intro.jsp">명지대학교 홈페이지</a>
       <a class="w3-bar-item w3-button w3-border-bottom w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-      
+
 
       <% if user_signed_in? %>
         <p class="w3-bar-item w3-button w3-border-bottom">안녕하세요^~^ <%= current_user.email %>님</p>
@@ -84,17 +84,17 @@
         <%= link_to("Sing in",user_session_path, :class => "w3-bar-item w3-button")%>
         <%= link_to("Sing up",new_user_registration_path, :class => "w3-bar-item w3-button")%>
       <% end %>
+      <%= link_to("index", posts_path, :class => "w3-bar-item w3-button")%>
 
 
-      
-      
-      
+
+
       <div>
         <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">학식메뉴 펼치기 <i class="fa fa-caret-down"></i></a>
         <div id="demo" class="w3-hide">
           <%= link_to("명진당", home_myongjin_path, :class => "w3-bar-item w3-button") %>
           <%= link_to("학생식당", home_student_path, :class => "w3-bar-item w3-button") %>
-          <%= link_to("교직원식당", home_proffesor_path, :class => "w3-bar-item w3-button") %>
+          <%= link_to("교직원식당", home_officer_path, :class => "w3-bar-item w3-button") %>
         </div>
       </div>
     </nav>

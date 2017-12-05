@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   devise_for :users
   root 'home#index'
 
@@ -7,7 +8,7 @@ Rails.application.routes.draw do
  end
 
   get 'home/myongjin'
-  get 'home/proffesor'
+  get 'home/officer'
   get 'home/student'
 
 

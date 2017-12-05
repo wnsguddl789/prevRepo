@@ -49,11 +49,11 @@ class HomeController < ApplicationController
   end
 
   def student
-    
+
   end
 
-  def proffesor
-    
+  def officer_restaraunt
+
   end
     #--------학식 크롤러 끝-----------------------------------#
 
