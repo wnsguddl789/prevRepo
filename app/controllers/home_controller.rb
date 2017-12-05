@@ -52,7 +52,7 @@ class HomeController < ApplicationController
 
   end
 
-  def officer_restaraunt
+  def officer
 
   end
     #--------학식 크롤러 끝-----------------------------------#
