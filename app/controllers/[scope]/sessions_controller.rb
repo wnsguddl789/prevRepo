@@ -1,6 +1,5 @@
 class [scope]::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  @modal_id = "id01"
   # GET /resource/sign_in
   # def new
   #   super

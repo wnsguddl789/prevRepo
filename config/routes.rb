@@ -5,12 +5,12 @@ Rails.application.routes.draw do
 
   devise_scope :model do
      get "/users/sign_out" => "devise/sessions#destroy"
- end
+  end
 
   get 'home/myongjin'
   get 'home/officer'
   get 'home/student'
 
-
+  get '/users/sign_out' => 'devise/sessions#destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

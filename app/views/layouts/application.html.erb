@@ -74,9 +74,9 @@
 
 
       <% if user_signed_in? %>
-        <p class="w3-bar-item w3-button w3-border-bottom">안녕하세요^~^ <%= current_user.email %>님</p>
+        <p class="w3-bar-item w3-button w3-border-bottom">안녕하세요^~^ <%= current_user.name %>님</p>
         <%= link_to("Home", root_path, :class => "w3-bar-item w3-button") %>
-        <%= link_to("Sing out",destroy_user_session_path, :class => "w3-bar-item w3-button")%>
+        <%= link_to("Sing out",destroy_user_session_path, :class => "w3-bar-item w3-button" , method: :delete)%>
 
       <% else %>
         <p class="w3-bar-item w3-button w3-border-bottom">안녕하세요^~^  로그인해주세요!</p>
@@ -108,7 +108,7 @@
       <span id="myIntro" class="w3-hide"><%= @menu_name%></span></p>
     </div>
 
-    <header class="w3-container w3-theme" style="padding:64px 32px">
+    <header class="w3-container w3-theme w3" style="padding:64px 32px">
       <h2 class="w3-myfont">MJU_menu_Crawler</h2>
     </header>
 

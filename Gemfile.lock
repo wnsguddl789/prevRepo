@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/plataformatec/devise.git
+  revision: 4f2e9158336a3e82fcfd803f2a74f4830fcc364d
+  specs:
+    devise (4.3.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0, < 5.2)
+      responders
+      warden (~> 1.2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -65,12 +76,6 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
-    devise (4.3.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.2)
-      responders
-      warden (~> 1.2.3)
     erubi (1.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
@@ -195,7 +200,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
-  devise
+  devise!
   jbuilder (~> 2.5)
   puma (~> 3.7)
   rails (~> 5.1.4)
