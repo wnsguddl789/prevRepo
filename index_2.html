@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>
+
+  </title>
+  <style media="screen">
+    .Header {
+      grid-area: header;
+    }
+
+    .Menu {
+      grid-area: menu;
+      text-decoration: none;
+    }
+
+    .Main {
+      grid-area: main;
+    }
+
+    .Right {
+      grid-area: right;
+    }
+
+    .Footer {
+      grid-area: footer;
+    }
+
+    .grid-container {
+      display: grid;
+      grid: 'header header header header header header' 'menu main main main right right' 'menu footer footer footer footer footer';
+      grid-gap: 10px;
+      background-color: #bbb;
+      padding: 10px;
+    }
+
+    .grid-container>div {
+      background-color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      padding: 20px 0;
+      font-size: 30px;
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="grid-container">
+    <div class="Header">Header</div>
+    <div class="Menu">
+      <li><a href="">Home</a></li>
+      <li><a href="">Log In</a></li>
+      <li><a href="">Sign Up</a></li>
+      <li><a href="">Index</a></li>
+    </div>
+    <div class="Main">Main</div>
+    <div class="Right">Right</div>
+    <div class="Footer">Footer</div>
+  </div>
+
+</body>
+
+</html>
