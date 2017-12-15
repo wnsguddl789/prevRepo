@@ -9,34 +9,39 @@ body {
 
 .nav {
 
-	border-top: 5px solid; 
-	border-bottom: 5px solid; 
+	border-top: 5px solid;
+	border-bottom: 5px solid;
 	margin-bottom : 10px;
 }
 .header {
-	background: darkgrey;
+	background: #273642;
 	text-align: center;
 	border : 5px solid #bb1;
 	padding : 0.5rem;
 	margin-bottom : 10px;
 }
 
-.header > a {
+.header > h2 {
+	color : #fff;
+}
+
+.header > h3 {
 	text-decoration: none;
 }
 
 .wrap {
-	
+
 	margin-bottom : 10px;
-	border-top: 5px solid black; 
-	border-bottom: 5px solid black; 
+	border-top: 5px solid black;
+	border-bottom: 5px solid black;
 	padding : 0.5rem;
 }
 
 .wrap > div {
 	border: 5px solid #555;
+	border-radius: 8px;
 	padding : 0.5rem;
-	margin-bottom: 5px; 
+	margin-bottom: 5px;
 	height: 300px auto;
 }
 
@@ -55,7 +60,7 @@ body {
     padding: 0;
 }
 
-li a {	
+li a {
 	display: block;
 	padding: 8px 16px;
 	text-decoration: none;
