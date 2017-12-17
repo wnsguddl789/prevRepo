@@ -1,0 +1,34 @@
+.container {
+  width: 325px;
+  height: 500px;
+  border: 2px solid slategray;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: rgb(115, 99, 71);
+}
+
+.container > div.btn {
+  border-radius: 20px;
+  margin: 1px 1px 10px 1px;;
+  float: left;
+  border: 2px solid slategray;
+  width: 75px;
+  height: 40px;
+}
+
+.container > div.print {
+  border-radius: 20px;
+  margin-bottom: 20px;
+  border: 4px solid slategray;
+  height: 200px;
+  background-color: LightGray;
+
+}
+
+div.btn > button {
+  font-size: 1.5em;
+  border-radius: 20px;
+  width: 75px;
+  height:  40px;
+  background-color: LightGray;
+}
