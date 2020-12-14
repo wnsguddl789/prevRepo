@@ -44,29 +44,29 @@ def create_train_test_df():
 def tokenize(doc):
     return ['/'.join(t) for t in okt.pos(doc, norm=True, stem=True)]
 def make_json_docs(train_df,test_df):
-    if os.path.isfile('train_docs.json'):
-        with open('train_docs.json', encoding="utf-8") as f:
+    if os.path.isfile('modeling_json/train_docs.json'):
+        with open('modeling_json/train_docs.json', encoding="utf-8") as f:
             train_docs = json.load(f)
-        with open('test_docs.json', encoding="utf-8") as f:
+        with open('modeling_json/test_docs.json', encoding="utf-8") as f:
             test_docs = json.load(f)
     else:
         train_docs = [(tokenize(row[1]), row[2]) for row in train_df.values]
         test_docs  = [(tokenize(row[1]), row[2]) for row in test_df.values]
         # JSON 파일로 저장
-        with open('train_docs.json', 'w', encoding="utf-8") as make_file:
+        with open('modeling_json/train_docs.json', 'w', encoding="utf-8") as make_file:
             json.dump(train_docs, make_file, ensure_ascii=False, indent="\t")
-        with open('test_docs.json', 'w', encoding="utf-8") as make_file:
+        with open('modeling_json/test_docs.json', 'w', encoding="utf-8") as make_file:
             json.dump(test_docs, make_file, ensure_ascii=False, indent="\t")
     tokens = [t for d in train_docs for t in d[0]]
     text = nltk.Text(tokens, name='NMSC')
     return train_docs,test_docs,text
 def make_json_text(text,frequency):
     if os.path.isfile('text.json'):
-        with open('selected_words.json', encoding="utf-8") as f:
+        with open('modeling_json/selected_words.json', encoding="utf-8") as f:
             selected_words = json.load(f)
     else:
         selected_words = [f[0] for f in text.vocab().most_common(frequency)]
-        with open('selected_words.json', 'w', encoding="utf-8") as make_file:
+        with open('modeling_json/selected_words.json', 'w', encoding="utf-8") as make_file:
             json.dump(selected_words, make_file, ensure_ascii=False, indent="\t")
 
     return selected_words
@@ -169,7 +169,7 @@ for word, r in sorted(keywords.items(), key=lambda x:x[1], reverse=True)[:60]:
     list.append(word)
 
 positive_list,negative_list = predict_test(model,selected_words,list)
-with open('positive_list_free.json', 'w', encoding='UTF-8-sig') as file:
+with open('list/positive_list_free.json', 'w', encoding='UTF-8-sig') as file:
     file.write(json.dumps(positive_list, ensure_ascii=False))
-with open('negative_list_free.json', 'w', encoding='UTF-8-sig') as file:
+with open('list/negative_list_free.json', 'w', encoding='UTF-8-sig') as file:
     file.write(json.dumps(negative_list, ensure_ascii=False))
