@@ -38,4 +38,5 @@
 <li>./positive_or_negative.py 감정분석모델링</li>
 <li>./Result_free 디렉토리 : 크롤링한 자유게시판 데이터들</li>
 <li>./Result_depressed 디렉토리 : 크롤링한 우울게시판 데이터들</li>
+
 </ul>
