@@ -1,0 +1,1 @@
+{"comment_text": ["\ub4a4\uc9c0\uace0 \uc2f6\ub2e4"], "text": "\ub4a4\uc9c0\uace0 \uc2f6\ub2e4", "now_time": "2020-12-14 11:36:36.268837", "comment_time": ["03/07 02:01"], "tex_time": "03/07 02:01"}

@@ -1,0 +1,1 @@
+{"comment_time": ["12/13 19:05", "12/13 23:25"], "text": "slangin' out west !", "now_time": "2020-12-14 11:32:32.105265", "title": "bag it out west", "tex_time": "12/13 19:05", "comment_text": ["slangin' out west !", "Buddah bless this beat !"]}

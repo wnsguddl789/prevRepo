@@ -1,0 +1,1 @@
+{"comment_text": ["\ucee4\ud305\ud558\uace0 \uc2f6\uc740\ub370 \ub8f8\uba54 \ube68\ub9ac \uace0\ud5a5 \uac00\uba74 \uc88b\uaca0\ub2e4."], "text": "\ucee4\ud305\ud558\uace0 \uc2f6\uc740\ub370 \ub8f8\uba54 \ube68\ub9ac \uace0\ud5a5 \uac00\uba74 \uc88b\uaca0\ub2e4.", "now_time": "2020-12-14 11:36:25.435841", "comment_time": ["04/30 23:49"], "tex_time": "04/30 23:49"}

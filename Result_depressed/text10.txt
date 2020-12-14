@@ -1,0 +1,1 @@
+{"comment_text": ["\ud589\ubcf5\ud574!!!! \u314e\u314e", "\ubd80\ub7fd\ub2e4. \ub098\ub3c4 \ud589\ubcf5\ud558\ub2e4 \ub290\ub084\ub54c \uc788\ub294\ub370 \ubb54\uac00 \ubd88\uc548\ud55c \ud589\ubcf5\uc774\uc57c."], "text": "\ud589\ubcf5\ud574!!!! \u314e\u314e", "now_time": "2020-12-14 11:35:54.362903", "comment_time": ["11/21 23:41", "11/22 20:33"], "tex_time": "11/21 23:41"}
