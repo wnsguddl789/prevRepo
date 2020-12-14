@@ -7,5 +7,12 @@
 ## 3.프로젝트 개요
 <ul>
   <li><a href="https://everytime.kr/">명지대학교 에브리타임</a>의 자유게시판, 우울게시판에서 게시글의 내용을 크롤링합니다.</li>
-  <li></li>
+  <li><b>Naver sentiment movie corpus</b>데이터셋을 이용하였다</li>
+  <ul>
+    <li>영화리뷰중 영화당 100개의 리뷰</li>
+    <li>데이터의 개수 : 200,000개(train : 150,000 , test : 50,000)</li>
+    <li>1점 ~ 10점 까지의 평점중 5~8점(중립적)을 제외하고 분류하였다</li>
+    <li>부정 1~4점 / 긍정 9~10점</li>
+    <li>칼럼정보 : id, document, label</li>
+  </ul>
 </ul>
