@@ -18,8 +18,8 @@ driver.implicitly_wait(10)
 driver.get('https://everytime.kr/login')
 
 # 접속
-driver.find_element_by_name('userid').send_keys('wnsguddl789')
-driver.find_element_by_name('password').send_keys('azxs741')
+driver.find_element_by_name('userid').send_keys('') # 아이디 입력
+driver.find_element_by_name('password').send_keys('') # 패스워드 입력
 driver.find_element_by_xpath('//*[@class="submit"]/input').click()  # 로그인 버튼
 time.sleep(2)
 driver.get('https://everytime.kr/391017/')  # 우울게시판 클릭
