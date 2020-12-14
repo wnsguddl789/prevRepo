@@ -11,6 +11,7 @@
   <li>wordcloud              1.8.1</li>
   <li>Python 3.5.6 :: Anaconda</li>
 </ul>
+
 ## 3.프로젝트 개요
 <ul>
   <li><a href="https://everytime.kr/">명지대학교 에브리타임</a>의 자유게시판, 우울게시판에서 게시글의 내용을 크롤링합니다.</li>
@@ -29,4 +30,5 @@
     <li>Output Layer 1개 Sigmoid 함수 사용</li>
   </ul>
 </ul>
+
 ## 4.주요코드 설명
