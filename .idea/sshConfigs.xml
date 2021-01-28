@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="ec2-15-164-245-97.ap-northeast-2.compute.amazonaws.com" id="50822137-aac5-4864-a05d-397546100a75" keyPath="C:\Users\wnsgu\WebstormProjects\BBAKJUN.pem" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" />
+    </configs>
+  </component>
+</project>
