@@ -9,7 +9,7 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect(process.env.MONGO_DB);
+mongoose.connect("mongodb+srv://dbuser:azxs4125@cluster0.0ulr0.mongodb.net/test");
 var db = mongoose.connection;
 db.once('open', function(){
   console.log('DB connected');
@@ -32,5 +32,5 @@ app.use('/contacts', require('./routes/contacts'));
 // Port setting
 var port = 3000;
 app.listen(port, function(){
-  console.log('server on! http://localhost:'+port);
+  console.log('server on! http://3.36.26.82:'+port);
 });
