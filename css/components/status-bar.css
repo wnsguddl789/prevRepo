@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import "reset.css";
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+.status-bar{
+    position: fixed;
+    top:0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 5px 3px;
+}
+.status-bar__column{
+    width: 33%;
+}
+.status-bar__column:first-child span{
+    margin-right: 5px;
+}
+.status-bar__column:nth-child(2){
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.status-bar__column:nth-last-child(){
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.status-bar__column .fa-battery-full {
+    margin:  0px 5px;
+}
