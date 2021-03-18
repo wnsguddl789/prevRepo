@@ -8,11 +8,17 @@
 @import "./components/screen-header.css";
 @import "./components/user-component.css";
 @import "./components/badge.css";
+@import "./components/id.css";
+@import "./components/add_qr_img.css";
+@import "./components/icon-raw.css";
+
 /* Screnns */
 @import "./screens/login.css";
 @import "./screens/friends.css";
 @import "./screens/find.css";
-@import "./screens/add_by_id.css";
+@import "./screens/add.css";
+@import "./screens/recommend.css";
+@import "./screens/more.css";
 body{
     font-family: 'Open Sans', sans-serif;
     color: #2e363e;

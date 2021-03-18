@@ -11,24 +11,30 @@
     border: none;
     font-size: 18px;
     padding-bottom: 15px;
+    
+}
+.input-tel input:first-child{
+    border-bottom:1px solid gray;
+    margin-bottom: 20px;
 }
 .input-tel__column{
     display: flex;
     justify-content: space-between;
-    border-bottom:1px solid gray;
-    margin-bottom: 20px;
+    
 }
 .input-tel__column select{
     padding: 15px;
     border: none;
     color: gray;
     font-size: 18px;
-    margin-bottom: 25px;
     width: 40%;
+    
 }
 .input-tel__column input{
     width: 100%;
 }
 form label{
+    padding-top: 20px;
+    border-top:1px solid gray;
     color: gray;
 }
