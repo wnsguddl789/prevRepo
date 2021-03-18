@@ -11,6 +11,7 @@
 @import "./components/id.css";
 @import "./components/add_qr_img.css";
 @import "./components/icon-raw.css";
+@import "./components/alt-screen-header.css";
 
 /* Screnns */
 @import "./screens/login.css";
@@ -19,6 +20,8 @@
 @import "./screens/add.css";
 @import "./screens/recommend.css";
 @import "./screens/more.css";
+@import "./screens/settings.css";
+@import "./screens/chat.css";
 body{
     font-family: 'Open Sans', sans-serif;
     color: #2e363e;
