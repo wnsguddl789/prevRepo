@@ -1,34 +1,38 @@
 <template>
-  <div>
-    <div class="header">
-      <ul class="header__lists">
-        <li class="header__list">회원가입</li>
-        <li class="header__list">로그인</li>
-        <li class="header__list">게시판</li>
-        <li class="header__list">info</li>
+  <header>
+    <div class="menuWrap">
+      <ul class="menu">
+        <li><img src="../../assets/logo.png" width="80"></li>
+        <li><a href="">Menu_1</a></li>
+        <li><a href="">Menu_2</a></li>
+        <li><a href="">Menu_3</a></li>
+        <li><a href="">Menu_4</a></li>
       </ul>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
 </script>
 
 <style>
-  .header{
+  header{
     width: 100%;
-    position: fixed;
-    top: 0;
-    background-color: #adcb9a;
-    padding: 25px;
+    padding: 10px 0px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+  }
+  header ul.menu{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    flex-direction: row;
   }
-  .header ul{
-    list-style:none;
+  header ul.menu li {
+    align-content: center;
+    padding: 10px 20px;
   }
-  .header li{
-    font-weight: 600;
-    font-size: 30px;
+  a{
+    color: #333;
+    text-decoration: none;
   }
 </style>

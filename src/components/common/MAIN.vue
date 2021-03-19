@@ -1,6 +1,7 @@
 <template>
   <div>
-      <h1>dasda</h1>
+      <h1>This is main DIV</h1>
+      
   </div>
 </template>
 

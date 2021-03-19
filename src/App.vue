@@ -2,7 +2,7 @@
   <div class="app">
     <HEADER/>
     <MAIN/>
-    <NAV/>
+    <FOOTER/>
   </div>
 </template>
 
@@ -10,13 +10,13 @@
 // componets > common
 import HEADER from './components/common/HEADER.vue'
 import MAIN from './components/common/MAIN.vue'
-import NAV from './components/common/NAV.vue'
+import FOOTER from './components/common/FOOTER.vue'
 export default {
   name: 'App',
   components: {
     HEADER,
     MAIN,
-    NAV,
+    FOOTER,
   }
 }
 </script>
