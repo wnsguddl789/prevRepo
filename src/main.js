@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
-import router from './rotes'
+import router from './routes'
 
 Vue.config.productionTip = true
 

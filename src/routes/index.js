@@ -2,11 +2,12 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 // /components/common
-import MAIN from '@/components/common/MAIN.vue';
+import HOME from '@/components/common/HOME.vue';
 
 // /components/board -> 
 import READ from '@/components/board/READ.vue';
 import CREATE from '@/components/board/CREATE.vue';
+import DETAIL from '@/components/board/DETAIL.vue';
 
 // /components/user ->
 import SIGNIN from '@/components/user/SIGNIN.vue';
@@ -18,9 +19,10 @@ export default new Router({
     routes:[
         {
             path:'/',
-            name:MAIN,
-            component:MAIN
+            name:HOME,
+            component:HOME
         },{
+            // path => /board /@@@
             path:'/board/read',
             name:READ,
             component:READ
@@ -29,6 +31,11 @@ export default new Router({
             name:CREATE,
             component:CREATE
         },{
+            path:'/board/detail/:contentId',
+            name:DETAIL,
+            component:DETAIL
+        },{
+            // path => /user /@@@
             path:'/user/signin',
             name:SIGNIN,
             component:SIGNIN
