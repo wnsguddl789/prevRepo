@@ -19,14 +19,14 @@
 			</tbody>
 			
 		</table>
-		<button class="btn btn-primary btn-block" @click="write">write</button>
+		<button class="btn btn-dark btn-block" @click="write">write</button>
 	</div>
 </template>
 
 <script>
 import data from '@/data'
 export default{
-	name: 'Read',
+	name: 'READ',
 	data(){
 		return{
 			data:data
@@ -50,6 +50,8 @@ export default{
 	
 }
 </script>
-
 <style>
+	table{
+		text-align: center;
+	}
 </style>

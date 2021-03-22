@@ -26,8 +26,9 @@ export default new Router({
             path:'/board/read',
             component:READ
         },{
-            path:'/board/create',
-            component:CREATE
+            path:'/board/create/:contentId?',
+            component:CREATE,
+            name:"CREATE"
         },{
             path:'/board/detail/:contentId',
             component:DETAIL,
