@@ -33,7 +33,7 @@ export default {
   text-align: center;
   color: rgba(0,0,0,0.6); 
 }
-.container{
+.container {
 	 margin-top: 20px ;
  }
 

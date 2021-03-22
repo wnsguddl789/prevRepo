@@ -35,11 +35,26 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-unused-vars" : "off",
+      "no-mixed-spaces-and-tabs":0
+    }
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "description": "## Project setup ``` npm install ```",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wnsguddl789/vue-blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wnsguddl789/vue-blog/issues"
+  },
+  "homepage": "https://github.com/wnsguddl789/vue-blog#readme"
 }

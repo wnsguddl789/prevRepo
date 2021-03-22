@@ -10,7 +10,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr :key="index" v-for="(value,index) in data" @click="detail(index)">
+				<tr :key="index" @click="detail(index)" v-for="(value,index) in data"  >
 					<th scope="row">{{index + 1}}</th>
 					<td>{{value.author}}</td>
 					<td>{{value.title}}</td>

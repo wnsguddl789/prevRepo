@@ -3,8 +3,15 @@
 </template>
 
 <script>
+import data from '@/data'
 export default {
-    name:'Detail'
+    name:'DETAIL',
+    data(){
+        const index = this.$route.params.contentId
+        return{
+            data:data[index]
+        }
+    }
 }
 </script>
 

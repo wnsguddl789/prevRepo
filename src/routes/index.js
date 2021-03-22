@@ -5,7 +5,7 @@ import Router from 'vue-router';
 import HOME from '@/components/common/HOME.vue';
 
 // /components/board -> 
-import READ from '@/components/board/READ.vue';
+import READ from   '@/components/board/READ.vue';
 import CREATE from '@/components/board/CREATE.vue';
 import DETAIL from '@/components/board/DETAIL.vue';
 
@@ -24,24 +24,20 @@ export default new Router({
         },{
             // path => /board /@@@
             path:'/board/read',
-            name:READ,
             component:READ
         },{
             path:'/board/create',
-            name:CREATE,
             component:CREATE
         },{
             path:'/board/detail/:contentId',
-            name:DETAIL,
-            component:DETAIL
+            component:DETAIL,
+            name:"DETAIL"
         },{
             // path => /user /@@@
             path:'/user/signin',
-            name:SIGNIN,
             component:SIGNIN
         },{
             path:'/user/signup',
-            name:SIGNUP,
             component:SIGNUP
         }
 
