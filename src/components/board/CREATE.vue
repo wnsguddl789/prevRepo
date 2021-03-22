@@ -37,11 +37,11 @@ export default {
             })
         },
         update(){
-            data[this.index.author   = this.author]
-            data[this.index.title    = this.title]
-            data[this.index.content  = this.content]
+            data[this.index].author   = this.author
+            data[this.index].title    = this.title
+            data[this.index].content  = this.content
             this.$router.push({
-                path:'/read'
+                path:'board/read'
             })
         }
     }
