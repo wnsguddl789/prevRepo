@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import data from '@/data'
+import data from '../../data/board.json'
 export default {
     name:'DETAIL',
     data(){

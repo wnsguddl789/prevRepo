@@ -1,7 +1,9 @@
 <template>
-  <footer>
-		<p>copyRight github.com/wnsguddl789</p>
-	</footer>
+  <div class="footer">
+    <a href="https://github.com/wnsguddl789/vue-blog">
+		<p>copyRight github.com/wnsguddl789/vue-blog</p>
+    </a>
+	</div>
 </template>
 
 <script>
@@ -11,7 +13,7 @@ export default {
 </script>
 
 <style>
-  footer{
+  div.footer{
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -20,5 +22,9 @@ export default {
     font-size:16px; 
     color:rgba(0, 0, 0, 0.4); 
     padding: 20px 0px;
+  }
+  div.footer > a {
+    text-decoration: none;
+    color:rgba(0, 0, 0, 0.4); 
   }
 </style>

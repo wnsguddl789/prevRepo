@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import data from '@/data'
+import data from '../../data/board.json'
 
 export default {
     name:'CREATE',
@@ -24,7 +24,7 @@ export default {
             title:      index!== undefined ? data[index].title : "",
             content:    index!== undefined ? data[index].content : "",
         }
-    },
+    }, 
     methods:{
         write(){
             this.data.push({
@@ -33,7 +33,7 @@ export default {
                 content:this.content,
             })
             this.$router.push({
-                path:'/read'
+                path:'/board/read'
             })
         },
         update(){

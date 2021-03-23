@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
 
 // /components/common
 import HOME from '@/components/common/HOME.vue';
@@ -13,35 +13,38 @@ import DETAIL from '@/components/board/DETAIL.vue';
 import SIGNIN from '@/components/user/SIGNIN.vue';
 import SIGNUP from '@/components/user/SIGNUP.vue';
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
-export default new Router({
-    routes:[
-        {
-            path:'/',
-            name:HOME,
-            component:HOME
-        },{
-            // path => /board /@@@
-            path:'/board/read',
-            component:READ
-        },{
-            path:'/board/create/:contentId?',
-            component:CREATE,
-            name:"CREATE"
-        },{
-            path:'/board/detail/:contentId',
-            component:DETAIL,
-            name:"DETAIL"
-        },{
-            // path => /user /@@@
-            path:'/user/signin',
-            component:SIGNIN
-        },{
-            path:'/user/signup',
-            component:SIGNUP
-        }
+const routes = [
+    {
+        path:'/',
+        name:HOME,
+        component:HOME
+    },{
+        // path => /board /@@@
+        path:'/board/read',
+        component:READ
+    },{
+        path:'/board/create/:contentId?',
+        component:CREATE,
+        name:"CREATE"
+    },{
+        path:'/board/detail/:contentId',
+        component:DETAIL,
+        name:"DETAIL"
+    },{
+        // path => /user /@@@
+        path:'/user/signin',
+        component:SIGNIN
+    },{
+        path:'/user/signup',
+        component:SIGNUP
+    }
+]
 
-        
-    ]
-})
+const router = new VueRouter({
+    mode: 'history', // 주소/# 을 막기위해 필요하다
+    routes
+  })
+
+export default router
