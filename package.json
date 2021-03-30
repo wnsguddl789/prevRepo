@@ -36,8 +36,8 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "no-unused-vars" : "off",
-      "no-mixed-spaces-and-tabs":0
+      "no-unused-vars": "off",
+      "no-mixed-spaces-and-tabs": 0
     }
   },
   "browserslist": [
