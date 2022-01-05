@@ -9,6 +9,7 @@ export const Main = styled.main`
 `
 
 export const AppHeaerContainer = styled.div`
+  width: 100%;
   height: 100vh;
   /* background-size: cover;
   background-image: url("https://www.notion.so/image/https%3A%2F%2Fwww.notion.so%2Fimages%2Fpage-cover%2Fmet_frederic_edwin_church_1871.jpg?table=block&id=1e6595e5-dca0-4bfc-9280-c42636dcc507&spaceId=c4116497-d361-49f0-9046-796e2a84a406&width=2000&userId=fb2441ca-fd96-41b0-96dc-cdcfc7a513f0&cache=v2"); */
@@ -54,4 +55,8 @@ export const AppHeaderMainWrapper = styled.div`
 `
 export const NextImage = styled(Image)`
   border-radius: 20px;
+`
+export const CarouSelWrapper = styled.div`
+  width: 100%;
+  height: 78.5vh;
 `

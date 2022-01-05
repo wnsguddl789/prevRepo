@@ -9,8 +9,11 @@ import {
   SignInButton,
   AppHeaderMain,
   AppHeaderMainWrapper,
-  NextImage,
+  CarouSelWrapper,
 } from './style'
+
+import IMG from './social.jpeg'
+
 import CateGory from '../../CateGory'
 import CarouSel from "../../CarouSel";
 import Search from '../../Search'
@@ -52,7 +55,7 @@ const AppHeaer:React.FC = ({children}) => {
       <CateGory/>
       {
         isCarouSel
-        ? <CarouSel/>
+        ? (<CarouSelWrapper><CarouSel slides={[IMG,IMG,IMG,IMG,IMG,IMG]}/></CarouSelWrapper>)
         : null
       }
      </AppHeaerContainer>
