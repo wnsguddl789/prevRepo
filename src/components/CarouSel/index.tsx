@@ -13,9 +13,12 @@ import {
 type ButtonProps = {
   next : boolean,
   enabled: boolean,
-  onClick: Function
+  onClick: React.MouseEventHandler
 }
-const CarouSel = ({slides}) => {
+type SlideProps = {
+  slides: React.ReactNode
+}
+const CarouSel = ({slides}: SlideProps) => {
   const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
@@ -62,7 +65,7 @@ const CarouSel = ({slides}) => {
     <CarouSelContainer>
       <EmblaViewport ref={viewportRef}>
         <EmblaContainer>
-        {slides.map((index) => (
+        {slides && slides.map((index) => (
             <EmblaSlide key={index}>
               <EmblaSlideInner >
                 <EmblaSlideImg

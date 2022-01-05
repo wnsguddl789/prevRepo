@@ -55,7 +55,7 @@ const AppHeaer:React.FC = ({children}) => {
       <CateGory/>
       {
         isCarouSel
-        ? (<CarouSelWrapper><CarouSel slides={[IMG,IMG,IMG,IMG,IMG,IMG]}/></CarouSelWrapper>)
+        ? (<CarouSelWrapper><CarouSel slides={[]}/></CarouSelWrapper>)
         : null
       }
      </AppHeaerContainer>
