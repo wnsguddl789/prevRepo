@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const CateGoryContainer = styled.div`
   width: 100%;
-  height:5vh;
+  height:10vh;
   margin:auto;
   border-bottom: 1px solid rgba(0,0,0,0.2);
   display:flex;
