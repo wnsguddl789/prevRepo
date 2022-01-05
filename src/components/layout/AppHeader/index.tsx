@@ -16,7 +16,7 @@ import IMG from './social.jpeg'
 
 import CateGory from '../../CateGory'
 import CarouSel from "../../CarouSel";
-import Search from '../../Search'
+// import Search from '../../Search'
 const AppHeaer:React.FC = ({children}) => {
   const [isLoggedIn] = useState(false);
   const [isCarouSel] = useState(true);
@@ -49,13 +49,13 @@ const AppHeaer:React.FC = ({children}) => {
             onClick={() => router.push('')}
           >메인화면</span>
           <span>로고</span>
-          <Search/>
+          {/* <Search/> */}
         </AppHeaderMainWrapper>
       </AppHeaderMain>
       <CateGory/>
       {
         isCarouSel
-        ? (<CarouSelWrapper><CarouSel slides={[IMG,IMG,IMG,IMG,IMG,IMG]}/></CarouSelWrapper>)
+        ? (<CarouSelWrapper><CarouSel slides={[IMG,IMG,IMG,IMG,IMG]}/></CarouSelWrapper>)
         : null
       }
      </AppHeaerContainer>
