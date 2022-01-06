@@ -22,5 +22,6 @@ export const CateGoryList = styled.li`
   :hover {
     font-weight: 700;
     color: rgba(0,0,0,0.9);
+    cursor:pointer;
   }
 `
