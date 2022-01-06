@@ -1,4 +1,4 @@
-import React ,{ useState, useEffect, useCallback } from "react";
+import React ,{ useState, useEffect, useCallback, ReactNode } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import {
   CarouSelContainer,
@@ -16,7 +16,7 @@ type ButtonProps = {
   onClick: React.MouseEventHandler
 }
 type SlideProps = {
-  slides: React.ReactNode
+  slides: Array<ReactNode>
 }
 const CarouSel = ({slides}: SlideProps) => {
   const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
@@ -65,8 +65,8 @@ const CarouSel = ({slides}: SlideProps) => {
     <CarouSelContainer>
       <EmblaViewport ref={viewportRef}>
         <EmblaContainer>
-        {slides && slides.map((index) => (
-            <EmblaSlide key={index}>
+        {slides && slides.map((index:ReactNode,i:number) => (
+            <EmblaSlide key={i}>
               <EmblaSlideInner >
                 <EmblaSlideImg
                   src={(index)}

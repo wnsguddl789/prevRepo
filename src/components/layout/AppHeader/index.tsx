@@ -13,12 +13,12 @@ import {
 } from './style'
 
 import IMG from './social.jpeg'
-
-import CateGory from '../../CateGory'
+import AppFooter from "../AppFooter";
+import CateGory from './CateGory'
 import CarouSel from "../../CarouSel";
-// import Search from '../../Search'
+// import Search from './Search'
 const AppHeaer:React.FC = ({children}) => {
-  const [isLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(true);
   const [isCarouSel] = useState(true);
  
   const router = useRouter();
@@ -30,11 +30,10 @@ const AppHeaer:React.FC = ({children}) => {
         isLoggedIn
           ? (
             <AppHeaderMenu>
-              <AppHeaderMenuList>박준형님</AppHeaderMenuList>
-              <AppHeaderMenuList>박준형님</AppHeaderMenuList>
-              <AppHeaderMenuList>박준형님</AppHeaderMenuList>
-              <AppHeaderMenuList>박준형님</AppHeaderMenuList>
-              <AppHeaderMenuList>박준형님</AppHeaderMenuList>
+              <AppHeaderMenuList>마이페이지</AppHeaderMenuList>
+              <AppHeaderMenuList>주문배송조회</AppHeaderMenuList>
+              <AppHeaderMenuList>고객센터</AppHeaderMenuList>
+              <AppHeaderMenuList>로그아웃</AppHeaderMenuList>
             </AppHeaderMenu>
           )
           : (
@@ -60,6 +59,7 @@ const AppHeaer:React.FC = ({children}) => {
       }
      </AppHeaerContainer>
      <Main>{children}</Main>
+     <AppFooter/>
    </Container> 
   )
 }

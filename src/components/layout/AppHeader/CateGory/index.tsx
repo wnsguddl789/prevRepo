@@ -9,8 +9,8 @@ const Category = () => {
     <CateGoryContainer>
       <CateGoryListWrapper>
         <CateGoryList>전체상품</CateGoryList>
-        <CateGoryList>전체상품</CateGoryList>
-        <CateGoryList>전체상품</CateGoryList>
+        <CateGoryList>Top30</CateGoryList>
+        <CateGoryList>인기상품</CateGoryList>
         <CateGoryList>전체상품</CateGoryList>
         <CateGoryList>전체상품</CateGoryList>
         <CateGoryList>전체상품</CateGoryList>
