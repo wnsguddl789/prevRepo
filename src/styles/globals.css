@@ -16,6 +16,7 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
+	font-family: 'NotoSansKR-Medium', Tahoma, Geneva, Verdana, sans-serif;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -40,4 +41,9 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+@font-face {
+  font-family: "NotoSansKR-Medium";
+  font-weight: 200;
+  src: url("../../public/Font/NotoSansKR/NotoSansKR-Medium.otf") format("truetype");
 }
