@@ -11,18 +11,25 @@ import {
   AppHeaderMainWrapper,
   CarouSelWrapper,
 } from './style'
-
+import Modal from "../../Modal";
 import IMG from './social.jpeg'
 import AppFooter from "../AppFooter";
 import CateGory from './CateGory'
 import CarouSel from "../../CarouSel";
 // import Search from './Search'
 const AppHeaer:React.FC = ({children}) => {
-  const [isLoggedIn] = useState(true);
-  const [isCarouSel] = useState(true);
+  const [isLoggedIn] = useState(false);
+  const [isCarouSel] = useState(false);
  
   const router = useRouter();
-
+  
+  const [modalVisible, setModalVisible] = useState(false)
+  const openModal = () => {
+    setModalVisible(true)
+  }
+  const closeModal = () => {
+    setModalVisible(false)
+  }
   return (
    <Container>
      <AppHeaerContainer>
@@ -38,7 +45,19 @@ const AppHeaer:React.FC = ({children}) => {
           )
           : (
             <AppHeaderMenu>
-              <SignInButton>로그인</SignInButton>
+              <SignInButton onClick={openModal}>로그인</SignInButton>
+              {
+                modalVisible && 
+                <Modal
+                  ModalTitle={"로그인"}
+                  width={360}
+                  visible={modalVisible}
+                  closable={true}
+                  maskClosable={true}
+                  onClose={closeModal}
+                >
+                </Modal>
+              }
             </AppHeaderMenu>
           )
       }
