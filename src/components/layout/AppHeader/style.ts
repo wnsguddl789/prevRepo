@@ -6,19 +6,27 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   height: 100vh;
+  padding: 0 30px;
 `
 
 export const AppHeaerContainer = styled.div`
   width: 100%;
   height: 100vh;
 `
+export const AppHeaderMenuWrapper = styled.div`
+  position: -webkit-sticky;
+  background-color:white;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+`
 export const AppHeaderMenu = styled.ul`
+  position:relative;
   height: 1.1vh;
   list-style:none;
   display:flex;
   justify-content: end;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
-  padding: 10px 5px;
+  padding: 10px 20px;
   
 `
 export const AppHeaderMenuList = styled.li`

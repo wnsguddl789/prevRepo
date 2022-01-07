@@ -4,6 +4,7 @@ import {
   Container,
   Main,
   AppHeaerContainer,
+  AppHeaderMenuWrapper,
   AppHeaderMenu,
   AppHeaderMenuList,
   SignInButton,
@@ -18,7 +19,7 @@ import CateGory from './CateGory'
 import CarouSel from "../../CarouSel";
 // import Search from './Search'
 const AppHeaer:React.FC = ({children}) => {
-  const [isLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(true);
   const [isCarouSel] = useState(false);
  
   const router = useRouter();
@@ -32,8 +33,8 @@ const AppHeaer:React.FC = ({children}) => {
   }
   return (
    <Container>
-     <AppHeaerContainer>
-      {
+     <AppHeaderMenuWrapper>
+       {
         isLoggedIn
           ? (
             <AppHeaderMenu>
@@ -61,6 +62,10 @@ const AppHeaer:React.FC = ({children}) => {
             </AppHeaderMenu>
           )
       }
+      </AppHeaderMenuWrapper>
+     <AppHeaerContainer>
+       
+      
       <AppHeaderMain>
         <AppHeaderMainWrapper>
           <span 
