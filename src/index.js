@@ -5,12 +5,11 @@ import ReactDOM from 'react-dom';
 import GlobalNavigatorBar from './components/GlobalNavigatorBar';
 import CarouSel from './components/CarouSel';
 import './style/reset.css';
-import styled from 'styled-components';
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <React.StrictMode>
       <GlobalNavigatorBar />
-      <CarouSel />
+      <CarouSel theme={theme} />
     </React.StrictMode>
   </ThemeProvider>,
   document.getElementById('root')

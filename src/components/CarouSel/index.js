@@ -1,22 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Slide from './Slide';
-
-const imagesURL = [
-  { url: 'https://static.wanted.co.kr/images/banners/1452/be4ec643.jpg', header: 'ddd ', content: 'dds' },
-  { url: 'https://static.wanted.co.kr/images/banners/1436/e2dd9445.jpg', header: 'ddd ', content: 'dds' },
-  { url: 'https://static.wanted.co.kr/images/banners/1473/41f7b36e.jpg', header: 'ddd ', content: 'dds' },
-  { url: 'https://static.wanted.co.kr/images/banners/1451/725c6862.jpg', header: 'ddd ', content: 'dds' },
-  { url: 'https://static.wanted.co.kr/images/banners/1435/6cdcea85.jpg', header: 'ddd ', content: 'dds' },
-  { url: 'https://static.wanted.co.kr/images/banners/1460/619f3af7.jpg', header: 'ddd ', content: 'dds' },
-  { url: 'https://static.wanted.co.kr/images/banners/1453/7a978579.jpg', header: 'ddd ', content: 'dds' },
-  { url: 'https://static.wanted.co.kr/images/banners/1454/e504b006.jpg', header: 'ddd ', content: 'dds' },
-  { url: 'https://static.wanted.co.kr/images/banners/1468/3df61cbc.jpg', header: 'ddd ', content: 'dds' },
-  { url: 'https://static.wanted.co.kr/images/banners/1438/015566ac.jpg', header: 'ddd ', content: 'dds' },
-  { url: 'https://static.wanted.co.kr/images/banners/1434/fdbbcb06.jpg', header: 'ddd ', content: 'dds' },
-];
-const TOTAL_SLIDES = imagesURL.length;
-const CarouSel = () => {
+import { GrNext, GrPrevious } from 'react-icons/gr';
+import { imagesURL } from '../../constant/imagesURL';
+const TOTAL_SLIDES = imagesURL.length - 1;
+const CarouSel = ({ theme }) => {
+  console.log(theme);
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef();
 
@@ -42,10 +31,10 @@ const CarouSel = () => {
     <>
       <Container>
         <BTN onClick={PrevSlide} isPREV={true}>
-          PREV
+          <GrPrevious />
         </BTN>
         <BTN onClick={NextSlide} isPREV={false}>
-          NEXT
+          <GrNext />
         </BTN>
         <CarouSelContainer ref={slideRef}>
           {imagesURL.map((list, index) => {
@@ -60,18 +49,28 @@ const CarouSel = () => {
 export default CarouSel;
 
 const Container = styled.div`
+  width: 100%;
   padding-top: 25px;
   overflow: hidden;
+  position: absolute;
+  display: block;
 `;
 const CarouSelContainer = styled.div`
   height: 300px;
   display: flex;
-  background-color: rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  margin-left: -10px;
 `;
-const BTN = styled.button`
+const BTN = styled.div`
   position: absolute;
-  top: 20%;
-  left: ${(props) => (props.isPREV ? 0 : null)};
-  right: ${(props) => (props.isPREV ? null : 0)};
+  cursor: pointer;
+  background-color: transparent;
+  touch-action: manipulation;
+  top: 50%;
+  left: ${(props) => (props.isPREV ? '10px' : null)};
+  right: ${(props) => (props.isPREV ? null : '10px')};
   z-index: 99;
 `;
