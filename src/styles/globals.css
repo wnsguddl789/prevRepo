@@ -1,3 +1,9 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
 html,
 body,
 div,
@@ -83,7 +89,6 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -102,6 +107,9 @@ section {
 }
 body {
   line-height: 1;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR',
+    'Malgun Gothic', sans-serif;
 }
 ol,
 ul {
@@ -122,12 +130,30 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+a {
+  color: black;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+}
 .sr-only {
   position: absolute;
-  clip: rect(0 0 0 0);
-  top: auto;
+  margin: -1px;
   width: 1px;
   height: 1px;
-  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
   overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
 }
