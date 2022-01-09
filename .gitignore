@@ -37,4 +37,4 @@ yarn-error.log*
 *.tsbuildinfo
 
 # font
-/public/Font
+# /public/Font
