@@ -431,6 +431,9 @@ const DashBoard = styled.a`
   @media (min-width: 992px) and (max-width: 1199px) {
     margin: 0;
   }
+  :hover {
+    cursor: pointer;
+  }
 `;
 const NewBadge = styled.span`
   position: absolute;
