@@ -21,7 +21,7 @@ const CarouSel = ({ theme }) => {
       setCurrentSlide(currentSlide - 1);
     }
   };
-  const DragHandler = (e) => {};
+  // const DragHandler = (e) => {};
 
   useInterval(() => {
     setTimeout(NextSlide);
