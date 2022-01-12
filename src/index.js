@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import GlobalNavigatorBar from './components/GlobalNavigatorBar';
 import CarouSel from './components/CarouSel';
 import './style/reset.css';
+import './style/font.css';
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <React.StrictMode>

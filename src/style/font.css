@@ -1,0 +1,7 @@
+@font-face {
+  /* 사용할 폰트의 이름 */
+  font-family: 'icomoo';
+  font-display: fallback;
+  src: url('../assets/Font/icomoon.woff2');
+  font-weight: 800;
+}
