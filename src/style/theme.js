@@ -9,12 +9,12 @@ const size = {
 
 const theme = {
   gdacColor: '#0a4297',
-  mobile: `(max-width: ${size.mobile})`,
-  tabletS: `(max-width: ${size.tabletS})`,
-  tabletM: `(max-width: ${size.tabletM})`,
-  tabletL: `(max-width: ${size.tabletL})`,
-  labtop: `(max-width: ${size.labtop})`,
-  desktop: `(max-width: ${size.desktop})`,
+  mobile: `max-width: ${size.mobile}`,
+  tabletS: `max-width: ${size.tabletS}`,
+  tabletM: `max-width: ${size.tabletM}`,
+  tabletL: `max-width: ${size.tabletL}`,
+  labtop: `max-width: ${size.labtop}`,
+  desktop: `max-width: ${size.desktop}`,
 };
 
 export default theme;
