@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { imagesURL } from '../../constant/imagesURL';
+import useInterval from '../../hooks/useInterval';
 const TOTAL_SLIDES = imagesURL.length - 1;
 const CarouSel = ({ theme }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef();
-  // const imageRef = useRef();
+  const imageRef = useRef();
   const NextSlide = () => {
     if (currentSlide >= TOTAL_SLIDES) {
       setCurrentSlide(0);
@@ -20,19 +21,25 @@ const CarouSel = ({ theme }) => {
       setCurrentSlide(currentSlide - 1);
     }
   };
-  // useEffect(() => {
-  //   slideRef.current.style.transition = 'all 0.5s ease-in-out';
-  //   slideRef.current.style.transform = `translate3d(-${currentSlide}00%,0px)`; // 백틱을 사용하여 슬라이드로 이동하는 에니메이션을 만듭니다.
-  //   // imageRef.current.style.filter = `brightness(50%);`;
-  // }, [currentSlide]);
+  const DragHandler = (e) => {};
+
+  useInterval(() => {
+    setTimeout(NextSlide);
+  }, 4000);
+  useEffect(() => {
+    console.log(currentSlide);
+    slideRef.current.style.transition = 'all 0.5s ease-in-out';
+    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`; // 백틱을 사용하여 슬라이드로 이동하는 에니메이션을 만듭니다.
+    // imageRef.current.style.filter = `brightness(50%);`;
+  }, [currentSlide]);
   return (
     <MainContainer>
       <SlideContainer>
-        <Slide>
+        <Slide ref={slideRef}>
           {imagesURL.map((list, index) => {
             return (
-              <ImageContainer key={index} ref={slideRef}>
-                <Image src={list.url} />
+              <ImageContainer key={index}>
+                <Image src={list.url} ref={imageRef} number={index} />
                 <InfoContainer>
                   <InfoHeader>{list.header}</InfoHeader>
                   <InfoBody>{list.body}</InfoBody>
@@ -50,9 +57,17 @@ const CarouSel = ({ theme }) => {
             );
           })}
         </Slide>
+        <BTN onClick={PrevSlide} isPREV={true}>
+          <BtnSvg viewBox="0 0 18 18">
+            <path d="m6.045 9 5.978-5.977a.563.563 0 1 0-.796-.796L4.852 8.602a.562.562 0 0 0 0 .796l6.375 6.375a.563.563 0 0 0 .796-.796L6.045 9z"></path>
+          </BtnSvg>
+        </BTN>
+        <BTN onClick={NextSlide} isPREV={false}>
+          <BtnSvg viewBox="0 0 18 18">
+            <path d="m11.955 9-5.978 5.977a.563.563 0 0 0 .796.796l6.375-6.375a.563.563 0 0 0 0-.796L6.773 2.227a.562.562 0 1 0-.796.796L11.955 9z"></path>
+          </BtnSvg>
+        </BTN>
       </SlideContainer>
-      <BTN onClick={PrevSlide}>Prev</BTN>
-      <BTN onClick={NextSlide}>Next</BTN>
     </MainContainer>
   );
 };
@@ -62,21 +77,24 @@ const MainContainer = styled.div`
   padding-top: 15px;
 `;
 const SlideContainer = styled.div`
-  margin-left: auto;
-  margin-right: auto;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  text-align: center;
 `;
 const Slide = styled.div`
   display: flex;
   align-items: center;
-  /* justify-content: center; */
-  overflow: hidden;
+
   position: relative;
   user-select: none;
 `;
 const ImageContainer = styled.div`
   position: relative;
+  min-width: 100%;
   margin: 0 auto;
-  transition: all 1s ease-in-out;
+  overflow: hidden;
   @media (min-width: 1200px) {
     width: 87.72%;
   }
@@ -90,7 +108,6 @@ const Image = styled.img`
   border-radius: 4px;
   @media (min-width: 1200px) {
     width: 1060px;
-    z-index: 1000;
     padding: 0 10px;
   }
   @media (max-width: 1199px) {
@@ -100,6 +117,7 @@ const Image = styled.img`
   }
 `;
 const InfoContainer = styled.div`
+  position: relative;
   @media (min-width: 1200px) {
     position: absolute;
     bottom: 28px;
@@ -110,21 +128,20 @@ const InfoContainer = styled.div`
     opacity: 0;
     text-align: left;
     left: 34px;
-    z-index: 10000;
   }
   @media (max-width: 1199px) {
     text-align: center;
     width: calc(100vw - 100px);
     height: 183px;
+    margin: auto;
   }
 `;
 const InfoHeader = styled.h2`
-  margin-top: 20px px;
+  margin-top: 20px 0px;
   font-size: 18px;
-  line-height: 1;
   font-weight: 700;
   color: #333;
-  width: 'auto';
+  width: auto;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -167,6 +184,18 @@ const InfoRedirect = styled.a`
 `;
 const BTN = styled.button`
   @media (min-width: 1200px) {
+    justify-content: center;
+    position: absolute;
+    top: 120px;
+    width: 30px;
+    height: 60px;
+    opacity: 0.5;
+    border-radius: 15px;
+    background-color: #fff;
+    font-size: 16px;
+    left: ${(props) => (props.isPREV ? 'calc((100% - 1210px) / 2)' : null)};
+    right: ${(props) => (props.isPREV ? null : 'calc((100% - 1210px) / 2)')};
+    /* z-index: 99; */
   }
   @media (max-width: 1199px) {
     display: none;
@@ -179,6 +208,18 @@ const BTNEndIcon = styled.span`
 `;
 
 const EndIconSvg = styled.svg`
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-size: inherit;
+`;
+
+const BtnSvg = styled.svg`
   user-select: none;
   width: 1em;
   height: 1em;
