@@ -23,6 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # image
-*/*jpeg
 */*png
 */*svg
