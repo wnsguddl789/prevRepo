@@ -46,4 +46,19 @@ export const imagesURL = [
     header: '요즘 MD가 일하는 방법 ',
     body: '실무자가 공개하는 MD 커리어의 모든 것!',
   },
+  {
+    url: 'https://static.wanted.co.kr/images/banners/1488/baa54448.jpg',
+    header: 'UX 디자이너의 커리어 설계 ',
+    body: '브랜드 가치를 더하는 디자인',
+  },
+  {
+    url: 'https://static.wanted.co.kr/images/banners/1486/fba2df30.jpg',
+    header: '성과를 내는 마케팅 ',
+    body: '실제 사례를 공개합니다!',
+  },
+  {
+    url: 'https://static.wanted.co.kr/images/banners/1484/b2853456.jpg',
+    header: '성장하는 개발자가 되려면? ',
+    body: 'OOO 검색하지 말 것!',
+  },
 ];

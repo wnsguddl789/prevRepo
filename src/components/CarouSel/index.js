@@ -88,7 +88,7 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
     [...slideRef.current.children].map((child) => {
       if (currentLoopIndex === parseInt(child.getAttribute('data'))) {
         child.setAttribute('style', 'filter: brightness(100%);');
-        child.children[1].setAttribute('style', 'display:block;');
+        child.children[1].setAttribute('style', 'display:block;transition :all 0.5s ease-in-out;');
       } else {
         child.setAttribute('style', 'filter: brightness(50%);');
         child.children[1].setAttribute('style', 'display:none;');

@@ -113,7 +113,7 @@ export const InfoDivider = styled.hr`
   }
 `;
 export const InfoRedirect = styled.a`
-  margin: 6px 0 0 20px; 
+  margin: 6px 0 0 20px;
   font-size: 14px;
   font-weight: 700;
   line-height: 1;
