@@ -1,8 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useCallback } from 'react/cjs/react.development';
 import { imagesURL } from '../../constant/imagesURL';
-import useInterval from '../../hooks/useInterval';
-import { useSwipeable } from "react-swipeable";
 
 import {
   MainContainer,
@@ -28,6 +25,9 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
   const TOTAL_SLIDES = MAX_SLIDES * LOOP;
   const threeTimesImage = [...imagesURL, ...imagesURL, ...imagesURL];
   const [currentLoopIndex, setCurrentLoopIndex] = useState(2);
+  const [isMouseOn,setIsMouseOn] = useState(true)
+  const [mouseDownClientX, setMouseDownClientX] = useState(0);
+  const [mouseUpClientX, setMouseUpClientX] = useState(0);
 
   const NextSlide = () => {
     if (currentLoopIndex >= TOTAL_SLIDES) {
@@ -43,17 +43,37 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
       setCurrentLoopIndex(currentLoopIndex - 1);
     }
   };
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => NextSlide(),
-    onSwipedRight: () => PrevSlide(),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true
-  });
-
-  useInterval(() => {
-    NextSlide();
-  }, autoflow);
+  useEffect(() => {
+    let interValId;
+    if(isMouseOn) { // 마우스 올리고있으면 다음슬라이드 못넘기게 하기위해
+      interValId = setInterval(() => {
+        setCurrentLoopIndex(currentLoopIndex+1)
+      },autoflow)
+    }
+    return () => clearTimeout(interValId)
+  },[isMouseOn,currentLoopIndex,autoflow])
+  const onMouseOut = () => {
+    setIsMouseOn(true)
+  }
+  const onMouseOver = () => {
+    setIsMouseOn(false)
+  }
+  const onMouseDown = e => {
+    setMouseDownClientX(e.clientX);
+  };
+  const onMouseUp = e => {
+    setMouseUpClientX(e.clientX);
+  };
+  useEffect(() => {
+    const dragDiffWidth = Math.abs(mouseDownClientX - mouseUpClientX);
+    if (mouseDownClientX !== 0) {
+      if (mouseUpClientX < mouseDownClientX && dragDiffWidth > 100) {
+        NextSlide()
+      } else if (mouseUpClientX > mouseDownClientX && dragDiffWidth > 100) {
+        PrevSlide()
+      }
+    }
+  }, [mouseUpClientX,mouseDownClientX]);
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
     slideRef.current.style.transform = `translateX(-${currentLoopIndex * slideListRef.current.offsetWidth}px)`;
@@ -73,14 +93,15 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
       }
     });
   });
-  const getStaticIndex = useCallback((newID) => {
-    let rest;
-    if(rest < 0){}
-  }) 
   return (
     <MainContainer>
-      <SlideContainer {...handlers}>
-        <Slide ref={slideRef}>
+      <SlideContainer
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+      >
+        <Slide ref={slideRef} >
           {threeTimesImage.map((list, index) => {
             return (
               <SlideListContainer key={index} data={index} ref={slideListRef}>

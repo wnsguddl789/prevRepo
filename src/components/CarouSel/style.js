@@ -46,6 +46,7 @@ export const Image = styled.img`
   object-fit: cover;
   position: relative;
   margin: 0 10px;
+  -webkit-user-drag: none;
   border-radius: 4px;
   @media (min-width: 1200px) {
     min-width: 1060px;
