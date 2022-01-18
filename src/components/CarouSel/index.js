@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { imagesURL } from '../../constant/imagesURL';
 
 import {
@@ -21,21 +21,23 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
   const slideRef = useRef();
   const slideListRef = useRef();
   const LOOP = 3;
-  const MAX_SLIDES = imagesURL.length - LOOP;
+  const MAX_SLIDES = imagesURL.length - 1;
   const TOTAL_SLIDES = MAX_SLIDES * LOOP;
   const threeTimesImage = [...imagesURL, ...imagesURL, ...imagesURL];
-  const [currentLoopIndex, setCurrentLoopIndex] = useState(2);
+  const [currentLoopIndex, setCurrentLoopIndex] = useState(1);
   const [isMouseOn, setIsMouseOn] = useState(true);
   const [mouseDownClientX, setMouseDownClientX] = useState(0);
   const [mouseUpClientX, setMouseUpClientX] = useState(0);
 
-  const NextSlide = () => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const NextSlide = useCallback(() => {
     if (currentLoopIndex >= TOTAL_SLIDES) {
+      console.log('123');
       setCurrentLoopIndex(0);
     } else {
       setCurrentLoopIndex(currentLoopIndex + 1);
     }
-  };
+  });
   const PrevSlide = () => {
     if (currentLoopIndex === 0) {
       setCurrentLoopIndex(TOTAL_SLIDES);
@@ -48,11 +50,11 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
     if (isMouseOn) {
       // 마우스 올리고있으면 다음슬라이드 못넘기게 하기위해
       interValId = setInterval(() => {
-        setCurrentLoopIndex(currentLoopIndex + 1);
+        NextSlide();
       }, autoflow);
     }
     return () => clearTimeout(interValId);
-  }, [isMouseOn, currentLoopIndex, autoflow]);
+  }, [isMouseOn, currentLoopIndex, autoflow, NextSlide]);
   const onMouseOut = () => {
     setIsMouseOn(true);
   };
@@ -79,8 +81,9 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
     slideRef.current.style.transform = `translateX(-${currentLoopIndex * slideListRef.current.offsetWidth}px)`;
+    console.log(currentLoopIndex, imagesURL.length, TOTAL_SLIDES);
     // 백틱을 사용하여 슬라이드로 이동하는 에니메이션을 만듭니다.
-  }, [currentLoopIndex]);
+  }, [TOTAL_SLIDES, currentLoopIndex]);
   useEffect(() => {
     // 중심사진 제외 밝기 50퍼로 만듬
     // 중심사진 제외 infoContainer 안보이게 처리
