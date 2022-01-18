@@ -81,7 +81,6 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
     slideRef.current.style.transform = `translateX(-${currentLoopIndex * slideListRef.current.offsetWidth}px)`;
-    console.log(currentLoopIndex, imagesURL.length, TOTAL_SLIDES);
     // 백틱을 사용하여 슬라이드로 이동하는 에니메이션을 만듭니다.
   }, [TOTAL_SLIDES, currentLoopIndex]);
   useEffect(() => {
