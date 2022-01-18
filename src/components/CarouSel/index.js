@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useCallback } from 'react/cjs/react.development';
 import { imagesURL } from '../../constant/imagesURL';
 import useInterval from '../../hooks/useInterval';
 import { useSwipeable } from "react-swipeable";
@@ -26,7 +27,7 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
   const MAX_SLIDES = imagesURL.length - LOOP;
   const TOTAL_SLIDES = MAX_SLIDES * LOOP;
   const threeTimesImage = [...imagesURL, ...imagesURL, ...imagesURL];
-  const [currentLoopIndex, setCurrentLoopIndex] = useState(3);
+  const [currentLoopIndex, setCurrentLoopIndex] = useState(2);
 
   const NextSlide = () => {
     if (currentLoopIndex >= TOTAL_SLIDES) {
@@ -72,6 +73,10 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
       }
     });
   });
+  const getStaticIndex = useCallback((newID) => {
+    let rest;
+    if(rest < 0){}
+  }) 
   return (
     <MainContainer>
       <SlideContainer {...handlers}>

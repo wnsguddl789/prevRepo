@@ -15,11 +15,18 @@ export const Slide = styled.div`
   flex-wrap: nowrap;
   position: relative;
   user-select: none;
+  -webkit-user-drag: none;
   @media (min-width: 1200px) {
-    left: calc(50% - 530px);
+    left: calc(50% - 535px);
   }
   @media (max-width: 1199px) {
     left: calc(50% - calc(100vw - 70px) / 2);
+  }
+  @media (max-width: 700px) {
+    left: calc(50% - calc(100vw - 45px) / 2);
+  }
+  @media (max-width: 400px) {
+    left: calc(50% - calc(100vw - 30px) / 2);
   }
 `;
 export const SlideListContainer = styled.div`
