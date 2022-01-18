@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { imagesURL } from '../../constant/imagesURL';
 import useInterval from '../../hooks/useInterval';
 import {
@@ -20,20 +20,12 @@ import {
 const CarouSel = ({ theme, autoflow = 4000 }) => {
   const slideRef = useRef();
   const slideListRef = useRef();
-  const isDragging = useRef(false);
   const LOOP = 3;
   const MAX_SLIDES = imagesURL.length - LOOP;
   const TOTAL_SLIDES = MAX_SLIDES * LOOP;
   const threeTimesImage = [...imagesURL, ...imagesURL, ...imagesURL];
   const [currentLoopIndex, setCurrentLoopIndex] = useState(3);
   
-  const getStaticIndex = useCallback((newID) => {
-    let rest = newID % imagesURL.length;
-    if(rest < 0) {
-      rest += imagesURL.length
-    }
-    return rest
-  },[imagesURL.length])
 
   const NextSlide = () => {
     if (currentLoopIndex >= TOTAL_SLIDES) {
