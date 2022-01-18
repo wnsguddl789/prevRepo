@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { imagesURL } from '../../constant/imagesURL';
 import useInterval from '../../hooks/useInterval';
+import { useSwipeable } from "react-swipeable";
+
 import {
   MainContainer,
   SlideContainer,
@@ -25,7 +27,6 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
   const TOTAL_SLIDES = MAX_SLIDES * LOOP;
   const threeTimesImage = [...imagesURL, ...imagesURL, ...imagesURL];
   const [currentLoopIndex, setCurrentLoopIndex] = useState(3);
-  
 
   const NextSlide = () => {
     if (currentLoopIndex >= TOTAL_SLIDES) {
@@ -41,6 +42,14 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
       setCurrentLoopIndex(currentLoopIndex - 1);
     }
   };
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => NextSlide(),
+    onSwipedRight: () => PrevSlide(),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true
+  });
+
   useInterval(() => {
     NextSlide();
   }, autoflow);
@@ -65,7 +74,7 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
   });
   return (
     <MainContainer>
-      <SlideContainer>
+      <SlideContainer {...handlers}>
         <Slide ref={slideRef}>
           {threeTimesImage.map((list, index) => {
             return (
