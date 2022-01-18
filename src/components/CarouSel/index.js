@@ -25,7 +25,7 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
   const TOTAL_SLIDES = MAX_SLIDES * LOOP;
   const threeTimesImage = [...imagesURL, ...imagesURL, ...imagesURL];
   const [currentLoopIndex, setCurrentLoopIndex] = useState(2);
-  const [isMouseOn,setIsMouseOn] = useState(true)
+  const [isMouseOn, setIsMouseOn] = useState(true);
   const [mouseDownClientX, setMouseDownClientX] = useState(0);
   const [mouseUpClientX, setMouseUpClientX] = useState(0);
 
@@ -45,35 +45,37 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
   };
   useEffect(() => {
     let interValId;
-    if(isMouseOn) { // 마우스 올리고있으면 다음슬라이드 못넘기게 하기위해
+    if (isMouseOn) {
+      // 마우스 올리고있으면 다음슬라이드 못넘기게 하기위해
       interValId = setInterval(() => {
-        setCurrentLoopIndex(currentLoopIndex+1)
-      },autoflow)
+        setCurrentLoopIndex(currentLoopIndex + 1);
+      }, autoflow);
     }
-    return () => clearTimeout(interValId)
-  },[isMouseOn,currentLoopIndex,autoflow])
+    return () => clearTimeout(interValId);
+  }, [isMouseOn, currentLoopIndex, autoflow]);
   const onMouseOut = () => {
-    setIsMouseOn(true)
-  }
+    setIsMouseOn(true);
+  };
   const onMouseOver = () => {
-    setIsMouseOn(false)
-  }
-  const onMouseDown = e => {
+    setIsMouseOn(false);
+  };
+  const onMouseDown = (e) => {
     setMouseDownClientX(e.clientX);
   };
-  const onMouseUp = e => {
+  const onMouseUp = (e) => {
     setMouseUpClientX(e.clientX);
   };
   useEffect(() => {
     const dragDiffWidth = Math.abs(mouseDownClientX - mouseUpClientX);
     if (mouseDownClientX !== 0) {
       if (mouseUpClientX < mouseDownClientX && dragDiffWidth > 100) {
-        NextSlide()
+        NextSlide();
       } else if (mouseUpClientX > mouseDownClientX && dragDiffWidth > 100) {
-        PrevSlide()
+        PrevSlide();
       }
     }
-  }, [mouseUpClientX,mouseDownClientX]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mouseUpClientX, mouseDownClientX]);
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
     slideRef.current.style.transform = `translateX(-${currentLoopIndex * slideListRef.current.offsetWidth}px)`;
@@ -86,26 +88,21 @@ const CarouSel = ({ theme, autoflow = 4000 }) => {
     [...slideRef.current.children].map((child) => {
       if (currentLoopIndex === parseInt(child.getAttribute('data'))) {
         child.setAttribute('style', 'filter: brightness(100%);');
-        child.children[1].setAttribute('style','display:block;')
+        child.children[1].setAttribute('style', 'display:block;');
       } else {
         child.setAttribute('style', 'filter: brightness(50%);');
-        child.children[1].setAttribute('style','display:none;')
+        child.children[1].setAttribute('style', 'display:none;');
       }
     });
   });
   return (
     <MainContainer>
-      <SlideContainer
-        onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}
-        onMouseDown={onMouseDown}
-        onMouseUp={onMouseUp}
-      >
-        <Slide ref={slideRef} >
+      <SlideContainer onMouseOver={onMouseOver} onMouseOut={onMouseOut} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+        <Slide ref={slideRef}>
           {threeTimesImage.map((list, index) => {
             return (
               <SlideListContainer key={index} data={index} ref={slideListRef}>
-                <Image src={list.url} data={index}  />
+                <Image src={list.url} data={index} />
 
                 <InfoContainer>
                   <InfoHeader>{list.header}</InfoHeader>

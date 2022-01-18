@@ -54,6 +54,9 @@ export const HamburgerContainer = styled.div`
     width: 100%;
     padding: 0px 20px;
   }
+  :hover {
+    cursor: pointer;
+  }
 `;
 export const Logo = styled.a`
   display: block;
