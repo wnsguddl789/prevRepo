@@ -1,17 +1,15 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import theme from './style/theme';
+import styled, { ThemeProvider } from 'styled-components';
 import ReactDOM from 'react-dom';
 import GlobalNavigatorBar from './components/GlobalNavigatorBar';
 import CarouSel from './components/CarouSel';
 import './style/reset.css';
 import './style/font.css';
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <React.StrictMode>
-      <GlobalNavigatorBar />
-      <CarouSel theme={theme} />
-    </React.StrictMode>
-  </ThemeProvider>,
+  <React.StrictMode>
+    <GlobalNavigatorBar />
+    <CarouSel />
+  </React.StrictMode>,
   document.getElementById('root')
 );
+

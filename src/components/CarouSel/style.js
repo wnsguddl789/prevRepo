@@ -17,7 +17,6 @@ export const Slide = styled.div`
   user-select: none;
   @media (min-width: 1200px) {
     left: calc(50% - 530px);
-    /* min-width: 87.72px; */
   }
   @media (max-width: 1199px) {
     left: calc(50% - calc(100vw - 70px) / 2);
@@ -36,13 +35,11 @@ export const SlideListContainer = styled.div`
     min-width: 90%;
   }
 `;
-export const ImageCotainer = styled.div``;
 export const Image = styled.img`
   object-fit: cover;
   position: relative;
   margin: 0 10px;
   border-radius: 4px;
-  /* filter: brightness(${(props) => (props.index ? '100%' : '50%')}); */
   @media (min-width: 1200px) {
     min-width: 1060px;
   }
@@ -59,7 +56,6 @@ export const InfoContainer = styled.div`
     height: 146px;
     border-radius: 4px;
     background-color: #fff;
-    opacity: 0;
     text-align: left;
     left: 34px;
   }
@@ -80,10 +76,9 @@ export const InfoHeader = styled.h2`
   white-space: nowrap;
   overflow: hidden;
   @media (min-width: 1200px) {
-    margin-left: 20px;
-    margin-right: 20px;
     font-size: 20px;
     line-height: 1.5;
+    margin: 20px 0 0 20px;
   }
 `;
 export const InfoBody = styled.h3`
@@ -110,7 +105,7 @@ export const InfoDivider = styled.hr`
   }
 `;
 export const InfoRedirect = styled.a`
-  /* margin: 6px 0 0 13px; */
+  margin: 6px 0 0 13px; 
   font-size: 14px;
   font-weight: 700;
   line-height: 1;
