@@ -1,42 +1,58 @@
 import styled from "@emotion/styled"
 
-export const Card = () => {
-  const CardData = {
-    src: "./images/라인꽃반지.jpg",
-    label: "라인 꽃 반지",
-    price: 160000,
-    sale: 18,
-    content: "아기자기한 꽃과 블링한 다이아가 조화롭게 선을 이룬 반지입니다. 가드링으로 착용하시기 좋고, 쌍가락지로 착용하기도 좋습니다.",
+interface CardData{
+  data: {
+    src: string;
+    label: string;
+    price: number;
+    sale: number;
+    content: string;
   }
+}
 
-  const salePrice = (CardData.price*(100-CardData.sale)*0.01).toLocaleString(undefined);
-  const OriginPrice = CardData.price.toLocaleString(undefined);
+export const Card = ({data}:CardData) => {
+  const {src, label, price, sale, content} = data;
+
+  const salePrice = (price*(100-sale)*0.01).toLocaleString(undefined);
+  const OriginPrice = price.toLocaleString(undefined);
 
   return (
     <Container>
-      <img src={CardData.src} alt={CardData.label} />
-      <Label>[HeartRing] {CardData.label}</Label>
-      <PriceContainer>
-      <SalePrice>{salePrice}원</SalePrice>
-      <Price>{OriginPrice}원</Price>
-      <Sale>{CardData.sale}%</Sale>
-      </PriceContainer>
-      <Content>{CardData.content}</Content>
+      <Img src={src} alt={label} />
+      <div>
+
+        <Label>[하트링] {label}</Label>
+        <PriceContainer>
+          <SalePrice>{salePrice}원</SalePrice>
+          <Price>{OriginPrice}원</Price>
+          <Sale>{sale}%</Sale>
+        </PriceContainer>
+        <Content>{content}</Content>
+      </div>
     </Container>
     )
 }
 
 const Container = styled.article`
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+const Img = styled.img`
+  width: 100%;
 `;
 const Label = styled.h3`
+  font-size: 20px;
   font-weight: 700;
-  margin-top: 10px;
+  margin: 5px 0;
 `;
 const PriceContainer = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
-  margin: 5px 0;
+  margin-bottom: 5px;
 `;
 const SalePrice = styled.span`
   font-weight: 700;
@@ -49,7 +65,7 @@ position: relative;
   &::before{
     content: '';
     position: absolute;
-    top: 10px;
+    top: 8px;
     left: 2px;
     width: 100%;
     height: 1px;
@@ -62,5 +78,12 @@ const Sale = styled.span`
   color: #A26F59;
 `;
 const Content = styled.p`
+  font-size: 14px;
   opacity: 0.4;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
