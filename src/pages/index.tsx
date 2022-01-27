@@ -1,10 +1,14 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { Card } from "../components/Card";
 
 const Home: NextPage = () => {
   return (
-    <h1>Heart Ring</h1>
+<div>
+  <h1>Heart Ring</h1>
+  <Card/>
+</div>
   );
 };
 
