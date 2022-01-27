@@ -3,10 +3,8 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import Modal from '../../Modal';
-import IMG from './social.jpeg';
 import AppFooter from '../AppFooter';
 import CateGory from './CateGory';
-import CarouSel from '../../CarouSel';
 // import Search from './Search'
 const AppHeaer: React.FC = ({ children }) => {
   const [isLoggedIn] = useState(true);
@@ -58,11 +56,6 @@ const AppHeaer: React.FC = ({ children }) => {
           </AppHeaderMainWrapper>
         </AppHeaderMain>
         <CateGory />
-        {isCarouSel ? (
-          <CarouSelWrapper>
-            {/* <CarouSel slides={[IMG, IMG, IMG, IMG, IMG]} /> */}
-          </CarouSelWrapper>
-        ) : null}
       </AppHeaerContainer>
       <Main>{children}</Main>
       <AppFooter />
@@ -71,9 +64,7 @@ const AppHeaer: React.FC = ({ children }) => {
 };
 
 export default AppHeaer;
-const Container = styled.div`
-  /* width: 100vw; */
-`;
+const Container = styled.div``;
 
 const Main = styled.main`
   height: 100vh;
@@ -82,7 +73,6 @@ const Main = styled.main`
 
 const AppHeaerContainer = styled.div`
   width: 100%;
-  height: 100vh;
 `;
 const AppHeaderMenuWrapper = styled.div`
   position: -webkit-sticky;
@@ -127,11 +117,4 @@ const AppHeaderMainWrapper = styled.div`
   align-items: center;
   flex-grow: 1;
   justify-content: space-between;
-`;
-const NextImage = styled(Image)`
-  border-radius: 20px;
-`;
-const CarouSelWrapper = styled.div`
-  width: 100%;
-  height: 78.5vh;
 `;
