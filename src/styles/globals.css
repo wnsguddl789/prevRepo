@@ -133,6 +133,9 @@ a {
   src: url('../../public/Font/NotoSansKR/NotoSansKR-Medium.otf')
     format('truetype');
 }
+a {
+  color: inherit;
+}
 .sr-only {
   position: absolute;
   width: 1px;
