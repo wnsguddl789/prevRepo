@@ -7,8 +7,7 @@ import AppFooter from '../AppFooter';
 import CateGory from './CateGory';
 // import Search from './Search'
 const AppHeaer: React.FC = ({ children }) => {
-  const [isLoggedIn] = useState(true);
-  const [isCarouSel] = useState(true);
+  const [isLoggedIn] = useState(false);
 
   const router = useRouter();
 

@@ -31,8 +31,8 @@ const Modal = ({
   onClose,
   children,
 }: ModalProps) => {
-  const onMaskClick = (e: React.SyntheticEvent<EventTarget>) => {
-    if (e.target === e.currentTarget) {
+  const onMaskClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (maskClosable && e.target === e.currentTarget) {
       onClose(e);
     }
   };
@@ -51,12 +51,8 @@ const Modal = ({
   return (
     <>
       <ModalOverlay visible={visible} />
-      <ModalWrapper
-        onClick={maskClosable ? onMaskClick : null}
-        tabIndex="-1"
-        visible={visible}
-      >
-        <ModalInner tabIndex="0" className="modal-inner" width={width}>
+      <ModalWrapper onClick={onMaskClick} visible={visible}>
+        <ModalInner className="modal-inner" width={width}>
           <ModalHeader>{ModalTitle}</ModalHeader>
           {/* {closable && <CloseButton className="modal-close" onClick={close} />} */}
           <ModalContent>{children}</ModalContent>
@@ -89,8 +85,6 @@ const ModalOverlay = styled.div<{ visible: boolean }>`
 `;
 const ModalWrapper = styled.div<{
   visible: boolean;
-  onClick: Function;
-  tabIndex: string;
 }>`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? 'block' : 'none')};
