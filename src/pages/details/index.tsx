@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import type { NextPage } from 'next';
 import styled from '@emotion/styled';
 import { DetailsHeader } from '../../components/Details/DetailsHeader';
@@ -8,7 +8,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import { DUMMY_DATA } from '../../constants';
 const DetailsIndexPage: NextPage = () => {
   const imageListRef = useRef<HTMLUListElement>(null);
-  const [current, setCurrent] = useState(DUMMY_DATA.imageArray[0]);
+  const [current, setCurrent] = useState(0);
   const [quantity, setQuantity] = useState(1);
   useEffect(() => {
     if (imageListRef.current) {
@@ -16,13 +16,12 @@ const DetailsIndexPage: NextPage = () => {
         child.addEventListener('mouseover', function () {
           if (child && child.getAttribute('id')) {
             const id = Number(child.getAttribute('id'));
-            setCurrent(DUMMY_DATA.imageArray[id]);
+            setCurrent(id);
           }
         });
       });
     }
   }, [imageListRef]);
-
   const handleQuantityChange = (e: any) => {
     if (Number(e.target.value) == 0) {
       alert('최소주문수량은 1개 입니다.');
@@ -77,7 +76,7 @@ const DetailsIndexPage: NextPage = () => {
                 })}
             </ItemImageList>
             <ItemImageMain>
-              <img src={current} />
+              <img src={DUMMY_DATA.imageArray[current]} />
               <Button color={'00ABC7'} onClick={() => handleLikeClick()}>
                 좋아요 {DUMMY_DATA.likes}
               </Button>
