@@ -1,5 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import '../style/Toggle.css';
+const Toggle = () => {
+  const [isCheckd, setIsChecked] = useState(false);
 
-const Toggle = () => {};
+  const handleSwitch = () => {
+    setIsChecked(!isCheckd);
+  };
+  return (
+    <>
+      <Title>Toggle</Title>
+      <ToggleContainer>
+        <input className="switch-checkbox" id={`switch-new`} type="checkbox" onChange={handleSwitch} />
+        <label className="switch-label" htmlFor={`switch-new`} style={{ background: isCheckd && '#4900ce' }}>
+          <span className={`switch-button`} />
+        </label>
+        <span className="switch-result">Toggle Switch {isCheckd ? 'ON' : 'OFF'}</span>
+      </ToggleContainer>
+    </>
+  );
+};
 
 export default Toggle;
+
+const ToggleContainer = styled.div`
+  margin: auto;
+`;
+
+const Title = styled.p`
+  font-size: 20px;
+  font-weight: 900;
+`;
