@@ -78,12 +78,11 @@ const ClickToEditContainer = styled.div`
   margin: 50px 0;
 `;
 const InputContainer = styled.div`
-  /* margin-bottom: 50px; */
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
-  margin: 1rem;
 `;
 const Label = styled.label`
   padding: 20px;
