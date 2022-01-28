@@ -15,10 +15,6 @@ const AutoComplte = () => {
     setText('');
     setIsOpen(false);
   };
-
-  const handleChangeInput = (e) => {
-    setText(e.target.value);
-  };
   useEffect(() => {
     const visible = [];
     if (listRef) {
@@ -48,7 +44,7 @@ const AutoComplte = () => {
       <Title>AutoComplte</Title>
       <TagContainer>
         <InputContainer isOpen={isOpen}>
-          <Input type="text" value={text} onChange={(e) => handleChangeInput(e)} />
+          <Input type="text" value={text} onChange={(e) => setText(e.target.value)} />
           <DeleteBTN onClick={handleClearInput}>X</DeleteBTN>
         </InputContainer>
         <DropDownContainer isOpen={isOpen} ref={listRef}>
