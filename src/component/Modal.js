@@ -27,9 +27,7 @@ const Modal = () => {
 export default Modal;
 const Container = styled.div``;
 
-const Title = styled.p`
-  font-family: 'Roboto Mono', monospace;
-`;
+const Title = styled.p``;
 const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
