@@ -15,11 +15,11 @@ const ClickToEdit = () => {
       <ClickToEditContainer>
         <InputContainer>
           <Label htmlFor="input_name">이름</Label>
-          <MyInput id={'input_name'} value={name} handleValueChange={(newValue) => setName(newValue)} />
+          <MyInput id={'input_name'} type={'text'} value={name} handleValueChange={(newValue) => setName(newValue)} />
         </InputContainer>
         <InputContainer>
           <Label htmlFor="input_age">나이</Label>
-          <MyInput id={'input_age'} value={age} handleValueChange={(newValue) => setAge(newValue)} />
+          <MyInput id={'input_age'} type={'number'} value={age} handleValueChange={(newValue) => setAge(newValue)} />
         </InputContainer>
         <InputContainer>
           <Result>
@@ -30,7 +30,7 @@ const ClickToEdit = () => {
     </Container>
   );
 };
-const MyInput = ({ value, handleValueChange }) => {
+const MyInput = ({ type, value, handleValueChange }) => {
   const inputEl = useRef(null);
   const [editable, setEditable] = useState(false);
   const [newValue, setNewValue] = useState(value);
@@ -59,7 +59,7 @@ const MyInput = ({ value, handleValueChange }) => {
   return (
     <InputBox>
       {editable ? (
-        <InputEdit type="text" value={newValue} ref={inputEl} onBlur={handleBlur} onChange={handleInputChange} />
+        <InputEdit type={type} value={newValue} ref={inputEl} onBlur={handleBlur} onChange={handleInputChange} />
       ) : (
         <span onClick={handleClick}>{newValue}</span>
       )}
