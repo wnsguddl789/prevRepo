@@ -18,13 +18,6 @@ const AutoComplte = () => {
 
   const handleChangeInput = (e) => {
     setText(e.target.value);
-    if (dataList) {
-      dataList.map((data) => {
-        if (data.includes(e.target.value)) {
-          // setIsOpen(!isOpen);
-        }
-      });
-    }
   };
   useEffect(() => {
     const visible = [];
