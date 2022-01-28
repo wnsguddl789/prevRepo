@@ -31,6 +31,4 @@ const ToggleContainer = styled.div`
   margin: 50px 0;
 `;
 
-const Title = styled.p`
-  font-family: 'Roboto Mono', monospace;
-`;
+const Title = styled.p``;
