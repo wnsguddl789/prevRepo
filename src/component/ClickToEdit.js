@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const ClickToEdit = () => {
   const cache = {
-    name: '홍길동',
-    age: 18,
+    name: '김코딩',
+    age: 20,
   };
   const [name, setName] = useState(cache.name);
   const [age, setAge] = useState(cache.age);
