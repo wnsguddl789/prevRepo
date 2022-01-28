@@ -21,8 +21,9 @@ const AutoComplte = () => {
       // eslint-disable-next-line array-callback-return
       [...listRef.current.children].map((list) => {
         const listText = list.innerText;
-
-        if (listText.includes(text)) {
+        if (listText === text) {
+          setIsOpen(false);
+        } else if (listText.includes(text)) {
           if (text !== '') {
             list.setAttribute('style', 'display:block;');
             visible.push(true);
