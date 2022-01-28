@@ -1,8 +1,9 @@
 name: React build
 on:
-  push: # main Branch에서 push 이벤트가 일어났을 때만 실행
-    branches:
-      - main
+  push:
+      branches: [ main ]
+    pull_request:
+      branches: [ main ]
 
 jobs:
   build:

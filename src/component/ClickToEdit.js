@@ -69,7 +69,9 @@ const MyInput = ({ type, value, handleValueChange }) => {
 export default ClickToEdit;
 
 const Container = styled.div``;
-const Title = styled.p``;
+const Title = styled.p`
+  font-family: 'Roboto Mono', monospace;
+`;
 const ClickToEditContainer = styled.div`
   display: flex;
   flex-direction: column;
