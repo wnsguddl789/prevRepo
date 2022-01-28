@@ -28,8 +28,7 @@ export default Modal;
 const Container = styled.div``;
 
 const Title = styled.p`
-  font-size: 20px;
-  font-weight: 900;
+  font-family: 'Roboto Mono', monospace;
 `;
 const ModalContainer = styled.div`
   display: flex;

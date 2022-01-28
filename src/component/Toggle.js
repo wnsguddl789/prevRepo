@@ -32,6 +32,5 @@ const ToggleContainer = styled.div`
 `;
 
 const Title = styled.p`
-  font-size: 20px;
-  font-weight: 900;
+  font-family: 'Roboto Mono', monospace;
 `;
