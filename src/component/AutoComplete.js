@@ -18,6 +18,7 @@ const AutoComplte = () => {
   useEffect(() => {
     const visible = [];
     if (listRef) {
+      // eslint-disable-next-line array-callback-return
       [...listRef.current.children].map((list) => {
         const listText = list.innerText;
 
@@ -50,6 +51,7 @@ const AutoComplte = () => {
         <DropDownContainer isOpen={isOpen} ref={listRef}>
           {dataList.map((data, idx) => {
             return (
+              // eslint-disable-next-line no-sequences
               <DropDownList key={idx} onClick={() => (setText(data), setIsOpen(false))}>
                 {data}
               </DropDownList>
