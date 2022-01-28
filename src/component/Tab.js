@@ -55,7 +55,9 @@ const Tab = () => {
 
 export default Tab;
 const Container = styled.div``;
-const Title = styled.p``;
+const Title = styled.p`
+  font-family: 'Roboto Mono', monospace;
+`;
 const TabContainer = styled.div`
   display: flex;
   flex-direction: column;

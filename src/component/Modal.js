@@ -25,7 +25,9 @@ const Modal = () => {
 };
 
 export default Modal;
-const Container = styled.div``;
+const Container = styled.div`
+  font-family: 'Roboto Mono', monospace;
+`;
 
 const Title = styled.p``;
 const ModalContainer = styled.div`

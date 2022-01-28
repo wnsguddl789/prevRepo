@@ -66,7 +66,9 @@ const AutoComplte = () => {
 export default AutoComplte;
 
 const Container = styled.div``;
-const Title = styled.p``;
+const Title = styled.p`
+  font-family: 'Roboto Mono', monospace;
+`;
 const TagContainer = styled.div`
   display: flex;
   flex-direction: column;
