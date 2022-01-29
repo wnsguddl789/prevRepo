@@ -1,25 +1,26 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Tag = () => {
-  const [text, setText] = useState('');
-  const listRef = useRef();
-  const [child, setChild] = useState([]);
-  // const
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      setText('');
-      // console.log(AppendListItem(e.target.value));
-      // child.concat(AppendListItem(e.target.value));
-      listRef.current.append(AppendListItem(e.target.value));
+  const initialTags = ['CodeStates', 'kimcoding'];
+  const [tags, setTags] = useState(initialTags);
+
+  const addTags = (e) => {
+    let value = e.target.value.trim();
+
+    if (e.key === 'Enter' && !tags.includes(value) && value) {
+      setTags([...tags, value]);
+      e.target.value = '';
+    } else if (e.key === 'Enter' && !value) {
+      e.target.value = '';
     }
   };
-  const AppendListItem = (content) => {
-    return (
-      <TagListItem>
-        <TagListItemTitle>{content}</TagListItemTitle>
-        <TagListCloseBtn>X</TagListCloseBtn>
-      </TagListItem>
+
+  const removeTags = (indexTags) => {
+    setTags(
+      tags.filter((tag) => {
+        return tag !== tags[indexTags];
+      })
     );
   };
   return (
@@ -27,13 +28,17 @@ const Tag = () => {
       <Title>Tag</Title>
       <TagContainer>
         <TagInputContainer>
-          <TagList ref={listRef}></TagList>
-          <TagInput
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder="Press enter to add tags"
-          />
+          <TagList>
+            {tags.map((tag, index) => {
+              return (
+                <TagListItem key={index}>
+                  <TagListItemTitle>{tag}</TagListItemTitle>
+                  <TagListCloseBtn onClick={() => removeTags(index)}>X</TagListCloseBtn>
+                </TagListItem>
+              );
+            })}
+          </TagList>
+          <TagInput onKeyUp={(e) => addTags(e)} placeholder="Press enter to add tags" />
         </TagInputContainer>
       </TagContainer>
     </Container>
@@ -78,19 +83,22 @@ const TagListItemTitle = styled.span`
   font-size: 14px;
 `;
 const TagListCloseBtn = styled.span`
-  margin-left: 10px;
-  padding: 3px;
-  font-size: 12px;
-  color: #4900ce;
-  background-color: white;
+  display: block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  font-size: 14px;
+  margin-left: 8px;
+  color: #4000c7;
   border-radius: 50%;
-  :hover {
-    cursor: pointer;
-  }
+  background: #fff;
+  cursor: pointer;
 `;
 const TagInput = styled.input`
   font-size: 14px;
   outline: none;
   border: none;
-  width: auto;
+  flex: 1;
+  /* width: 100%; */
 `;
