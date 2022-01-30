@@ -96,13 +96,15 @@ const DetailsIndexPage: NextPage = () => {
               <div>
                 <ItmeInfo>
                   <ItemInfoContent color={'#A6A6A6'}>
-                    {DUMMY_DATA.price}원
+                    {DUMMY_DATA.price.toLocaleString()}원
                   </ItemInfoContent>
                 </ItmeInfo>
                 <ItmeInfo>
                   <ItemInfoContent>
-                    {DUMMY_DATA.price -
-                      (DUMMY_DATA.price / 100) * DUMMY_DATA.discount_percent}
+                    {(
+                      DUMMY_DATA.price -
+                      (DUMMY_DATA.price / 100) * DUMMY_DATA.discount_percent
+                    ).toLocaleString()}
                     원
                   </ItemInfoContent>
                 </ItmeInfo>
@@ -130,8 +132,10 @@ const DetailsIndexPage: NextPage = () => {
               </QuantityContainer>
 
               <Price>
-                {quantity * DUMMY_DATA.price -
-                  (DUMMY_DATA.price / 100) * DUMMY_DATA.discount_percent}
+                {(
+                  quantity * DUMMY_DATA.price -
+                  (DUMMY_DATA.price / 100) * DUMMY_DATA.discount_percent
+                ).toLocaleString()}
                 원
               </Price>
             </ResultContainer>
@@ -241,7 +245,7 @@ const ItmeInfoWrapper = styled.div`
   justify-content: space-between;
   div {
     display: flex;
-    :first-child {
+    :first-of-type {
       margin-right: 10px;
     }
   }
@@ -261,7 +265,7 @@ const SnsShareContainer = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
-  & > :first-child {
+  & > :first-of-type {
     font-size: 18px;
   }
   & > * {
@@ -271,7 +275,7 @@ const SnsShareContainer = styled.div`
   & > *:hover {
     cursor: pointer;
   }
-  & :first-child {
+  & :first-of-type {
     cursor: default;
     font-size: 12px;
   }
@@ -349,7 +353,7 @@ const DeliveryIcon = styled(DirectionsCarFilledIcon)`
 `;
 const DeliveryInfoContainer = styled.div`
   padding: 10px;
-  p > :nth-child(2) {
+  p > :nth-of-type(2) {
     color: #a26f59;
   }
   span {
@@ -362,7 +366,7 @@ const OrderContainer = styled.div`
   div {
     margin: 10px 0;
     display: flex;
-    button:first-child {
+    button:first-of-type {
       margin-right: 10px;
     }
   }
