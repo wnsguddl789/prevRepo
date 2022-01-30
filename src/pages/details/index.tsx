@@ -5,6 +5,7 @@ import { DetailsHeader } from '../../components/Details/DetailsHeader';
 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import ShareIcon from '@mui/icons-material/Share';
+import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 import { DUMMY_DATA } from '../../constants';
 const DetailsIndexPage: NextPage = () => {
   const imageListRef = useRef<HTMLUListElement>(null);
@@ -77,7 +78,7 @@ const DetailsIndexPage: NextPage = () => {
             </ItemImageList>
             <ItemImageMain>
               <img src={DUMMY_DATA.imageArray[current]} />
-              <Button color={'00ABC7'} onClick={() => handleLikeClick()}>
+              <Button color={'#da967a'} onClick={() => handleLikeClick()}>
                 좋아요 {DUMMY_DATA.likes}
               </Button>
             </ItemImageMain>
@@ -88,24 +89,29 @@ const DetailsIndexPage: NextPage = () => {
             </ItemInfoTitleContainer>
             <ItmeInfoWrapper>
               <ItmeInfo>
-                <ItmeInfoLabel>제품설명</ItmeInfoLabel>
-                <ItemInfoContent>{DUMMY_DATA.description}</ItemInfoContent>
-              </ItmeInfo>
-              <ItmeInfo>
-                <ItmeInfoLabel>판매가</ItmeInfoLabel>
-                <ItemInfoContent>{DUMMY_DATA.price}</ItemInfoContent>
-              </ItmeInfo>
-
-              <ItmeInfo>
-                <ItmeInfoLabel>할인판매가</ItmeInfoLabel>
-                <ItemInfoContent>
-                  {DUMMY_DATA.price -
-                    (DUMMY_DATA.price / 100) * DUMMY_DATA.discount_percent}
+                <ItemInfoContent color={'#a26f59'}>
+                  {DUMMY_DATA.discount_percent}%
                 </ItemInfoContent>
               </ItmeInfo>
+              <div>
+                <ItmeInfo>
+                  <ItemInfoContent color={'#A6A6A6'}>
+                    {DUMMY_DATA.price}원
+                  </ItemInfoContent>
+                </ItmeInfo>
+                <ItmeInfo>
+                  <ItemInfoContent>
+                    {DUMMY_DATA.price -
+                      (DUMMY_DATA.price / 100) * DUMMY_DATA.discount_percent}
+                    원
+                  </ItemInfoContent>
+                </ItmeInfo>
+              </div>
             </ItmeInfoWrapper>
             <SnsShareContainer>
-              <span>SNS</span>
+              <span>SNS으로 공유하기</span>
+              <img src={'./images/naverIcon.png'} />
+              <img src={'./images/kakaotalkIcon.png'} />
               <ShareIcon />
               <FacebookIcon />
             </SnsShareContainer>
@@ -129,18 +135,43 @@ const DetailsIndexPage: NextPage = () => {
                 원
               </Price>
             </ResultContainer>
+            <DeliveryContainer>
+              <DeliveryIcon />
+              <div>
+                <p>
+                  <span color={'#black'}>오늘출발 휴무일</span>
+                </p>
+                <p>
+                  <span color={'#a26f59'}>지금 주문시 2/4(금)</span>에
+                  발송됩니다
+                </p>
+              </div>
+            </DeliveryContainer>
+            <DeliveryInfoContainer>
+              <p>
+                <span>택배배송 </span>
+                <span>2500원(주문시 결제)</span>
+              </p>
+              <p>
+                <span>
+                  일반 배송비 2,500원 | 도서산간지방(제주,울릉도) 10,000원
+                </span>
+              </p>
+            </DeliveryInfoContainer>
             <OrderContainer>
-              <Button color={'dd101a'} onClick={() => handleOrderClick()}>
+              <Button color={'#a26f59'} onClick={() => handleOrderClick()}>
                 BUY
               </Button>
-              <Button onClick={() => handleCartClick()}>장바구니</Button>
-              <Button onClick={() => handleWishClick()}>위시리스트</Button>
+              <div>
+                <Button onClick={() => handleCartClick()}>장바구니</Button>
+                <Button onClick={() => handleWishClick()}>위시리스트</Button>
+              </div>
             </OrderContainer>
           </ItemInfoContainer>
         </ItemContainer>
       </article>
       <DetailsHeader />
-      <h2 className="sr-only">상세 페이지</h2>
+      <h2 className="sr-only">상세정보 | 리뷰 | Q&A | 반품/교환</h2>
     </Container>
   );
 };
@@ -148,7 +179,7 @@ const DetailsIndexPage: NextPage = () => {
 export default DetailsIndexPage;
 
 const Container = styled.section`
-  padding: 0 150px;
+  padding: 20px 150px;
 `;
 const ItemContainer = styled.div`
   width: 100%;
@@ -175,11 +206,14 @@ const Image = styled.img`
 `;
 const ItemImageMain = styled.div`
   width: 80%;
+  height: auto;
   display: flex;
   flex-direction: column;
   img {
     border: 1px solid #dadada;
     width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 `;
 
@@ -193,33 +227,32 @@ const ItemInfoContainer = styled.div`
   width: 50%;
 `;
 const ItemInfoTitleContainer = styled.div`
-  padding: 10px 20px;
-  background: linear-gradient(#353131, 80%, #726666);
+  padding: 10px 0;
+  /* background: linear-gradient(#353131, 80%, #726666); */
   border-radius: 4px;
   vertical-align: middle;
 `;
 const ItemInfoTitle = styled.span`
-  font-size: 16px;
-  color: white;
+  font-size: 20px;
 `;
 
 const ItmeInfoWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  color: #dadada;
-  font-size: 12px;
-  margin: 0 20px 0 20px;
+  justify-content: space-between;
+  div {
+    display: flex;
+    :first-child {
+      margin-right: 10px;
+    }
+  }
 `;
 
 const ItmeInfo = styled.div`
   display: flex;
   margin-top: 15px;
 `;
-const ItmeInfoLabel = styled.span`
-  width: 20%;
-`;
 const ItemInfoContent = styled.span`
-  width: 80%;
+  color: ${(props) => (props.color ? props.color : 'black')};
 `;
 const SnsShareContainer = styled.div`
   width: 100%;
@@ -233,17 +266,29 @@ const SnsShareContainer = styled.div`
   }
   & > * {
     color: #353131;
-    margin: 5px 20px 5px 0;
+    margin: 5px 15px 5px 0;
   }
   & > *:hover {
     cursor: pointer;
+  }
+  & :first-child {
+    cursor: default;
+    font-size: 12px;
+  }
+  svg {
+    font-size: 24px;
+    color: #a26f59;
+  }
+  img {
+    width: 24px;
   }
 `;
 const ResultContainer = styled.div`
   width: 100%;
   margin: 20px 0;
   border: 1px solid #dadada;
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
   justify-content: space-between;
   align-items: center;
   & > span {
@@ -279,11 +324,48 @@ const QuantityBtn = styled.button`
   }
 `;
 const Price = styled.span``;
+
+const DeliveryContainer = styled.div`
+  display: flex;
+  padding: 10px;
+  border: 1px solid #dadada;
+  align-items: center;
+  margin-bottom: 5px;
+  div {
+    margin-left: 10px;
+    p {
+      font-size: 12px;
+      color: #828282;
+    }
+  }
+`;
+const DeliveryIcon = styled(DirectionsCarFilledIcon)`
+  padding: 10px;
+  border: 1px solid #dadada;
+  color: white;
+  background-color: #a26f59;
+  padding: 3px;
+  border-radius: 50%;
+`;
+const DeliveryInfoContainer = styled.div`
+  padding: 10px;
+  p > :nth-child(2) {
+    color: #a26f59;
+  }
+  span {
+    font-size: 12px;
+  }
+`;
 const OrderContainer = styled.div`
   padding: 10px 0;
   text-align: center;
-  display: flex;
-  justify-content: space-between;
+  div {
+    margin: 10px 0;
+    display: flex;
+    button:first-child {
+      margin-right: 10px;
+    }
+  }
 `;
 const Button = styled.button`
   height: 36px;
@@ -293,11 +375,10 @@ const Button = styled.button`
   font-weight: 700;
   border: 1px solid #dadada;
   width: 100%;
-  background-color: ${(props) => (props.color ? `#${props.color}` : 'white')};
+  background-color: ${(props) => (props.color ? `${props.color}` : 'white')};
   color: ${(props) => (props.color ? 'white' : '#dadada')};
   :hover {
     cursor: pointer;
-    font-size: 16px;
-    transition: font-size 0.5s;
+    border: 1px solid ${(props) => (props.color ? '#dadada' : 'black')};
   }
 `;
