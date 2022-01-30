@@ -183,7 +183,8 @@ const DetailsIndexPage: NextPage = () => {
 export default DetailsIndexPage;
 
 const Container = styled.section`
-  padding: 20px 150px;
+  width: 95%;
+  margin: auto;
 `;
 const ItemContainer = styled.div`
   width: 100%;
