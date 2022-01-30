@@ -28,6 +28,9 @@ const AppHeaer: React.FC = ({ children }) => {
             <AppHeaderMenuList>
               <Link href="/cart">장바구니</Link>
             </AppHeaderMenuList>
+            <AppHeaderMenuList>
+              <Link href="/wish">위시리스트</Link>
+            </AppHeaderMenuList>
             <AppHeaderMenuList>주문배송조회</AppHeaderMenuList>
             <AppHeaderMenuList>고객센터</AppHeaderMenuList>
             <AppHeaderMenuList onClick={() => setIsLoggedIn(!isLoggedIn)}>
@@ -58,7 +61,6 @@ const AppHeaer: React.FC = ({ children }) => {
           <AppHeaderMainWrapper>
             <Link href="/">메인화면</Link>
             <span>Heart Ring</span>
-            {/* <Search/> */}
           </AppHeaderMainWrapper>
         </AppHeaderMain>
         <CateGory />
@@ -73,8 +75,8 @@ export default AppHeaer;
 const Container = styled.div``;
 
 const Main = styled.main`
-  height: 100vh;
-  padding: 0 30px;
+  height: 100%;
+  padding: 50px 30px;
 `;
 
 const AppHeaerContainer = styled.div`
