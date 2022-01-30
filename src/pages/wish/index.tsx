@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-
 import { DUMMY_DATA } from '../../constants/index';
-import Link from 'next/link';
 
+import Link from 'next/link';
 interface propsData {
   datas: [
     {
@@ -27,7 +26,7 @@ const Calculate = (price: number, discount_percent: number) => {
   return price - (price / 100) * discount_percent;
 };
 
-const Cart = ({ datas }: propsData) => {
+const Wish = ({ datas }: propsData) => {
   const FAKE_DATA = [
     ...[DUMMY_DATA],
     ...[DUMMY_DATA],
@@ -37,11 +36,11 @@ const Cart = ({ datas }: propsData) => {
   const [totalPrice, setTotalPrice] = useState(0);
   return (
     <Container>
-      <CartHeader>장바구니</CartHeader>
-      <CartInfo>
+      <WishHeader>위시리스트</WishHeader>
+      <WishInfo>
         <CardInfoList>
           <StyleText color="#a26f59">
-            장바구니 상품은 최대 30일간 저장됩니다.
+            위시리스트 상품은 최대 7일간 저장됩니다.
           </StyleText>
         </CardInfoList>
         <CardInfoList>
@@ -51,7 +50,7 @@ const Cart = ({ datas }: propsData) => {
           오늘출발 상품은 판매자 설정 시점에 따라 오늘출발 여부가 변경될 수
           있으니 주문 시 꼭 다시 확인해 주시기 바랍니다.
         </CardInfoList>
-      </CartInfo>
+      </WishInfo>
       <CartTabel>
         <thead>
           <CartTabelRow>
@@ -125,7 +124,7 @@ const Cart = ({ datas }: propsData) => {
             </td>
             <td className={'BtnContainer'}>
               <button>선택상품 삭제</button>
-              <button>선택상품 찜</button>
+              {/* <button>선택상품 찜</button> */}
             </td>
           </CartTabelRow>
           <CartTabelRow>
@@ -152,7 +151,7 @@ const Cart = ({ datas }: propsData) => {
       </CartTabel>
       <ButtonContainer>
         <Button>쇼핑계속하기</Button>
-        <Button color={'#a26f59'}>주문하기</Button>
+        <Button color={'#a26f59'}>장바구니로 이동</Button>
       </ButtonContainer>
       <ADD>
         <a href="https://plusdeal.naver.com/?ic=K07106&pcode=Naver_shopping_A">
@@ -166,16 +165,17 @@ const Cart = ({ datas }: propsData) => {
     </Container>
   );
 };
+export default Wish;
 
-export default Cart;
 const Container = styled.section`
   width: 95%;
   margin: auto;
 `;
-const CartHeader = styled.div`
+
+const WishHeader = styled.div`
   display: flex;
 `;
-const CartInfo = styled.ul`
+const WishInfo = styled.ul`
   margin-top: 20px;
   padding: 10px;
   list-style: inside;
@@ -183,6 +183,7 @@ const CartInfo = styled.ul`
   border: 1px solid #dadada;
   border-radius: 4px;
 `;
+
 const StyleText = styled.span`
   color: ${(props) => (props.color ? props.color : 'black')};
 `;
@@ -190,6 +191,7 @@ const CardInfoList = styled.li`
   font-size: 14px;
   line-height: 1.6;
 `;
+
 const CartTabel = styled.table`
   width: 100%;
   margin-top: 20px;

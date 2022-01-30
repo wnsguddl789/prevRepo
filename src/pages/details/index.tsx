@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import type { NextPage } from 'next';
 import styled from '@emotion/styled';
 import { DetailsHeader } from '../../components/Details/DetailsHeader';
