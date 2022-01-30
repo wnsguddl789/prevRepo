@@ -35,6 +35,7 @@ export const DUMMY_DATA = {
   description: '전신 웨이트 운동, 그 어떤 운동기구보다 안전하고 완벽하게',
   price: 1722400,
   discount_percent: 20,
+  seller: '별맛마켓',
   imageArray: [
     'https://egojin.com/web/product/small/202111/801dbda7ed61c189babef276c4d3272f.jpg',
     'https://egojin.com/web/product/extra/small/202111/82731e1917a7d7acc0433360318e646b.jpg',
