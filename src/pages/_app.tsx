@@ -14,11 +14,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     ROUTES.map((route) => {
       if (route.PATH === pathName) {
-        console.log(route.LABEL, route.PATH, pathName, route.PATH === pathName);
         setTitle(` - ${route.LABEL}`);
       }
     });
-    console.log('222');
   });
 
   return (
