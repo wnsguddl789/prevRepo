@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
-import { DUMMY_DATA } from '../../constants/index';
 import Link from 'next/link';
-
+import DATA from '../../data/DUMMY_DATA.json';
 interface propsData {
-  datas: [
+  DATAS: [
     {
       src: string;
       seller: string;
@@ -14,6 +13,9 @@ interface propsData {
       sale: number;
       content: string;
       orderNum: number;
+      imageArray: Array<string>;
+      discount_percent: number;
+      description: string;
     }
   ];
 }
@@ -27,13 +29,8 @@ const Calculate = (price: number, discount_percent: number) => {
   return price - (price / 100) * discount_percent;
 };
 
-const Cart = ({ datas }: propsData) => {
-  const FAKE_DATA = [
-    ...[DUMMY_DATA],
-    ...[DUMMY_DATA],
-    ...[DUMMY_DATA],
-    ...[DUMMY_DATA],
-  ];
+const Cart = ({ DATAS }: propsData) => {
+  const FAKE_DATA = [...DATAS, ...DATAS, ...DATAS, ...DATAS];
   const [totalPrice, setTotalPrice] = useState(0);
   return (
     <Container>
@@ -166,6 +163,21 @@ const Cart = ({ datas }: propsData) => {
     </Container>
   );
 };
+
+export async function getServerSideProps({ context }: any) {
+  // const res = await fetch(`https://.../data`);
+  const DATAS = await DATA;
+
+  if (!DATAS) {
+    return {
+      notFound: true,
+    };
+  } else {
+    return {
+      props: { DATAS }, // will be passed to the page component as props
+    };
+  }
+}
 
 export default Cart;
 const Container = styled.section`
