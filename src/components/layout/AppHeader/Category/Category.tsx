@@ -63,6 +63,10 @@ const CategoryItem = styled.li`
       color: #000;
     }
   }
+  &::before {
+    content: '💖';
+    margin: 0 5px;
+  }
 `;
 const SubMenuList = styled.ul`
   display: none;
@@ -70,7 +74,7 @@ const SubMenuList = styled.ul`
   font-size: 14px;
   width: 70px;
   top: 20px;
-  left: 0;
+  left: 30px;
 `;
 
 const SubMenuItem = styled.li`
