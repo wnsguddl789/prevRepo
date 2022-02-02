@@ -4,7 +4,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useRouter } from 'next/router';
 import { ROUTES } from '../constants';
 
-import Layout from '../components/layout/AppHeader';
+import Layout from '../components/layout/AppHeader/AppHeader';
 import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
