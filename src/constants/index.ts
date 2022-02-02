@@ -7,6 +7,10 @@ export const MEDIA_QUERY_END_POINT = {
   LARGE: '2560px',
 };
 
+export const COLOR = {
+  MAIN: '#A26F59',
+};
+
 export const ROUTES = [
   {
     ID: 0,

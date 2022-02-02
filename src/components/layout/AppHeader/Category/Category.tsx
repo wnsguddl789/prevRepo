@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { CategoryData } from './CategoryData';
+import { COLOR } from '../../../../constants';
+import Link from 'next/link';
 
 const Category = () => {
   return (
     <CategoryContainer>
       <CategoryList>
         {CategoryData.map((data) => {
-          const { name, submenu } = data;
-          return <CategoryItem key={`Category-${name}`}>{name}</CategoryItem>;
+          const { name, path, submenu } = data;
+          return (
+            <CategoryItem key={`Category-${name}`}>
+              <Link href={path}>{name}</Link>
+              {submenu && (
+                <SubMenuList className={`subMenu-${name}`}>
+                  {submenu.map((submenuData) => {
+                    return (
+                      <SubMenuItem>
+                        <Link href={submenuData.path}>{submenuData.name}</Link>
+                      </SubMenuItem>
+                    );
+                  })}
+                </SubMenuList>
+              )}
+            </CategoryItem>
+          );
         })}
       </CategoryList>
     </CategoryContainer>
@@ -33,11 +50,37 @@ const CategoryList = styled.ul`
 `;
 const CategoryItem = styled.li`
   margin: 10px 40px;
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 14px;
+  position: relative;
+  font-size: 16px;
+  height: 20px;
   :hover {
+    color: ${COLOR.MAIN};
     font-weight: 700;
-    color: rgba(0, 0, 0, 0.9);
     cursor: pointer;
+    .subMenu-더보기 {
+      display: block;
+      font-weight: 400;
+      color: #000;
+    }
+  }
+`;
+const SubMenuList = styled.ul`
+  display: none;
+  position: absolute;
+  font-size: 14px;
+  width: 70px;
+  top: 20px;
+  left: 0;
+`;
+
+const SubMenuItem = styled.li`
+  border: 1px solid #dbdbdb;
+  height: 20px;
+  text-align: center;
+  line-height: 1.3;
+  background-color: #fff;
+  &:hover {
+    color: ${COLOR.MAIN};
+    font-weight: 700;
   }
 `;
