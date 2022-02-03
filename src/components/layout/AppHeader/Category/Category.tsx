@@ -16,9 +16,10 @@ const Category = () => {
               {submenu && (
                 <SubMenuList className={`subMenu-${name}`}>
                   {submenu.map((submenuData) => {
+                    const { path: subPath, name: subName } = submenuData;
                     return (
-                      <SubMenuItem>
-                        <Link href={submenuData.path}>{submenuData.name}</Link>
+                      <SubMenuItem key={`SubMenu-${subName}`}>
+                        <Link href={subPath}>{subName}</Link>
                       </SubMenuItem>
                     );
                   })}
