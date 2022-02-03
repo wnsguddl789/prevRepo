@@ -1,0 +1,23 @@
+# .travis.yml
+
+language: node_js
+node_js:
+  - '12'
+
+services: # docker 로 감싸서 배포할거에요
+  - docker
+
+before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t sample-next -f Dockerfile .
+
+branches: # 해당 브렌치로 push 될 경우에만 반응합니다
+  only:
+    - main
+
+notifications: # 변경사항이 있을때 알림을 받을 수 있도록
+  email:
+    on_success: change
+    on_failure: always
+    recipients:
+      - wnsguddl789@gmail.com
