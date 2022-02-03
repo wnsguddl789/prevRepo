@@ -1,9 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useCallback,
-  useLayoutEffect,
-} from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
@@ -62,7 +57,7 @@ export const Carousel = () => {
     }
   }, [mouseUpClientX]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let intervalId: NodeJS.Timeout;
     if (isHover) {
       intervalId = setInterval(() => {
