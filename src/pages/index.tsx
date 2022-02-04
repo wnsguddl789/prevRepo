@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import Game from '../components/Game';
 const initVal = {
-  stage: 3,
+  stage: 1,
   time: 15,
   score: 0,
 };
@@ -12,41 +12,56 @@ const Home: NextPage = () => {
   const [time, setTime] = useState(initVal.time);
   const [score, setScore] = useState(initVal.score);
   useEffect(() => {
-    // let intervalId: NodeJS.Timeout;
-    // intervalId = setInterval(() => {
-    //   setTime(time - 1);
-    // }, 1000);
+    let intervalId: NodeJS.Timeout;
+    intervalId = setInterval(() => {
+      setTime(time - 1);
+    }, 1000);
     if (time === 0) {
       setStage(initVal.stage);
       setTime(initVal.time);
       setScore(initVal.score);
       // handleClickEvent();
     }
-    // if (time === 0) {
-    //   var result = confirm(`스테이지:${stage}, 남은시간:${time}, 점수: ${score}`);
-    //   if (result) {
-    //     alert('게임종료');
-    //     // location.reload();
-    //   }
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const handleClickEvent = () => {
+  }, [time]);
+
+  /*
+   * 정답을 맞췄을때 실행될 함수
+   */
+  const handleCorrect = () => {
     setStage(stage + 1);
     setTime(initVal.time);
     setScore(score + 1);
+    console.log(stage, score);
+  };
+
+  /*
+   * 오답을 눌렀을때 실행될 함수
+   */
+  const handleWrong = () => {
+    if (time === 0) {
+      alert('게임종료');
+      location.reload();
+      return;
+    }
+    setTime(time - 1);
+
+    // console.log(stage, score);
   };
   return (
     <Container>
       <ScoreBoard>
         스테이지:{stage}, 남은시간:{time}, 점수: {score}
       </ScoreBoard>
-      <Game handleClickEvent={handleClickEvent} stage={stage + 1} score={score} />
+      <Game handleCorrect={handleCorrect} handleWrong={handleWrong} stage={stage} NUMBER={stage + 1} score={score} />
     </Container>
   );
 };
 
 export default Home;
 
-const Container = styled.div``;
-const ScoreBoard = styled.div``;
+const Container = styled.div`
+  padding: 10px;
+`;
+const ScoreBoard = styled.div`
+  padding-bottom: 10px;
+`;
