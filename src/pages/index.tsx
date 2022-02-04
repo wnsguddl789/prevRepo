@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from '@emotion/styled';
 import Game from '../components/Game';
 const initVal = {
@@ -11,25 +11,28 @@ const Home: NextPage = () => {
   const [stage, setStage] = useState(initVal.stage);
   const [time, setTime] = useState(initVal.time);
   const [score, setScore] = useState(initVal.score);
-  useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-    intervalId = setInterval(() => {
-      setTime(time - 1);
-    }, 1000);
-    if (time === 0) {
-      setStage(initVal.stage);
-      setTime(initVal.time);
-      setScore(initVal.score);
-      // handleClickEvent();
-    }
-  }, [time]);
 
+  const intervalRef = useRef(initVal.time);
+
+  useEffect(() => {
+    const intervalId: NodeJS.Timeout = setInterval(() => {
+      setTime((intervalRef.current -= 1));
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+  useEffect(() => {
+    if (intervalRef.current <= 0) {
+      alert('게임종료');
+      location.reload();
+      return;
+    }
+  }, [intervalRef]);
   /*
    * 정답을 맞췄을때 실행될 함수
    */
   const handleCorrect = () => {
     setStage(stage + 1);
-    setTime(initVal.time);
+    setTime((intervalRef.current = initVal.time));
     setScore(score + 1);
     console.log(stage, score);
   };
@@ -38,12 +41,12 @@ const Home: NextPage = () => {
    * 오답을 눌렀을때 실행될 함수
    */
   const handleWrong = () => {
-    if (time === 0) {
+    if (intervalRef.current <= 0) {
       alert('게임종료');
       location.reload();
       return;
     }
-    setTime(time - 1);
+    setTime((intervalRef.current -= 1));
 
     // console.log(stage, score);
   };
@@ -52,7 +55,7 @@ const Home: NextPage = () => {
       <ScoreBoard>
         스테이지:{stage}, 남은시간:{time}, 점수: {score}
       </ScoreBoard>
-      <Game handleCorrect={handleCorrect} handleWrong={handleWrong} stage={stage} NUMBER={stage + 1} score={score} />
+      <Game handleCorrect={handleCorrect} handleWrong={handleWrong} NUMBER={stage + 1} />
     </Container>
   );
 };
