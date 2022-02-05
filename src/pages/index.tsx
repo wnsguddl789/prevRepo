@@ -17,16 +17,14 @@ const Home: NextPage = () => {
   useEffect(() => {
     const intervalId: NodeJS.Timeout = setInterval(() => {
       setTime((intervalRef.current -= 1));
+      if (intervalRef.current == 0) {
+        alert('게임종료');
+        location.reload();
+        return;
+      }
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
-  useEffect(() => {
-    if (intervalRef.current <= 0) {
-      alert('게임종료');
-      location.reload();
-      return;
-    }
-  }, [intervalRef]);
   /*
    * 정답을 맞췄을때 실행될 함수
    */
@@ -34,7 +32,6 @@ const Home: NextPage = () => {
     setStage(stage + 1);
     setTime((intervalRef.current = initVal.time));
     setScore(score + 1);
-    console.log(stage, score);
   };
 
   /*
@@ -47,13 +44,11 @@ const Home: NextPage = () => {
       return;
     }
     setTime((intervalRef.current -= 1));
-
-    // console.log(stage, score);
   };
   return (
     <Container>
       <ScoreBoard>
-        스테이지:{stage}, 남은시간:{time}, 점수: {score}
+        스테이지:{stage}, 남은시간:{intervalRef.current}, 점수: {score}
       </ScoreBoard>
       <Game handleCorrect={handleCorrect} handleWrong={handleWrong} NUMBER={stage + 1} />
     </Container>
