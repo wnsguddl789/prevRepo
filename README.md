@@ -16,3 +16,7 @@
 3. Javascript보다는 Typescript를 활용할 것
 4. 서버에 배포할 것 (Vercel과 같은 서비스를 이용해보세요)
 5. Context, Redux, Mobx, Recoil 등 상태관리 도구를 사용하지 않을 것
+
+## 결과물 및 개발일지
+
+![talkv_wqJHqh85h9_21BATKFfwzFDAogdSsq1Wk_talkv_high](https://user-images.githubusercontent.com/33216504/152642896-e4898520-1c25-4fcf-a182-aeaef64d836c.gif)
