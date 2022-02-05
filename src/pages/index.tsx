@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import styled from '@emotion/styled';
 import Game from '../components/Game';
 const initVal = {
@@ -14,17 +14,14 @@ const Home: NextPage = () => {
 
   const intervalRef = useRef(initVal.time);
 
-  useEffect(() => {
-    const intervalId: NodeJS.Timeout = setInterval(() => {
-      setTime((intervalRef.current -= 1));
-      if (intervalRef.current == 0) {
-        alert('게임종료');
-        location.reload();
-        return;
-      }
-    }, 1000);
-    return () => clearInterval(intervalId);
-  }, []);
+  /*
+   * 게임종료
+   */
+  const endGame = useCallback(() => {
+    alert(`GAME OVER!\n스테이지: ${stage}, 점수: ${score}`);
+    window.location.reload();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stage, score]);
   /*
    * 정답을 맞췄을때 실행될 함수
    */
@@ -38,19 +35,29 @@ const Home: NextPage = () => {
    * 오답을 눌렀을때 실행될 함수
    */
   const handleWrong = () => {
-    if (intervalRef.current <= 0) {
-      alert('게임종료');
-      location.reload();
+    setTime((intervalRef.current -= 1));
+    if (intervalRef.current === 0) {
+      endGame();
       return;
     }
-    setTime((intervalRef.current -= 1));
   };
+
+  useEffect(() => {
+    const intervalId: NodeJS.Timeout = setInterval(() => {
+      setTime((intervalRef.current -= 1));
+      if (intervalRef.current === 0) {
+        endGame();
+        return;
+      }
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, [endGame]);
   return (
     <Container>
       <ScoreBoard>
         스테이지:{stage}, 남은시간:{intervalRef.current}, 점수: {score}
       </ScoreBoard>
-      <Game handleCorrect={handleCorrect} handleWrong={handleWrong} NUMBER={stage + 1} />
+      <Game handleCorrect={handleCorrect} handleWrong={handleWrong} NUMBER={stage + 1} stage={stage} />
     </Container>
   );
 };
