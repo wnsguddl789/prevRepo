@@ -1,32 +1,44 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { movieApi } from '../../api';
+import { GENERE_TYPE, SIMILAR_TYPE, RESULT_TYPE } from '../../../types';
 
 import Section from '../../../components/Section';
 import Poster from '../../../components/Poster';
 import Loader from '../../../components/Loader';
 
-const Detail = () => {
-  const [similar, setSimilar] = useState([]);
-  const [result, setResult] = useState([]);
-  const [error, setError] = useState('');
+const Detail = ({ similar, data }: any) => {
+  const [result, setResult] = useState<RESULT_TYPE>(data);
   const loading = useRef(true);
+  const [isMovie, setIsMovie] = useState(true);
 
   const router = useRouter();
-  console.log(router);
+  useEffect(() => {
+    if (router) {
+      setIsMovie(router.pathname.split('/')[1] === 'Movie' ? true : false);
+    }
+  }, [router, setIsMovie]);
+
+  useEffect(() => {
+    if (result) {
+      loading.current = false;
+    }
+  }, [result]);
+
   return loading.current ? (
     <Loader />
   ) : (
     <Container>
-      {/* <Backdrop bgImage={result && result.backdrop_path ? `https://image.tmdb.org/t/p/original${result?.backdrop_path}` : null} />
+      <Backdrop bgImage={result && result.backdrop_path ? `https://image.tmdb.org/t/p/original${result?.backdrop_path}` : ''} />
 
       <Content>
         <Cover
           bgImage={
             result && result.poster_path
               ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-              : require('../../aseets/noPosterImage.png').default
+              : require('../../../../public/assets/noPosterImage.png').default
           }
         />
         <Data>
@@ -37,33 +49,42 @@ const Detail = () => {
             <Item>{result.runtime ? `${result.runtime} min` : `${result.episode_run_time[0]} min`}</Item>
             <Divider>▫️</Divider>
             <Item>
-              {result.genres && result.genres.map((genre, idx) => (idx === result.genres.length - 1 ? genre.name : `${genre.name} / `))}
+              {result.genres &&
+                result.genres.map((genre: GENERE_TYPE, idx) => (idx === result.genres.length - 1 ? genre.name : `${genre.name} / `))}
             </Item>
           </ItemContainer>
           <Overview>{result.overview}</Overview>
-          <ReviewLink to={isMovie ? `/review/movie/${result.id}` : `/review/show/${result.id}`}>리뷰확인</ReviewLink>
-          {similar && similar.length > 0 && (
+          <ReviewLink href={isMovie ? `/review/movie/${result?.id}` : `/review/show/${result?.id}`}>리뷰확인</ReviewLink>
+          {similar.results && similar.results.length > 0 && (
             <Section title={isMovie ? `Similar Movie` : `Similar Tv show`}>
-              {similar.map((item) => (
+              {similar.results.map((item: SIMILAR_TYPE) => (
                 <Poster
-                  onClick={() => history.push(history.location.pathname)}
                   isMovie={isMovie}
                   key={item.id}
                   title={isMovie ? item.title : item.original_name}
                   year={item.release_date && item.release_date.substring(0, 4)}
                   imageUrl={item.poster_path}
-                  rating={parseInt(item.vote_average)}
+                  rating={String(item.vote_average)}
                   id={item.id}
                 />
               ))}
             </Section>
           )}
         </Data>
-      </Content> */}
+      </Content>
     </Container>
   );
 };
 export default Detail;
+
+export async function getServerSideProps(context: any) {
+  const params = context.params;
+  const { data } = await movieApi.movieDetail(params.id);
+  const { data: similar } = await movieApi.similar(params.id);
+  return {
+    props: { similar, data }, // will be passed to the page component as props
+  };
+}
 
 const Container = styled.div`
   height: calc(100vh - 50px);

@@ -6,7 +6,7 @@ import { POSTER_TYPE } from '../../types';
 import { useRouter } from 'next/router';
 
 const Poster = ({ id, imageUrl, title, rating, year, isMovie }: POSTER_TYPE) => {
-  const pathname = useRouter().pathname;
+  const router = useRouter();
   return (
     // eslint-disable-next-line @next/next/link-passhref
     <Link href={isMovie ? `/Movie/${id}` : `/Tv/${id}`}>

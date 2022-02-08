@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import type { NextPage } from 'next';
+import React, { useState, useEffect, useRef } from 'react';
 import { tvApi } from '../api';
 import styled from '@emotion/styled';
 import { SHOW_TYPE } from '../../types';
@@ -10,65 +9,24 @@ import Poster from '../../components/Poster';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 
+import useIsNull from '../../hooks/useIsNull';
+
 interface ServerSideProps {
-  res: object;
+  topRated: Array<SHOW_TYPE>;
+  popular: Array<SHOW_TYPE>;
+  airingToday: Array<SHOW_TYPE>;
 }
 
-const Tv = ({}: ServerSideProps) => {
-  const [topRated, setTopRated] = useState([]);
-  const [popular, setPopular] = useState([]);
-  const [airingToday, setAiringToday] = useState([]);
+const Tv = ({ topRated, popular, airingToday }: ServerSideProps) => {
   const [error, setError] = useState('');
   const loading = useRef(true);
-  console.log(22);
-  // console.log(res);
-  const fetchData = useCallback(async () => {
-    try {
-      const {
-        data: { results: topRated },
-      } = await tvApi.topRated();
-      const {
-        data: { results: popular },
-      } = await tvApi.popular();
-      const {
-        data: { results: airingToday },
-      } = await tvApi.airingToday();
-
-      setTopRated(topRated);
-      setPopular(popular);
-      setAiringToday(airingToday);
-    } catch (error) {
-      setError("Can't find movies infomation.");
-    } finally {
-      loading.current = false;
-    }
-  }, []);
 
   useEffect(() => {
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // async function fetchData() {
-    //   try {
-    //     const {
-    //       data: { results: topRated },
-    //     } = await tvApi.topRated();
-    //     const {
-    //       data: { results: popular },
-    //     } = await tvApi.popular();
-    //     const {
-    //       data: { results: airingToday },
-    //     } = await tvApi.airingToday();
-
-    //     setTopRated(topRated);
-    //     setPopular(popular);
-    //     setAiringToday(airingToday);
-    //   } catch (error) {
-    //     setError("Can't find movies infomation.");
-    //   } finally {
-    //     loading.current = false;
-    //   }
-    // }
-    fetchData();
-  }, [fetchData]);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    if ((useIsNull(topRated) && useIsNull(popular) && useIsNull(airingToday)) === false) {
+      loading.current = false;
+    }
+  });
   return loading.current ? (
     <Loader />
   ) : (
@@ -122,13 +80,17 @@ const Tv = ({}: ServerSideProps) => {
     </Container>
   );
 };
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { params } = ctx;
-  // const { slug } = params;
-  // const res = await tvApi.popular();
-
-  // Pass data to the page via props
-  return { props: {} };
+export const getServerSideProps: GetServerSideProps = async () => {
+  const {
+    data: { results: topRated },
+  } = await tvApi.topRated();
+  const {
+    data: { results: popular },
+  } = await tvApi.popular();
+  const {
+    data: { results: airingToday },
+  } = await tvApi.airingToday();
+  return { props: { topRated, popular, airingToday } };
 };
 export default Tv;
 const Container = styled.div`
