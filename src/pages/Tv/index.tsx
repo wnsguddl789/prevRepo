@@ -9,21 +9,20 @@ import Poster from '../../components/Poster';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 
-import useIsNull from '../../hooks/useIsNull';
+import isNull from '../../hooks/isNull';
 
 interface ServerSideProps {
   topRated: Array<SHOW_TYPE>;
   popular: Array<SHOW_TYPE>;
   airingToday: Array<SHOW_TYPE>;
+  ErrorMessage: string;
 }
 
-const Tv = ({ topRated, popular, airingToday }: ServerSideProps) => {
-  const [error, setError] = useState('');
-  const loading = useRef(true);
+const Tv = ({ topRated, popular, airingToday, ErrorMessage }: ServerSideProps) => {
+  const loading = useRef(false);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    if ((useIsNull(topRated) && useIsNull(popular) && useIsNull(airingToday)) === false) {
+    if ((isNull(topRated) && isNull(popular) && isNull(airingToday)) === false) {
       loading.current = false;
     }
   });
@@ -76,23 +75,31 @@ const Tv = ({ topRated, popular, airingToday }: ServerSideProps) => {
           ))}
         </Section>
       )}
-      {error && <Message text={error} color="e73c3c" />}
+      {ErrorMessage && <Message text={ErrorMessage} color="e73c3c" />}
     </Container>
   );
 };
-export const getServerSideProps: GetServerSideProps = async () => {
-  const {
-    data: { results: topRated },
-  } = await tvApi.topRated();
-  const {
-    data: { results: popular },
-  } = await tvApi.popular();
-  const {
-    data: { results: airingToday },
-  } = await tvApi.airingToday();
-  return { props: { topRated, popular, airingToday } };
-};
+
 export default Tv;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const {
+      data: { results: topRated },
+    } = await tvApi.topRated();
+    const {
+      data: { results: popular },
+    } = await tvApi.popular();
+    const {
+      data: { results: airingToday },
+    } = await tvApi.airingToday();
+    return { props: { topRated, popular, airingToday } };
+  } catch (err) {
+    const ErrorMessage = "Can't find movies infomation.";
+    return { props: { ErrorMessage } };
+  }
+};
+
 const Container = styled.div`
   padding: 0px 10px;
 `;

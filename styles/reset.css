@@ -141,3 +141,17 @@ body {
   color: white;
   padding-top: 80px;
 }
+html {
+  overflow: visible;
+}
+
+/* IE */
+select::-ms-expand {
+  display: none;
+}
+select {
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

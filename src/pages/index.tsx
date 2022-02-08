@@ -1,103 +1,69 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
-import { GetServerSideProps } from 'next';
+import { IMAGE } from '../constant';
+import { useRouter } from 'next/router';
+import { NextPage } from 'next';
 
-import { movieApi } from './api';
-import { MOVIE_TYPE } from '../types';
-import Section from '../components/Section';
-import Poster from '../components/Poster';
-import Message from '../components/Message';
-import Loader from '../components/Loader';
-
-import useIsNull from '../hooks/useIsNull';
-
-interface ServerSideProps {
-  nowPlaying: Array<MOVIE_TYPE>;
-  upcoming: Array<MOVIE_TYPE>;
-  popular: Array<MOVIE_TYPE>;
-}
-
-function isNull(v: any) {
-  return v === undefined || v === null ? true : false;
-}
-const Home = ({ nowPlaying, upcoming, popular }: ServerSideProps) => {
-  const [error, setError] = useState('');
-  const loading = useRef(true);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    if ((useIsNull(nowPlaying) && useIsNull(upcoming) && useIsNull(popular)) === false) {
-      loading.current = false;
-    }
-  });
-
-  return loading.current ? (
-    <Loader />
-  ) : (
+const Home: NextPage = () => {
+  const router = useRouter();
+  return (
     <Container>
-      {nowPlaying && nowPlaying.length > 0 && (
-        <Section title="Now Playing">
-          {nowPlaying.map((movie: MOVIE_TYPE) => (
-            <Poster
-              key={movie.id}
-              isMovie={true}
-              id={movie.id}
-              year={movie.release_date && movie.release_date.substring(0, 4)}
-              imageUrl={movie.poster_path}
-              title={movie.original_title}
-              rating={movie.vote_average}
-            />
-          ))}
-        </Section>
-      )}
-      {upcoming && upcoming.length > 0 && (
-        <Section title="Upcoming Movies">
-          {upcoming.map((movie: MOVIE_TYPE) => (
-            <Poster
-              key={movie.id}
-              isMovie={true}
-              id={movie.id}
-              year={movie.release_date && movie.release_date.substring(0, 4)}
-              imageUrl={movie.poster_path}
-              title={movie.original_title}
-              rating={movie.vote_average}
-            />
-          ))}
-        </Section>
-      )}
-      {popular && popular.length > 0 && (
-        <Section title="Popular Movies">
-          {popular.map((movie: MOVIE_TYPE) => (
-            <Poster
-              key={movie.id}
-              isMovie={true}
-              id={movie.id}
-              year={movie.release_date && movie.release_date.substring(0, 4)}
-              imageUrl={movie.poster_path}
-              title={movie.original_title}
-              rating={movie.vote_average}
-            />
-          ))}
-        </Section>
-      )}
-      {error && <Message text={error} color="e73c3c" />}
+      <p>놈플릭스를 시청할 프로필을 선택하세요.</p>
+      <div onClick={() => router.push('/Movie')}>
+        {IMAGE &&
+          IMAGE.map((img, idx: number) => {
+            let text = '';
+            return (
+              <div key={idx}>
+                <Card data={img.src}></Card>
+                <p> {idx === 4 ? (text = 'KIDS') : (text = 'User ' + String(idx + 1))}</p>
+              </div>
+            );
+          })}
+      </div>
     </Container>
   );
 };
 
 export default Home;
-export const getServerSideProps: GetServerSideProps = async () => {
-  const {
-    data: { results: nowPlaying },
-  } = await movieApi.nowPlaying();
-  const {
-    data: { results: upcoming },
-  } = await movieApi.upcoming();
-  const {
-    data: { results: popular },
-  } = await movieApi.popular();
-  return { props: { nowPlaying, upcoming, popular } };
-};
+
 const Container = styled.div`
-  padding: 0px 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & > p {
+    font-size: 50px;
+    margin-bottom: 40px;
+  }
+  & > div {
+    max-width: 80%;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    div {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+    }
+    div > p {
+      margin: 20px;
+      line-height: 1.5;
+      font-size: 24px;
+      color: grey;
+    }
+  }
+`;
+const Card = styled.div<{ data: string }>`
+  background-image: url(${(props) => props.data});
+  background-size: 100%;
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+  cursor: pointer;
+  :hover {
+    box-shadow: 0 0 0 3px white;
+  }
 `;
