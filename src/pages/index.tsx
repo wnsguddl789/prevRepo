@@ -9,13 +9,13 @@ const Home: NextPage = () => {
   return (
     <Container>
       <p>놈플릭스를 시청할 프로필을 선택하세요.</p>
-      <div onClick={() => router.push('/Movie')}>
+      <div>
         {IMAGE &&
           IMAGE.map((img, idx: number) => {
             let text = '';
             return (
-              <div key={idx}>
-                <Card data={img.src}></Card>
+              <div key={idx} onClick={() => router.push('/Movie')}>
+                <Card src={img.src}></Card>
                 <p> {idx === 4 ? (text = 'KIDS') : (text = 'User ' + String(idx + 1))}</p>
               </div>
             );
@@ -56,8 +56,8 @@ const Container = styled.div`
     }
   }
 `;
-const Card = styled.div<{ data: string }>`
-  background-image: url(${(props) => props.data});
+const Card = styled.div<{ src: string }>`
+  background-image: url(${(props) => props.src});
   background-size: 100%;
   width: 150px;
   height: 150px;

@@ -2,10 +2,15 @@ export const ROUTES = [
   {
     ID: 0,
     PATH: '/',
-    LABEL: 'MOVIE',
+    LABEL: 'HOME',
   },
   {
     ID: 1,
+    PATH: '/Movie',
+    LABEL: 'MOVIE',
+  },
+  {
+    ID: 2,
     PATH: '/Tv',
     LABEL: 'TV',
   },
