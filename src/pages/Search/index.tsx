@@ -15,12 +15,6 @@ const Search = () => {
   const [error, setError] = useState('');
   const loading = useRef(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (searchTerm !== '') {
-      searchByTerm();
-    }
-  };
   const searchByTerm = useCallback(async () => {
     loading.current = true;
     try {
@@ -30,23 +24,25 @@ const Search = () => {
       const {
         data: { results: tvResults },
       } = await tvApi.search(searchTerm);
+      loading.current = false;
       setMovieResults(movieResults);
       setTvResults(tvResults);
     } catch {
       setError("Can't find results.");
-    } finally {
-      loading.current = false;
     }
   }, [searchTerm]);
 
   const updateTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
+    e.preventDefault();
+    if (searchTerm !== '') {
+      searchByTerm();
+    }
   };
   return (
     <Container>
-      <Form onSubmit={handleSubmit}>
-        <Input placeholder="Search Movies or TV Shows..." value={searchTerm} onChange={updateTerm} />
-      </Form>
+      <Input placeholder="Search Movies or TV Shows..." value={searchTerm} onChange={updateTerm} />
+
       {loading.current ? (
         <Loader />
       ) : (
@@ -94,16 +90,12 @@ const Search = () => {
 export default Search;
 
 const Container = styled.div`
-  padding: 0px 20px;
-`;
-
-const Form = styled.form`
-  margin-bottom: 50px;
-  width: 100%;
+  padding: 10px;
 `;
 
 const Input = styled.input`
   all: unset;
   font-size: 20px;
   width: 100%;
+  margin-bottom: 50px;
 `;

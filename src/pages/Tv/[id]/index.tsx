@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import styled from '@emotion/styled';
 
 import { useRouter } from 'next/router';
 import { tvApi } from '../../api';
@@ -24,8 +23,6 @@ import {
 } from '../../../../styles/DetailStyle';
 
 const Detail = ({ similar, data }: any) => {
-  const [result, setResult] = useState<RESULT_TYPE>(data);
-  const loading = useRef(true);
   const [isMovie, setIsMovie] = useState(true);
 
   const router = useRouter();
@@ -35,42 +32,32 @@ const Detail = ({ similar, data }: any) => {
     }
   }, [router, setIsMovie]);
 
-  useEffect(() => {
-    if (result) {
-      loading.current = false;
-    }
-  }, [result]);
-
-  return loading.current ? (
-    <Loader />
-  ) : (
+  return (
     <Container>
-      <Backdrop bgImage={result && result.backdrop_path ? `https://image.tmdb.org/t/p/original${result?.backdrop_path}` : ''} />
+      <Backdrop bgImage={data && data.backdrop_path ? `https://image.tmdb.org/t/p/original${data?.backdrop_path}` : ''} />
 
       <Content>
         <Cover
           bgImage={
-            result && result.poster_path
-              ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+            data && data.poster_path
+              ? `https://image.tmdb.org/t/p/original${data.poster_path}`
               : require('../../../../public/assets/noPosterImage.png').default
           }
         />
         <Data>
-          <Title>{result?.original_title ? result?.original_title : result?.original_name}</Title>
+          <Title>{data?.original_title ? data?.original_title : data?.original_name}</Title>
           <ItemContainer>
-            <Item>{result?.release_date ? result?.release_date.substring(0, 4) : result?.first_air_date.substring(0, 4)}</Item>
+            <Item>{data?.release_date ? data?.release_date.substring(0, 4) : data?.first_air_date.substring(0, 4)}</Item>
             <Divider>▫️</Divider>
-            <Item>{result?.runtime ? `${result?.runtime} min` : `${result?.episode_run_time[0]} min`}</Item>
+            <Item>{data?.runtime ? `${data?.runtime} min` : `${data?.episode_run_time[0]} min`}</Item>
             <Divider>▫️</Divider>
             <Item>
-              {result?.genres &&
-                result?.genres.map((genre: GENERE_TYPE, idx: number) =>
-                  idx === result?.genres.length - 1 ? genre.name : `${genre.name} / `
-                )}
+              {data?.genres &&
+                data?.genres.map((genre: GENERE_TYPE, idx: number) => (idx === data?.genres.length - 1 ? genre.name : `${genre.name} / `))}
             </Item>
           </ItemContainer>
-          <Overview>{result?.overview}</Overview>
-          <ReviewLink href={isMovie ? `/review/movie/${result?.id}` : `/review/show/${result?.id}`}>리뷰확인</ReviewLink>
+          <Overview>{data?.overview}</Overview>
+          <ReviewLink href={isMovie ? `/review/movie/${data?.id}` : `/review/show/${data?.id}`}>리뷰확인</ReviewLink>
           {similar.results && similar.results.length > 0 && (
             <Section title={isMovie ? `Similar Movie` : `Similar Tv show`}>
               {similar.results.map((item: SIMILAR_TYPE) => {

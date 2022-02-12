@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { GetServerSideProps } from 'next';
 
+import { useSelector } from 'react-redux';
+
 import { movieApi } from '../api';
 import { MOVIE_TYPE } from '../../types';
 import Section from '../../components/Section';
