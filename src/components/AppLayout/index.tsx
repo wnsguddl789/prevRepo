@@ -15,7 +15,7 @@ const AppLayout: React.FC = ({ children }) => {
   const [currnet, setCurrent] = useState('');
   const [error, setError] = useState('');
   const [language, setLanguage] = useState([]);
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state: RootState) => state?.user);
 
   const dispatch = useDispatch();
 

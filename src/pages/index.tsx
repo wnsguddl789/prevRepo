@@ -9,7 +9,7 @@ import Image from 'next/image';
 import FB_Logo from '../../public/assets/FB_Logo.png';
 const Home: NextPage = () => {
   const router = useRouter();
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
   const handleLogin = () => {
