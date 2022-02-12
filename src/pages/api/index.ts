@@ -7,7 +7,9 @@ const api = axios.create({
     language: 'ko',
   },
 });
-
+console.log(
+  typeof window === 'undefined' ? 'en' : window.sessionStorage.getItem('language') ? window.sessionStorage.getItem('language') : 'en'
+);
 export const languageApi = {
   setLanguage: () => api.get('/configuration/languages'),
 };
