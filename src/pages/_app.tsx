@@ -3,7 +3,9 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useRouter } from 'next/router';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { LoginAction, LogOutAction } from '../reducers/user';
+import wrapper from '../store';
 import '../../styles/reset.css';
 import AppLayout from '../components/AppLayout';
 import { ROUTES } from '../constant';
@@ -16,7 +18,30 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
   const [description, setDescription] = useState('NOMFILX');
   const [image, setImage] = useState(INIT_IMAGE_URL);
+  const dispatch = useDispatch();
+
   /*
+   * 브라우저 재 렌더링시 글로벌 상태관리
+   * 1. 유저 로그인 유무 -> 세션관리
+   * 2. 추가...
+   */
+  useEffect(() => {
+    const isSiginIn = () => {
+      if (window.sessionStorage.getItem('isLoggedIn') === null) {
+        window.sessionStorage.setItem('isLoggedIn', 'false');
+      } else {
+        if (Boolean(window.sessionStorage.getItem('isLoggedIn')) === true) {
+          dispatch(LoginAction());
+        }
+      }
+    };
+    return () => {
+      isSiginIn();
+    };
+  }, [dispatch]);
+
+  /*
+   * 오픈그래프 설정(SNS 게시되는데 최적화)
    * 문서 Title 설정
    */
   useEffect(() => {
@@ -24,14 +49,16 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       if (isMovie) {
         const { data } = await movieApi.movieDetail(Number(router.query.id));
         setTitle(` - ${data.title}`);
+        setDescription(data.overview);
+
         setImage(`https://image.tmdb.org/t/p/original${data?.backdrop_path}`);
       } else {
         const { data } = await tvApi.showDetail(Number(router.query.id));
         setTitle(` - ${data.name}`);
         setImage(`https://image.tmdb.org/t/p/original${data?.backdrop_path}`);
+        setDescription(data.overview);
       }
     }
-    console.log(image);
     ROUTES &&
       ROUTES.map((route) => {
         if (route.PATH === router.pathname) {
@@ -41,22 +68,16 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           if (router.pathname.split('/').length === 3) {
             if (router.pathname.split('/')[1] === 'Movie') {
               getDetail(isMovie);
-              // console.log(result);
             } else if (router.pathname.split('/')[1] === 'Tv') {
               getDetail(isMovie);
             }
           } else {
-            setImage(INIT_IMAGE_URL);
+            // setImage(INIT_IMAGE_URL);
           }
         }
       });
   });
 
-  // "/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg"
-  /*
-   * 오픈그래프 설정(SNS 게시되는데 최적화)
-   */
-  useEffect(() => {});
   return (
     <>
       <HelmetProvider>
@@ -84,4 +105,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
