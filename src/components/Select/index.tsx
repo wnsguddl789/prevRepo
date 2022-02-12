@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-
 interface SelectProps {
   datas: Array<SELECT_TYPE>;
   handleLanguage: Function;
@@ -11,6 +10,7 @@ interface SELECT_TYPE {
 }
 
 const Select = ({ datas, handleLanguage }: SelectProps) => {
+  // console.log(datas);
   return (
     <Container onChange={(e) => handleLanguage(e)}>
       {datas &&

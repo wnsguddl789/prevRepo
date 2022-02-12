@@ -14,7 +14,6 @@ const Message = ({ text, color }: PropsTypes) => (
 
 export default Message;
 const Container = styled.div`
-  width: 100vw;
   display: flex;
   justify-content: center;
 `;

@@ -23,7 +23,7 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie }: POSTER_TYPE) => 
             </Rating>
           </Image>
         </ImageContainer>
-        <Title>{title.length > 15 ? `${title.substring(0, 15)}...` : title}</Title>
+        <Title>{title && title.length > 15 ? `${title.substring(0, 15)}...` : title}</Title>
         <Year>{year}</Year>
       </Container>
     </Link>
