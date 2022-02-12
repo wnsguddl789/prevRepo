@@ -4,18 +4,34 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Select from '../Select';
 import { languageApi } from '../../pages/api';
+import wrapper from '../../store';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { LogOutAction } from '../../reducers/user';
+import { ChangeAction } from '../../reducers/language';
 
 const AppLayout: React.FC = ({ children }) => {
   const pathname = useRouter().pathname;
   const [currnet, setCurrent] = useState('');
   const [error, setError] = useState('');
   const [language, setLanguage] = useState([]);
+  const { isLoggedIn } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setCurrent(pathname);
   }, [pathname]);
   const handleLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
+    const data = e.target.value;
+    dispatch(ChangeAction(data));
+    window.sessionStorage.setItem('language', data);
+
+    console.log(data);
+  };
+  const handleLogout = () => {
+    dispatch(LogOutAction());
+    window.location.href = '/';
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,16 +65,19 @@ const AppLayout: React.FC = ({ children }) => {
           </Item>
         </List>
         <List>
-          <Item isCurrent={false}>
-            <Select handleLanguage={handleLanguage} datas={language} />
-          </Item>
+          <Item isCurrent={false}>{/* <Select handleLanguage={handleLanguage} datas={language} /> */}</Item>
+          {isLoggedIn ? (
+            <Item isCurrent={false} onClick={() => handleLogout()}>
+              로그아웃
+            </Item>
+          ) : null}
         </List>
       </Header>
       <Main>{children}</Main>
     </>
   );
 };
-export default AppLayout;
+export default wrapper.withRedux(AppLayout);
 
 const Header = styled.header`
   color: white;
@@ -98,7 +117,7 @@ const SLink = styled(Link)`
   justify-content: center;
 `;
 const Main = styled.main`
-  height: calc(100vh - 100px);
+  height: 100vh;
 `;
 const Logo = styled.li<{
   isCurrent: boolean;
