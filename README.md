@@ -97,10 +97,12 @@
 - get product from db
 - return data as props
 - use it in product screen too
-  Implement Add to cart
-  define cart in context
-  dispatch add to cart action
-  set click event handler for button
+
+15. Implement Add to cart
+
+- define cart in context
+- dispatch add to cart action
+- set click event handler for button
   Create Cart Screen
   create cart.js
   redirect to cart screen
