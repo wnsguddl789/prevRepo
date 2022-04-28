@@ -4,15 +4,11 @@ import styled from '@emotion/styled';
 
 const { Header } = Layout;
 
-const items1: MenuProps['items'] = ['체크', '2', '3'].map((key) => ({
-  key,
-  label: key,
-}));
-
 export const AppLayout: React.FunctionComponent<any> = ({ children }) => {
   return (
     <Layout>
       <Header>
+        <span style={{ color: 'white' }}>우리 한길이를 위한 웹앱이랄까?</span>
         <Form>
           <Form.Item>{/* <Input /> */}</Form.Item>
         </Form>
@@ -36,10 +32,18 @@ const Main = styled.main`
       margin-right: 10px;
       width: 120px;
       height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       :hover {
         cursor: pointer;
         filter: blur(3px);
       }
+    }
+  }
+  .playCount {
+    .howManyPlay {
+      font-weight: 700;
     }
   }
 `;
