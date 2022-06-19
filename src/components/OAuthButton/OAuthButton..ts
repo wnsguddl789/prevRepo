@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const ButtonContainer = styled.div`
   border-radius: 12px;
-  height: 90px;
+  height: 60px;
   padding: 0px 80px;
   display: flex;
   justify-content: center;
@@ -16,12 +16,12 @@ export const ButtonContainer = styled.div`
   }
   span.title {
     line-height: 50px;
-    width: 200px;
+    width: 180px;
     text-align: center;
-    font-size: 20px;
+    font-size: 16px;
     color: ${(props) => props.title};
   }
-  margin: 10px 0;
+  margin: 5px 0;
 `;
 
 export interface OAuthButtonProps {

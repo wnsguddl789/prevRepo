@@ -2,6 +2,7 @@ import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
+
 export default NextAuth({
   providers: [
     GithubProvider({
@@ -28,10 +29,19 @@ export default NextAuth({
       }
       return token;
     },
-    async session({ session, token, user }) {
-      // Send properties to the client, like an access_token from a provider.
-      session.accessToken = token.accessToken;
+    async session({ session, user, token }) {
+      session = {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.sub,
+        },
+        accessToken: token.accessToken,
+      };
       return session;
+    },
+    async signIn({ user, account, profile, email, credentials }) {
+      return true;
     },
   },
   pages: {

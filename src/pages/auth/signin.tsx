@@ -14,13 +14,9 @@ export default function SignIn({ providers }: any) {
         <SignInButtonContainer>
           {Object.values(providers).map(({ name, id }: any) => (
             <div key={name}>
-              {id === 'github' ? (
-                <GithubOAuthButton onClick={() => signIn(id)} />
-              ) : id === 'naver' ? (
-                <NaverOAuthButton onClick={() => signIn(id)} />
-              ) : (
-                id === 'kakao' && <KakaoOAuthButton onClick={() => signIn(id)} />
-              )}
+              {id === 'github' && <GithubOAuthButton onClick={() => signIn(id)} />}
+              {id === 'naver' && <NaverOAuthButton onClick={() => signIn(id)} />}
+              {id === 'kakao' && <KakaoOAuthButton onClick={() => signIn(id)} />}
             </div>
           ))}
         </SignInButtonContainer>
@@ -57,7 +53,7 @@ const SignInContainer = styled.div`
 
   h1 {
     color: rgba(0, 0, 0, 0.8);
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 800;
     letter-spacing: 3px;
   }

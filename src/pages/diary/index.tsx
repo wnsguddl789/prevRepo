@@ -23,6 +23,7 @@ export async function getServerSideProps(context: NextPageContext) {
       },
     };
   } else {
-    return { props: { session } };
+    const result = {};
+    return { props: { session, result } };
   }
 }

@@ -20,16 +20,14 @@ export const DairyListView: React.FunctionComponent<DairyListViewProps> = ({
   onSelect,
   onPanelChange,
   dateCellRender,
-}) => {
-  return (
-    <Container>
-      <Modal title={`${date.format('LL')} Today I Learned..`} setIsModalVisible={setIsModalVisible} isModalVisible={isModalVisible}>
-        <DiaryCreateModalForm date={date} />
-      </Modal>
-      <Calendar value={date} onSelect={onSelect} onPanelChange={onPanelChange} dateCellRender={dateCellRender} />
-    </Container>
-  );
-};
+}) => (
+  <Container>
+    <Modal title={`${date.format('LL')} Today I Learned..`} setIsModalVisible={setIsModalVisible} isModalVisible={isModalVisible}>
+      <DiaryCreateModalForm date={date} />
+    </Modal>
+    <Calendar value={date} onSelect={onSelect} onPanelChange={onPanelChange} dateCellRender={dateCellRender} />
+  </Container>
+);
 
 const Container = styled.div`
   display: flex;
