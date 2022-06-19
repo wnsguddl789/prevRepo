@@ -5,7 +5,9 @@ import { Html, Head, Main, NextScript } from 'next/document';
 export default function Document() {
   return (
     <Html>
-      <Head></Head>
+      <Head>
+        <script src="https://codepen.io/shshaw/pen/QmZYMG.js"></script>
+      </Head>
       <body>
         <Main />
         <NextScript />

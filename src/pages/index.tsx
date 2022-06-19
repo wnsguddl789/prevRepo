@@ -3,26 +3,27 @@
 import { GetServerSideProps } from 'next';
 import type { NextPage } from 'next';
 import { getSession } from 'next-auth/react';
-
+import TypeAnimation from 'react-type-animation';
 import { AppLayout } from '../components';
 import { Button as AntdButton } from 'antd';
 import styled from '@emotion/styled';
 import { signIn } from 'next-auth/react';
 
-const Home: NextPage = () => (
-  <AppLayout>
-    <img style={{ position: 'absolute', width: '100vw' }} draggable="false" className="background-image" src="/cool-background.svg" />
-    <LandingContainer>
-      <p className="title">
-        <span className="bold">T</span>oady <span className="bold">I</span> <span className="bold">L</span>earned
-        <br /> 기록해봐요 !
-      </p>
-      <Button size="large" shape="round" onClick={() => signIn()}>
-        시작하기
-      </Button>
-    </LandingContainer>
-  </AppLayout>
-);
+const Home: NextPage = () => {
+  return (
+    <AppLayout>
+      <img style={{ position: 'absolute', width: '100vw' }} draggable="false" className="background-image" src="/cool-background.svg" />
+      <LandingContainer>
+        <div className="title">
+          <TypeAnimation repeat={Infinity} cursor={false} sequence={['Today I Learned!', 2000, '기록해보아요!!!', 2000]} wrapper="span" />
+        </div>
+        <Button size="large" shape="round" onClick={() => signIn()}>
+          시작하기
+        </Button>
+      </LandingContainer>
+    </AppLayout>
+  );
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const props = {};
@@ -31,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props,
       redirect: {
-        destination: '/dairy',
+        destination: '/diary',
       },
     };
   } else {
@@ -55,7 +56,7 @@ const LandingContainer = styled.div`
     font-size: 30px;
     text-align: center;
     color: rgba(0, 0, 0, 0.8);
-    span.bold {
+    span {
       font-weight: 700;
     }
   }
