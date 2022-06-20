@@ -1,21 +1,20 @@
 import * as React from 'react';
-import { useLocalObservable } from 'mobx-react';
 
 import { hasChildren } from 'src/types';
-import { TodoRootStore } from 'src/modules';
+import { RootStore } from 'src/modules';
 
 type todoContextType = {
-	useTodoModel: () => any;
+	useTodoStore: () => any;
 };
 
 const AppContext = React.createContext<todoContextType>({
-	useTodoModel: () => {},
+	useTodoStore: () => {},
 });
 const AppConsumer = AppContext.Consumer;
 
 const AppProvider: React.FunctionComponent<hasChildren> = ({ children }) => {
-	const appRootStore = useLocalObservable(TodoRootStore);
-	return <AppContext.Provider value={appRootStore}>{children}</AppContext.Provider>;
+	const appStore = RootStore();
+	return <AppContext.Provider value={appStore}>{children}</AppContext.Provider>;
 };
 
 const useAppStore = () => React.useContext(AppContext);

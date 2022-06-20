@@ -1,7 +1,7 @@
-import { useTodoModel } from './context';
-
+import { useLocalObservable } from 'mobx-react';
+import { TodoModel } from './models';
 export const TodoRootStore = () => {
 	return {
-		useTodoModel: () => useTodoModel(),
+		useTodoModel: () => useLocalObservable(TodoModel),
 	};
 };

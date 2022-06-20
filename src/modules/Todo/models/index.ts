@@ -1,1 +1,1 @@
-export * from './TodoModel.js';
+export * from './TodoModel';

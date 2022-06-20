@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { todoType } from 'src/types';
 
-export const TodoModel: any = () => {
+export const TodoModel = () => {
 	return {
 		todoList: [],
 		addTodo(text: string) {
@@ -19,4 +19,11 @@ export const TodoModel: any = () => {
 
 		getDoneTodoList() {},
 	};
+};
+
+type TodoModelReturnType = {
+	todoList?: Array<todoType>;
+	addTodo?: () => void;
+	getTodoList?: () => todoType[];
+	getDoneTodoList?: () => void;
 };

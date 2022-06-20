@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { NextPage } from 'next';
-
-import { TodoPage, TodoModelProvider } from 'src/modules/Todo';
+import { GetServerSideProps, NextPage } from 'next';
+import { TodoPage } from 'src/modules/Todo';
 
 const TodoList: NextPage = () => {
-	return (
-		<TodoModelProvider>
-			<TodoPage />
-		</TodoModelProvider>
-	);
+	return <TodoPage />;
+};
+
+export const getSeverSideProps: GetServerSideProps = async (context) => {
+	return {
+		props: {},
+	};
 };
 
 export default TodoList;
