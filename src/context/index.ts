@@ -1,2 +1,1 @@
-export * from "./RootContext";
-export * from "./TodoContext";
+export * from './AppContext';

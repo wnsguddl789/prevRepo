@@ -1,11 +1,11 @@
-export const TodoViewStyles = {
+export const TodoViewStyles: { [key: string]: React.CSSProperties } = {
 	container: {
 		display: 'flex',
 		flex: 1,
 		height: '100%',
 		alignItems: 'center',
 		justifyContent: 'center',
-		FlexDirection: 'row',
+		flexDirection: 'row',
 	},
 	form: {
 		display: 'flex',
@@ -14,9 +14,11 @@ export const TodoViewStyles = {
 		justifyContent: 'center',
 	},
 	input: {
-		width: '30%',
+		width: '50%',
 	},
 	todoListContainer: {
+		display: 'flex',
+		flexDirection: 'column',
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',

@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { NextPage } from 'next';
 
-import { TodoPage } from '../../modules/Todo/pages';
+import { TodoPage, TodoModelProvider } from 'src/modules/Todo';
 
 const TodoList: NextPage = () => {
-	return <TodoPage />;
+	return (
+		<TodoModelProvider>
+			<TodoPage />
+		</TodoModelProvider>
+	);
 };
 
 export default TodoList;
