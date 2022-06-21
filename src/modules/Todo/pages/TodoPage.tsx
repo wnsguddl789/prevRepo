@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { TodoViewController } from '../viewControllers';
-import { useAppStore } from 'src/context';
+import * as React from "react";
+import { TodoViewController } from "../viewControllers";
+import { RootStore } from "@modules/store";
 
 export const TodoPage: React.FunctionComponent = () => {
-	const { useTodoStore } = useAppStore();
-	const { useTodoModel } = useTodoStore();
-
+	const { useTodoModel } = RootStore("TODO_STORE");
 	const todoModel = useTodoModel();
+
 	return <TodoViewController todoModel={todoModel} />;
 };

@@ -1,4 +1,4 @@
-import { todoType } from 'src/types';
+import { todoType } from "src/types";
 
 interface TodoModelType {
 	todoModel: {
@@ -6,7 +6,7 @@ interface TodoModelType {
 		addTodo: (text: string) => void;
 		getTodoList: () => todoType[];
 		getDoneTodoList: () => todoType[];
-	};
+	} | null;
 }
 
 export type { TodoModelType };
