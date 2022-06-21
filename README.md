@@ -21,5 +21,5 @@ moduels/ViewController 혹은 View에서 observer를 걸어 상태를 추적하�
 
 #### 아래 목차를 클릭하면 리드미가 나옵니다.
 
--   [with RootStore](https://github.com/wnsguddl789/mobx-functional/tree/feat/withRoot)
+-   [with RootStore](https://github.com/wnsguddl789/mobx-functional/tree/withRoot)
 -   [without RootStore]()
