@@ -17,5 +17,5 @@ pages의
 
 #### 아래 목차를 클릭하면 리드미가 나올것이다.
 
--   [with RootStore]()
+-   [with RootStore](https://github.com/wnsguddl789/mobx-functional/tree/feat/withRoot)
 -   [without RootStore]()
