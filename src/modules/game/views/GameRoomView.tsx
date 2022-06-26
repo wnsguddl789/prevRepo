@@ -15,7 +15,11 @@ export const GameRoomView: React.FunctionComponent<GameRoomViewProps> = ({
 }) => {
   return (
     <Container>
-      {isMaster ? <span>방장입니다</span> : <span>일반유저가 맞습니다.</span>}
+      {isMaster ? (
+        <span>방장입니다</span>
+      ) : (
+        <span>일반유저가 진짜 맞습니다.</span>
+      )}
       {isMaster ? <Canvas /> : null}
     </Container>
   );
