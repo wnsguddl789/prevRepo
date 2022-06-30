@@ -1,7 +1,6 @@
 import * as React from "react";
 import { GameRoomView } from "../views";
-import io from "socket.io-client";
-import { useSession } from "../../../context";
+import { socket } from "../../../utils";
 
 type chatType = {
   message: string;
