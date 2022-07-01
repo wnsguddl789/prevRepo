@@ -1,6 +1,6 @@
 import express from "express";
 import { Server } from "socket.io";
-import http from "http";
+import { createServer } from "http";
 import {
   ClientToServerEvents,
   ServerToClientEvents,
@@ -10,13 +10,19 @@ import {
 
 export const createExpressSever = () => {
   const app = express();
-  const server = http.createServer(app);
+  const server = createServer(app);
+
   const io = new Server<
     ClientToServerEvents,
     ServerToClientEvents,
     InterServerEvents,
     SocketData
-  >(server);
+  >(server, {
+    cors: {
+      origin: "*",
+      credentials: true,
+    },
+  });
 
   return [server, io];
 };
