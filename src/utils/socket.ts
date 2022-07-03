@@ -1,12 +1,13 @@
 import socketIOClient, { Socket } from "socket.io-client";
 import { addGameType } from "../types/game";
 
-interface ServerToClientEvents {
+export interface ServerToClientEvents {
 	noArg: () => void;
 	basicEmit: (a: number, b: string, c: Buffer) => void;
 	withAck: (d: string, callback: (e: number) => void) => void;
 	addGameRoom: (gameType: addGameType) => void;
 	enterGameRoom: (name: string) => void;
+	addChat: (chatData: any) => void;
 	drawing: () => void;
 }
 

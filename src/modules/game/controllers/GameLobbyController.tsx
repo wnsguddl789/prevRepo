@@ -3,10 +3,10 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 
 import { GameLobbyView } from "../views";
-import { useSession } from "../../../context";
 import { gameRoomType } from "../types";
 import { socket } from "../../../utils";
 import { addGameType } from "../../../types/game";
+import { setSocketServer, useSession } from "../../../hooks";
 
 export const GameLobbyController: React.FunctionComponent = ({
 	gameRoomModel
@@ -18,11 +18,12 @@ export const GameLobbyController: React.FunctionComponent = ({
 	);
 
 	const addRoom = () => {
-		socket.emit("addGameRoom", {
+		const data = {
 			title: session?.user?.name,
 			currentUser: 1,
 			masterUserId: session?.user?.id
-		});
+		};
+		setSocketServer("addGameRoom", data);
 	};
 
 	React.useEffect(() => {
