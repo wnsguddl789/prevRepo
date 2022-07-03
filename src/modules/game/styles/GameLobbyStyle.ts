@@ -12,13 +12,13 @@ const Header = styled.div`
 	padding: 20px 30px;
 	& > div {
 		button {
-			background-color: #6200ee;
-			border: none;
 			color: white;
 			padding: 10px 20px;
 			border-radius: 12px;
 			margin-left: 5px;
 			cursor: pointer;
+			border: 2px solid #2f2c45;
+			background: #272530;
 		}
 	}
 `;
@@ -34,7 +34,7 @@ const RoomCard = styled.div`
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	border: 1px solid rgba(0, 0, 0, 0.8);
+	border: 2px solid #2f2c45;
 	border-radius: 12px;
 	margin: 5px 0;
 	.root-title {
@@ -52,12 +52,12 @@ const RoomCard = styled.div`
 	}
 	.room-button {
 		width: 15%;
-		background-color: #6200ee;
-		border: none;
 		color: white;
 		padding: 10px 10px;
 		border-radius: 12px;
 		cursor: pointer;
+		border: 2px solid #2f2c45;
+		background: #272530;
 	}
 `;
 

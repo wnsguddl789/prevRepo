@@ -8,24 +8,27 @@ import {
 	useSession,
 	setSocketServer
 } from "../../../hooks";
-type chatType = {
-	input: string;
-	name: string;
-};
+import { nanoid } from "nanoid";
+import { chatType, keyWordType, userType } from "../types";
 
 export const GameRoomController: React.FunctionComponent = () => {
 	const [isMaster, setIsMaster] = React.useState<boolean>(false);
 	const [currentUser, setCurrentUser] = React.useState<any[]>([]);
 	const { prepareCanvas, contextRef } = useCanvas();
 	const [canvas, setCanvas] = React.useState();
+	const [maxGame, setMaxGame] = React.useState<number>(0);
 
+	const [message, setMessage] = React.useState<string>("");
 	const [chatList, setChatList] = React.useState<chatType[]>([]);
-	const [input, setInput] = React.useState<string>("");
+
+	const [keyword, setKeyword] = React.useState<string>("");
+	const [keywordList, setKeyWordList] = React.useState<keyWordType[]>([]);
+
 	const inputRef = React.useRef<HTMLInputElement>(null);
+	const keywordInputRef = React.useRef<HTMLInputElement>(null);
 	const scrollRef = React.useRef<HTMLDivElement>(null);
 
 	const [step, setStep] = React.useState<number>(0);
-	const [keywordList, setKeyWordList] = React.useState<string[]>([]);
 
 	const {
 		query: { roomId }
@@ -37,79 +40,104 @@ export const GameRoomController: React.FunctionComponent = () => {
 		socket.on("drawing", contextRef);
 	}, [contextRef]);
 
-	// React.useEffect(() => {
-	// 	socket.on("enterGameRoom", ({ name: string }) => {
-	// 		if (name !== "") {
-	// 			setCurrentUser([
-	// 				...currentUser,
-	// 				{
-	// 					name
-	// 				}
-	// 			]);
-	// 		}
-	// 	});
-	// }, [currentUser]);
-
-	// React.useEffect(() => {
-	// 	if (session?.user.id === roomId) {
-	// 		const name = String(session?.user.name);
-	// 		if (name !== "") {
-	// 			socket.emit("enterGameRoom", {
-	// 				name
-	// 			});
-	// 		}
-	// 		// socket.emit("enterGameRoom", {
-	// 		// 	name
-	// 		// });
-
-	// 		setCurrentUser((old) => [...old, { name }]);
-	// 		setIsMaster(true);
-	// 	} else {
-	// 		setIsMaster(false);
-	// 	}
-	// }, [roomId, session]);
-
 	React.useEffect(() => {
-		socket.on("addChat", ({ name, input }: chatType) => {
-			setChatList([...chatList, { name, input }]);
+		socket.on("addChat", ({ name, message }: chatType) => {
+			setChatList([...chatList, { name, message }]);
 		});
 	}, [chatList]);
 
-	const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+	React.useEffect(() => {
+		socket.on("nextStep", (ServerStep: number) => {
+			setStep(ServerStep + 1);
+		});
+	}, [step]);
+
+	React.useEffect(() => {
+		if (session && session.user) {
+			const {
+				user: { id: userId, name }
+			} = session;
+			setSocketServer("enterGameRoom", {
+				userId,
+				name
+			});
+			socket.on("enterGameRoom", (user: userType) => {
+				setCurrentUser([...currentUser, user]);
+			});
+		}
+	}, [session]);
+
+	const onChangeChatInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const {
 			target: { value }
 		} = event;
 		if (value.trim() !== "") {
-			setInput(value);
+			setMessage(value);
+		}
+	};
+	const onChangeKeywordInput = (
+		event: React.ChangeEvent<HTMLInputElement>
+	) => {
+		const {
+			target: { value }
+		} = event;
+		if (value.trim() !== "") {
+			setKeyword(value);
 		}
 	};
 
-	const handleFormSubmit = (e: React.FormEvent) => {
+	const handleChatFormSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
 		if (inputRef.current) {
 			inputRef.current.value = "";
 			inputRef.current.focus();
-			setInput("");
+			setMessage("");
 			const name = session?.user?.name && session?.user?.name;
-			setSocketServer("addChat", { name, input });
+			setSocketServer("addChat", { name, message });
 		}
 	};
 
+	const handleKeywordFormSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+
+		if (keywordInputRef.current) {
+			if (maxGame > keywordList.length) {
+				keywordInputRef.current.value = "";
+				keywordInputRef.current.focus();
+				setKeyWordList([...keywordList, { index: nanoid(), keyword }]);
+			} else {
+				alert("설정하신 키워드 개수를 초과했습니다.");
+			}
+		}
+	};
+	const removeKeywordItem = (idx: string) => {
+		setKeyWordList(
+			keywordList.filter(({ index }: keyWordType) => index !== idx)
+		);
+	};
+
 	const nextStep = () => {
-		setStep(step + 1);
+		setSocketServer("nextStep", step);
 	};
 
 	return (
 		<GameRoomView
 			step={step}
 			nextStep={nextStep}
+			setMaxGame={setMaxGame}
 			isMaster={isMaster}
 			inputRef={inputRef}
 			scrollRef={scrollRef}
+			keywordInputRef={keywordInputRef}
 			chatList={chatList}
-			onChangeInput={onChangeInput}
-			handleFormSubmit={handleFormSubmit}
+			keywordList={keywordList}
+			currentUser={currentUser}
+			onChangeChatInput={onChangeChatInput}
+			onChangeKeywordInput={onChangeKeywordInput}
+			handleChatFormSubmit={handleChatFormSubmit}
+			handleKeywordFormSubmit={handleKeywordFormSubmit}
+			removeKeywordItem={removeKeywordItem}
 		/>
 	);
 };

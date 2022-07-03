@@ -2,21 +2,28 @@ import * as React from "react";
 import { Container, RoomList, RoomCard } from "../styles";
 import { Canvas, TextInput } from "../../../components";
 import styled from "@emotion/styled";
-type chatType = {
-	input: string;
-	name: string;
-};
+import { GameWaitingScreen, GameSettingScreen } from "../components";
+import { chatType, keyWordType, userType } from "../types";
 interface GameRoomViewProps {
 	isMaster: boolean;
 	step: number;
 	inputRef: any;
 	scrollRef: any;
-	chatList: any[];
+	keywordInputRef: any;
+	chatList: chatType[];
+	keywordList: keyWordType[];
+	currentUser: userType[];
+	setMaxGame: React.Dispatch<React.SetStateAction<number>>;
 	nextStep: () => void;
-	onChangeInput: ({
+	onChangeChatInput: ({
 		target: { value }
 	}: React.ChangeEvent<HTMLInputElement>) => void;
-	handleFormSubmit: (e: React.FormEvent) => void;
+	onChangeKeywordInput: ({
+		target: { value }
+	}: React.ChangeEvent<HTMLInputElement>) => void;
+	handleChatFormSubmit: (e: React.FormEvent) => void;
+	handleKeywordFormSubmit: (e: React.FormEvent) => void;
+	removeKeywordItem: (idx: string) => void;
 }
 
 export const GameRoomView: React.FunctionComponent<GameRoomViewProps> = ({
@@ -24,14 +31,36 @@ export const GameRoomView: React.FunctionComponent<GameRoomViewProps> = ({
 	step,
 	inputRef,
 	scrollRef,
+	keywordInputRef,
 	chatList,
+	currentUser,
 	nextStep,
-	onChangeInput,
-	handleFormSubmit
+	onChangeChatInput,
+	keywordList,
+	setMaxGame,
+	onChangeKeywordInput,
+	handleChatFormSubmit,
+	handleKeywordFormSubmit,
+	removeKeywordItem
 }) => (
 	<Container>
-		{step === 0 && <GameWaitingScreen nextStep={nextStep} />}
-		{step === 1 && <GameSettingScreen nextStep={nextStep} />}
+		{step === 0 && (
+			<GameWaitingScreen
+				setMaxGame={setMaxGame}
+				currentUser={currentUser}
+				nextStep={nextStep}
+			/>
+		)}
+		{step === 1 && (
+			<GameSettingScreen
+				keywordList={keywordList}
+				keywordInputRef={keywordInputRef}
+				onSubmit={handleKeywordFormSubmit}
+				removeKeywordItem={removeKeywordItem}
+				onChange={onChangeKeywordInput}
+				nextStep={nextStep}
+			/>
+		)}
 
 		{step === 2 && (
 			<React.Fragment>
@@ -39,16 +68,19 @@ export const GameRoomView: React.FunctionComponent<GameRoomViewProps> = ({
 				<ChattingSection>
 					<div className="chatting-section" ref={scrollRef}>
 						{chatList.map(
-							(chatData: chatType, chatIndex: number) => (
+							(
+								{ name, message }: chatType,
+								chatIndex: number
+							) => (
 								<div
 									key={`chat-${chatIndex}`}
 									className="chatting-list"
 								>
 									<span className="chatting-name">
-										{chatData.name}
+										{name}
 									</span>
 									<span className="chatting-message">
-										{chatData.input}
+										{message}
 									</span>
 								</div>
 							)
@@ -56,9 +88,9 @@ export const GameRoomView: React.FunctionComponent<GameRoomViewProps> = ({
 					</div>
 					<form
 						className="keyboard-section"
-						onSubmit={handleFormSubmit}
+						onSubmit={handleChatFormSubmit}
 					>
-						<input ref={inputRef} onChange={onChangeInput} />
+						<input ref={inputRef} onChange={onChangeChatInput} />
 						<button className="chat-submit">전송</button>
 					</form>
 				</ChattingSection>
@@ -67,19 +99,6 @@ export const GameRoomView: React.FunctionComponent<GameRoomViewProps> = ({
 	</Container>
 );
 
-const GameWaitingScreen = ({ nextStep }: any) => (
-	<React.Fragment>
-		<button onClick={() => nextStep()}>게임시작</button>
-	</React.Fragment>
-);
-const GameSettingScreen: React.FunctionComponent = ({ nextStep }: any) => (
-	<React.Fragment>
-		<h2>키워드 입력</h2>
-		<h4>그림으로 설명할 키워드를 정하세요</h4>
-		<input />
-		<button onClick={() => nextStep()}>시작</button>
-	</React.Fragment>
-);
 const DrawingSection = styled.section`
 	display: flex;
 	flex: 10;

@@ -5,10 +5,12 @@ export interface ServerToClientEvents {
 	noArg: () => void;
 	basicEmit: (a: number, b: string, c: Buffer) => void;
 	withAck: (d: string, callback: (e: number) => void) => void;
-	addGameRoom: (gameType: addGameType) => void;
-	enterGameRoom: (name: string) => void;
+	addGameRoom: (gameRoom: any) => void;
+	drawing: (onDrawingEvent: any) => void;
+	enterGameRoom: (user: any) => void;
 	addChat: (chatData: any) => void;
-	drawing: () => void;
+	nextStep: (step: number) => void;
+	setKeyword: (keyword: any) => void;
 }
 
 interface ClientToServerEvents {
