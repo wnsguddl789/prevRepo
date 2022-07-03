@@ -1,30 +1,36 @@
 import * as React from "react";
 import { Container, RoomList, RoomCard } from "../styles";
+import { Canvas, TextInput } from "../../../components";
+import styled from "@emotion/styled";
 type chatType = {
-  message: string;
-  name: string;
+	message: string;
+	name: string;
 };
 interface GameRoomViewProps {
-  data: any;
-  isMaster: boolean;
+	data: any;
+	isMaster: boolean;
 }
 
 export const GameRoomView: React.FunctionComponent<GameRoomViewProps> = ({
-  data,
-  isMaster,
+	data,
+	isMaster
 }) => {
-  return (
-    <Container>
-      {isMaster ? (
-        <span>방장입니다</span>
-      ) : (
-        <span>일반유저가 짜루짜루 진짜루 맞습니다.</span>
-      )}
-      {isMaster ? <Canvas /> : null}
-    </Container>
-  );
+	return (
+		<Container>
+			<DrawingSection>
+				<Canvas />
+			</DrawingSection>
+			<ChattingSection>
+				<TextInput />
+			</ChattingSection>
+		</Container>
+	);
 };
-
-const Canvas = () => {
-  return <canvas />;
-};
+const DrawingSection = styled.section`
+	display: flex;
+	flex: 2;
+`;
+const ChattingSection = styled.section`
+	display: flex;
+	flex: 2;
+`;

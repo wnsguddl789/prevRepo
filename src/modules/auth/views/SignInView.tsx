@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Container } from "../styles";
-import { renderOauthButton } from "../utils";
+import { RenderOauthButton } from "../utils";
 
-interface SignInViewProps {
-  providers: any;
-}
+interface SignInViewProps {}
 
-export const SignInView: React.FunctionComponent<SignInViewProps> = ({
-  providers,
-}) => <Container>{renderOauthButton(providers)}</Container>;
+export const SignInView: React.FunctionComponent<SignInViewProps> = ({}) => (
+	<Container>
+		<RenderOauthButton />
+	</Container>
+);

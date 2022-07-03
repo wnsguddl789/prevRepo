@@ -1,18 +1,36 @@
 import {
-  KakaoOAuthButton,
-  GithubOAuthButton,
-  NaverOAuthButton,
+	KakaoOAuthButton,
+	GithubOAuthButton,
+	NaverOAuthButton
 } from "../../../components";
 import { signIn } from "next-auth/react";
+import React from "react";
 
-const renderOauthButton = ({ providers }: any) => {
-  return Object.values(providers).map(({ name, id }: any) => (
-    <div key={name}>
-      {id === "github" && <GithubOAuthButton onClick={() => signIn(id)} />}
-      {id === "naver" && <NaverOAuthButton onClick={() => signIn(id)} />}
-      {id === "kakao" && <KakaoOAuthButton onClick={() => signIn(id)} />}
-    </div>
-  ));
+const OAuthList = [
+	{
+		id: "github",
+		render: () => <GithubOAuthButton onClick={() => signIn("github")} />
+	},
+	{
+		id: "naver",
+		render: () => <NaverOAuthButton onClick={() => signIn("naver")} />
+	},
+	{
+		id: "kakao",
+		render: () => <KakaoOAuthButton onClick={() => signIn("kakao")} />
+	}
+];
+
+const RenderOauthButton = () => {
+	return (
+		<React.Fragment>
+			{OAuthList.map(({ render }, index) => (
+				<React.Fragment key={`renderOuths-${index}`}>
+					{render()}
+				</React.Fragment>
+			))}
+		</React.Fragment>
+	);
 };
 
-export { renderOauthButton };
+export { RenderOauthButton };

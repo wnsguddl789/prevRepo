@@ -1,7 +1,12 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
-import { LayoutProvider, AuthProvider, AppProvider } from "../context";
+import {
+	LayoutProvider,
+	AuthProvider,
+	AppProvider,
+	CanvasProvider
+} from "../context";
 import { GetServerSideProps } from "next";
 import { getProviders, getSession } from "next-auth/react";
 
@@ -10,9 +15,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 		<SessionProvider>
 			<AppProvider>
 				<AuthProvider>
-					<LayoutProvider>
-						<Component {...pageProps} />
-					</LayoutProvider>
+					<CanvasProvider>
+						<LayoutProvider>
+							<Component {...pageProps} />
+						</LayoutProvider>
+					</CanvasProvider>
 				</AuthProvider>
 			</AppProvider>
 		</SessionProvider>
