@@ -24,6 +24,7 @@ interface GameRoomViewProps {
 	handleChatFormSubmit: (e: React.FormEvent) => void;
 	handleKeywordFormSubmit: (e: React.FormEvent) => void;
 	removeKeywordItem: (idx: string) => void;
+	doShake: () => void;
 }
 
 export const GameRoomView: React.FunctionComponent<GameRoomViewProps> = ({
@@ -41,7 +42,8 @@ export const GameRoomView: React.FunctionComponent<GameRoomViewProps> = ({
 	onChangeKeywordInput,
 	handleChatFormSubmit,
 	handleKeywordFormSubmit,
-	removeKeywordItem
+	removeKeywordItem,
+	doShake
 }) => (
 	<Container>
 		{step === 0 && (
@@ -49,6 +51,7 @@ export const GameRoomView: React.FunctionComponent<GameRoomViewProps> = ({
 				setMaxGame={setMaxGame}
 				currentUser={currentUser}
 				nextStep={nextStep}
+				doShake={doShake}
 			/>
 		)}
 		{step === 1 && (
