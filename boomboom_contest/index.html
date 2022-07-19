@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>뿜뿜 콘테스트</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="css/master.css">
+    <script src="js/master.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+  </head>
+    <body class="w3-light-grey w3-content" style="max-width:1600px">
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center" style="z-index:3;width:300px;font-weight:bold" id="mySidebar"><br>
+      <h3 class="w3-padding-64 w3-center"><b>국군장병<br>독후감</b></h3>
+      <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hide-large">CLOSE</a>
+      <a href="#" onclick="w3_close()" class="w3-bar-item w3-button">진중도서 추천목록</a>
+      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">서비스소개</a>
+      <a href="#review" onclick="w3_close()" class="w3-bar-item w3-button">이달의 이용후기</a>
+      <a href="#report" onclick="w3_close()" class="w3-bar-item w3-button">이달의 독후감</a>
+      <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">독후감작성</a>
+      
+    </nav>
+
+    <!-- Top menu on small screens -->
+    <header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
+      <a href="index.html"><span class="w3-left w3-padding" style="text-decoration: none;">SOME NAME</span></a>
+      <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
+    </header>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left:300px">
+
+      <!-- Push down content on small screens -->
+      <div class="w3-hide-large" style="margin-top:83px"></div>
+
+      <!-- Photo grid -->
+      <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large">
+          <div class="w3-content" style="max-width:600px">
+            <h4 class="w3-center"><b>진중도서 추천목록</b></h4>
+            <div class="w3-row">
+                <div class="w3-third">
+                  <img src="image/1984.jpg" class="book_image" style="width:100%"  onclick="onClick(this)" alt="A boy surrounded by beautiful nature">
+                  <img src="image/뉴스의 시대.jpg" class="book_image" style="width:100%" onclick="onClick(this)" alt="What a beautiful scenery this sunset">
+                  <img src="image/동물농장.jpg" class="book_image" style="width:100%" onclick="onClick(this)" alt="The Beach. Me. Alone. Beautiful">
+                </div>
+        
+                <div class="w3-third">
+                  <img src="image/무진기행.jpg" class="book_image" style="width:100%" onclick="onClick(this)" alt="Quiet day at the beach. Cold, but beautiful">
+                  <img src="image/바람이 분다 당신이 좋다.jpg" class="book_image" style="width:100%" onclick="onClick(this)" alt="Waiting for the bus in the desert">
+                  <img src="image/시를 잊은 그대에게.jpg" class="book_image" style="width:100%" onclick="onClick(this)" alt="Nature again.. At its finest!">
+                </div>
+        
+                <div class="w3-third">
+                  <img src="image/언제 들어도 좋은 말.jpg" class="book_image" style="width:100%" onclick="onClick(this)" alt="Canoeing again">
+                  <img src="image/옥수수와 나.jpg" class="book_image" style="width:100%" onclick="onClick(this)" alt="A girl, and a train passing">
+                  <img src="image/작가의 문장수업.jpg" class="book_image" style="width:100%" onclick="onClick(this)" alt="What a beautiful day!">
+                </div>
+              </div>
+          </div>
+        </div>
+
+      <!-- Pagination -->
+      <div class="w3-center w3-padding-32">
+        <div class="w3-bar">
+          <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
+          <a href="#" class="w3-bar-item w3-black w3-button">1</a>
+          <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
+          <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
+          <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
+          <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
+        </div>
+      </div>
+
+      <!-- Modal for full size images on click-->
+      <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+        <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+        <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+          <img id="img01" class="w3-image">
+          <p id="caption"></p>
+        </div>
+      </div>
+
+      <!-- 서비스소개 section -->
+      <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="about">
+        <h4><b>서비스소개</b></h4>
+        <img src="image/read.jpg" class="w3-round-large w3-center poster_image" alt="Me" class="w3-image w3-padding-32" width="100%" height="650">
+        <p>자료 : 문화체육관광부</p>
+        <div class="w3-content w3-justify" style="max-width:600px">
+          <h4>My Name</h4>
+          <p>Some text about me. I love taking photos of PEOPLE. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+          <p>mail: wnsguddl789@gmail.com</p>
+
+
+        </div>
+      </div>
+      <!-- 이용후기 section -->
+      <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" id="review">
+        <div class="w3-content" style="max-width:600px">
+          <h4 class="w3-center"><b>이달의 이용후기</b></h4>
+          <div class="w3-row">
+              <table class="table">
+                  <thead>
+                    <tr>
+                      <th>번호</th>
+                      <th>제목</th>
+                      <th>작성자</th>
+                      <th>날짜</th>
+                      <th>조회수</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>165</td>
+                      <td>이제 곧 Bootstrap 4가 나온다면서요?</td>
+                      <td>길라임</td>
+                      <td>2016.12.02</td>
+                      <td>2</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="w3-bar w3-center">
+                  <a href="#review" class="w3-button">«</a>
+                  <a href="#review" class="w3-button w3-dark-grey">1</a>
+                  <a href="#review" class="w3-button">2</a>
+                  <a href="#review" class="w3-button">3</a>
+                  <a href="#review" class="w3-button">4</a>
+                  <a href="#review" class="w3-button">»</a>
+                </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 독후감 section -->
+        <div class="w3-container w3-dark-grey w3-text-light-grey w3-padding-32" id="report">
+          
+          <div class="w3-content" style="max-width:600px">
+            <h4 class="w3-center"><b>이달의 독후감</b></h4>
+            <div class="w3-row">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>날짜</th>
+                    <th>조회수</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>165</td>
+                    <td>이제 곧 Bootstrap 4가 나온다면서요?</td>
+                    <td>길라임</td>
+                    <td>2016.12.02</td>
+                    <td>2</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="w3-bar w3-center">
+                <a href="#report" class="w3-button">«</a>
+                <a href="#report" class="w3-button w3-light-grey">1</a>
+                <a href="#report" class="w3-button">2</a>
+                <a href="#report" class="w3-button">3</a>
+                <a href="#report" class="w3-button">4</a>
+                <a href="#report" class="w3-button">»</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 독후감작성 section -->
+        <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" id="contact">
+          <div class="w3-content" style="max-width:600px">
+            <h4 class="w3-center"><b>독후감 작성</b></h4>
+            <p>독후감을 작성하신 국군장병(훈련병)은 이곳에서 독후감 제출을 할수있습니다!</p>
+            <form action="/action_page.php" target="_blank">
+              <div class="w3-section">
+                <label>이름</label>
+                <input class="w3-input w3-border" type="text" name="Name" required>
+              </div>
+              <div class="w3-section">
+                <label>이메일</label>
+                <input class="w3-input w3-border" type="text" name="Email" required>
+              </div>
+              <div class="w3-section">
+                <label>읽은도서의 제목</label>
+                <input class="w3-input w3-border" type="text" name="Title" required>
+              </div>
+              <div class="w3-section">
+                <label>독후감 내용</label>
+                <textarea class="w3-input w3-border" name="content" rows="8" cols="80" required></textarea>
+              </div>
+              <button type="submit" class="w3-button w3-block w3-black w3-margin-bottom">Send Message</button>
+            </form>
+          </div>
+        </div>
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-32 w3-grey">
+          <div class="w3-row-padding">
+            <div class="w3-third">
+              <h3>INFO</h3>
+              <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+            </div>
+
+            <div class="w3-third">
+              <h3>제작자</h3>
+              <ul class="w3-ul">
+                <a href="https://www.facebook.com/profile.php?id=100004491251855" style="text-decoration: none;">
+                  <li class="w3-padding-16 w3-hover-black">
+                    <img src="image/facebook.png" class="w3-left w3-margin-right" style="width:50px">
+                    <span class="w3-large">FACEBOOK</span><br>
+                    <span>Park_JunHyeong</span>
+                  </li>
+                </a>
+                <a href="http://bbak-jun.tistory.com/" style="text-decoration: none;">
+                  <li class="w3-padding-16 w3-hover-black">
+                    <img src="image/post.png" class="w3-left w3-margin-right" style="width:50px">
+                    <span class="w3-large">BLOG</span><br>
+                    <span>BBAK-JUN</span>
+                  </li>
+                </a>
+              </ul>
+            </div>
+
+            <div class="w3-third">
+              <h3>POPULAR TAGS</h3>
+              <p>
+                <span class="w3-tag w3-black w3-margin-bottom">독서</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">London</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">DIY</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Family</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Shopping</span>
+                <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Games</span>
+              </p>
+            </div>
+          </div>
+        </footer>
+        <div class="w3-black w3-center w3-padding-24">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
+      </div>
+
+    <!-- End page content -->
+    </div>
+
+  </body>
+</html>
