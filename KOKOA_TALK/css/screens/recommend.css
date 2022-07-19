@@ -1,0 +1,30 @@
+.recommend{
+    background-color:rgba(0,0,0,0.1);
+    border-radius: 5px;
+    padding: 30px 10px;
+    margin: 0 10px;
+    margin-bottom: 20px;
+}
+.recommend-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+.recommend-info__channel{
+    align-items: center;
+}
+.recommend-info__ad{
+    border:2px solid gray;
+    border-radius: 10px;
+    font-size: 10px;
+    padding: 0px 3px;
+}
+.recommend-channel__item{
+    display: flex;
+    flex-direction: column;
+}
+.recommend-channel__column{
+    display: flex;
+    justify-content: space-between;
+}

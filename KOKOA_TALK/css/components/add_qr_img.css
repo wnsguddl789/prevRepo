@@ -1,0 +1,23 @@
+.qr-icons{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.qr-icons__icon{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.qr-icons__icon i{
+    font-size: 35px;
+    padding-bottom: 20px;
+}
+.qr-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0px;
+    margin-bottom: 20px;
+}
