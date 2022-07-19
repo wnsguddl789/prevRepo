@@ -1,0 +1,1 @@
+{"comment_text": ["\uc6b0\uc6b8\ud574..."], "text": "\uc6b0\uc6b8\ud574...", "now_time": "2020-12-14 11:36:44.898750", "comment_time": ["01/16 07:05"], "tex_time": "01/16 07:05"}

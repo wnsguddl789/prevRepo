@@ -1,0 +1,1 @@
+{"comment_time": ["12/13 01:30"], "text": "\uc138\ucc99\ud558\ub294\uac70 \uba38\ud558\ub294\uac74\ub2c8 \uc544\ub294\uc0ac\ub78c", "now_time": "2020-12-14 11:32:51.800575", "title": "\ucfe0\ud321", "tex_time": "12/13 01:30", "comment_text": ["\uc138\ucc99\ud558\ub294\uac70 \uba38\ud558\ub294\uac74\ub2c8 \uc544\ub294\uc0ac\ub78c"]}

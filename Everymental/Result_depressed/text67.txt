@@ -1,0 +1,1 @@
+{"comment_text": ["\uad70\ub300 \uc528\ubc1c", "\u314b\u314b\u314b\u314b\u314b", "\uc804\ub0a0 \ub9d0\ub3c4 \uc548\ub418\uac8c \uc6b0\uc6b8\ud574"], "text": "\uad70\ub300 \uc528\ubc1c", "now_time": "2020-12-14 11:36:20.756337", "comment_time": ["06/07 19:28", "06/08 11:31", "06/08 17:04"], "tex_time": "06/07 19:28"}
