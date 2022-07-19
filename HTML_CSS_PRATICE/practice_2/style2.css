@@ -1,0 +1,33 @@
+.container{
+  width: 940px;
+  margin: 0px auto;
+  border: 1px solid #bcbcbc;
+  padding: 1em;
+}
+
+.header {
+  border: 1px solid #bcbcbc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.article {
+  width: 580px;
+  float: left;
+  border: 1px solid #bcbcbc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.wrapper{
+  width: 250px;
+  float: right;
+  border: 1px solid #bcbcbc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.footer{
+  clear: both;
+  padding: 20px;
+  border: 1px solid #bcbcbc;
+}

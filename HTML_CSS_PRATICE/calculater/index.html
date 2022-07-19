@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./style.css">
+  <title>계산기입니다.</title>
+</head>
+
+<body>
+  <div class="container">
+    <form name="calculator">
+      <div class="print">
+        <input class="print_result" type="textfield" name="ans" value="">
+      </div>
+
+      <div class="ce btn">
+        <input type="button" value="CE">
+      </div>
+      <div class="c btn">
+        <input type="button" value="C">
+      </div>
+      <div class="x btn">
+        <input type="button" value="X">
+
+      </div>
+      <div class="division btn">
+        <input type="button" value="/" onClick="document.calculator.ans.value+='/'">
+
+      </div>
+
+      <div class="seven btn">
+        <input type="button" value="7" onClick="document.calculator.ans.value+='7'">
+      </div>
+      <div class="eight btn">
+        <input type="button" value="8" onClick="document.calculator.ans.value+='8'">
+      </div>
+      <div class="nine btn">
+        <input type="button" value="9" onClick="document.calculator.ans.value+='9'">
+      </div>
+      <div class="multiply btn">
+        <input type="button" value="*" onClick="document.calculator.ans.value+='*'">
+      </div>
+
+      <div class="four btn">
+        <input type="button" value="4" onClick="document.calculator.ans.value+='4'">
+      </div>
+      <div class="five btn">
+        <input type="button" value="5" onClick="document.calculator.ans.value+='5'">
+      </div>
+      <div class="six btn">
+        <input type="button" value="6" onClick="document.calculator.ans.value+='6'">
+      </div>
+      <div class="subtract btn">
+        <input type="button" value="-" onClick="document.calculator.ans.value+='-'">
+      </div>
+
+      <div class="one btn">
+        <input type="button" value="1" onClick="document.calculator.ans.value+='1'">
+      </div>
+      <div class="two btn">
+        <input type="button" value="2" onClick="document.calculator.ans.value+='2'">
+      </div>
+      <div class="three btn">
+        <input type="button" value="3" onClick="document.calculator.ans.value+='3'">
+      </div>
+      <div class="plus btn">
+        <input type="button" value="+" onClick="document.calculator.ans.value+='+'">
+      </div>
+
+      <div class="block btn">
+        <input type="button" value="">
+      </div>
+      <div class="zero btn">
+        <input type="button" value="0" onClick="document.calculator.ans.value+='0'">
+      </div>
+      <div class="dot btn">
+        <input type="button" value="." onClick="document.calculator.ans.value+='.'">
+      </div>
+      <div class="result btn">
+        <input type="button" value="=" onClick="document.calculator.ans.value=eval(document.calculator.ans.value)">
+      </div>
+    </form>
+
+
+
+  </div>
+</body>
+
+</html>
