@@ -1,0 +1,46 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, class: 'w3-input w3-hover-light-grey' %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, :class => "w3-input w3-hover-light-grey" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off", :class => "w3-input w3-hover-light-grey" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", :class => "w3-input w3-hover-light-grey" %>
+  </div>
+  <div class="field">
+    <%= f.label :age %>
+    <%= f.datetime_field :age, autofocus: true, class: 'w3-input w3-hover-light-grey' %>
+  </div>
+  <div class="btn-group" data-toggle="buttons">
+      <p style="margin-bottom:0;"><%= f.label :gender %></p>
+      <label class="radio_button"> 남자
+         <%= f.radio_button :gender, '남자', checked: true %>
+      </label>
+      <label class="radio_button active"> 여자
+         <%= f.radio_button :gender, '여자', checked: true %>
+      </label>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit "Sign up", :class => "btn" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

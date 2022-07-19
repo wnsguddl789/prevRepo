@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BBAKJUN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script>
+      function myFunction(id) {
+          var x = document.getElementById(id);
+          if (x.className.indexOf("w3-show") == -1) {
+              x.className += " w3-show";
+          } else {
+              x.className = x.className.replace(" w3-show", "");
+          }
+      }
+    </script>
+    <script>
+      function w3_open() {
+          document.getElementById("mySidebar").style.display = "block";
+      }
+      function w3_close() {
+          document.getElementById("mySidebar").style.display = "none";
+      }
+    </script>
+    <script>
+        function myAccFunc() {
+            var x = document.getElementById("demoAcc");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+                x.previousElementSibling.className += " w3-green";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+                x.previousElementSibling.className =
+                x.previousElementSibling.className.replace(" w3-green", "");
+            }
+        }
+
+        function myDropFunc() {
+            var x = document.getElementById("demoDrop");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+                x.previousElementSibling.className += " w3-green";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+                x.previousElementSibling.className =
+                x.previousElementSibling.className.replace(" w3-green", "");
+            }
+        }
+      </script>
+      <script>
+        function myFunction(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+      </script>
+
+  </head>
+
+  <body>
+
+  <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px;" id="mySidebar">
+    <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+    <% if user_signed_in? %>
+      <p class="w3-bar-item w3-button"><strong><%= current_user.name %></strong>님 안녕하세요!</p>
+      <% if current_user.age.present? %>
+        <p class="w3-bar-item w3-button" class="w3-bar-item w3-button">나이 : <%= current_user.age %></p>
+      <% else %>
+        <strong><p class="w3-bar-item w3-button">나이 정보를 업데이트 해주세요!</p></strong>
+      <% end %>
+      <% if current_user.gender.present? %>
+        <p class="w3-bar-item w3-button">성별 : <%= current_user.gender %></p>
+      <% else %>
+        <strong><p class="w3-bar-item w3-button">성별 정보를 업데이트 해주세요!</p></strong>
+      <% end %>
+      <p class="w3-bar-item w3-button"><%= link_to('로그아웃', destroy_user_session_path, method: :delete) %></p>
+      <p class="w3-bar-item w3-button"><%= link_to('개인정보수정', edit_user_registration_path)  %></p>
+      <p class="w3-bar-item w3-button"><%= link_to('글쓰기', blog_post_write_path)  %></p>
+      <p class="w3-bar-item w3-button"><%= link_to('타임라인', root_path)  %></p>
+      <p class="w3-bar-item w3-button"><%= link_to 'facebook 동영상',blog_coat_path%></p>
+      <div class="w3-bar-item w3-button" onclick="myAccFunc()">
+        학식메뉴
+        <i class="fa fa-caret-down"></i>
+      </div>
+      <div id="demoAcc" class="w3-hide w3-white w3-card-4">
+        <%= link_to '명진당', blog_haksik_mj_path, :class => "w3-bar-item w3-button"%>
+        <%= link_to '학생식당', blog_haksik_hg_path, :class => "w3-bar-item w3-button"%>
+        <%= link_to '교직원식당', blog_haksik_kj_path, :class => "w3-bar-item w3-button"%>
+        <%= link_to 'TEST', blog_new_mj_path, :class => "w3-bar-item w3-button"%>
+      </div>
+
+    <% else %>
+      <p class="w3-bar-item w3-button">아직 로그인을 하지 않으셨네요. 로그인을 해주세요~<p>
+      <p class="w3-bar-item w3-button"><%= link_to('로그인', new_user_session_path)  %></p>
+      <p class="w3-bar-item w3-button"><%= link_to('회원가입', new_user_registration_path)  %></p>
+      <p class="w3-bar-item w3-button"><%= link_to('글쓰기', blog_post_write_path, :onclick => 'alert("로그인이 필요합니다")')  %></p>
+      <p class="w3-bar-item w3-button"><%= link_to('타임라인', root_path, :onclick => 'alert("로그인이 필요합니다")')  %></p>
+      <p class="w3-bar-item w3-button"><%= link_to 'facebook 동영상',blog_coat_path%></p>
+      <div class="w3-bar-item w3-button" onclick="myAccFunc()">
+        학식메뉴
+        <i class="fa fa-caret-down"></i>
+      </div>
+      <div id="demoAcc" class="w3-hide w3-white w3-card-4">
+        <%= link_to '명진당', blog_haksik_mj_path, :class => "w3-bar-item w3-button"%>
+        <%= link_to '학생식당', blog_haksik_hg_path, :class => "w3-bar-item w3-button"%>
+        <%= link_to '교직원식당', blog_haksik_kj_path, :class => "w3-bar-item w3-button"%>
+        <%= link_to 'TEST', blog_new_mj_path, :class => "w3-bar-item w3-button"%>
+      </div>
+
+    <% end %>
+  </div>
+  <div class="w3-main" style="margin-left:250px">
+
+    <div class="w3-teal">
+      <button class="w3-button w3-teal w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+
+        <div class="w3-container">
+          <h1><%= link_to("BBAK-JUN's BLOG!", root_path) %></h1>
+          <p><%= Time.now.strftime("%H시 %M분") %></p>
+        </div>
+
+    </div>
+
+    <div class="jumbotron text-center">
+      <h2>빡준의 안절부절</h2>
+      <p><%= Time.now.strftime("%Y년 %m월 %d일") %></p>
+    </div>
+
+    <div class="container">
+        <%= yield %>
+    </div>
+
+  </div>
+
+  </body>
+</html>

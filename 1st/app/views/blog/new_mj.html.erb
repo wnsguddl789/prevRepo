@@ -1,0 +1,122 @@
+<h3>명지대학교 자연캠퍼스 <%= @restaurant_name %> 메뉴입니다.</h3>
+
+<%= link_to '명진당', blog_haksik_mj_path%>
+<%= link_to '학생식당', blog_haksik_hg_path%>
+<%= link_to '교직원식당', blog_haksik_kj_path%>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= @restaurant_name %></th>
+      <th><%= @restaurant_location %></th>
+      <th><%= @operating_hour %></th>
+    </tr>
+    <tr>
+      <th>요일</th>
+      <th>종류</th>
+      <th>메뉴</th>
+    </tr>
+
+  </thead>
+  <tr class="active">
+    <th>월요일</th>
+    <td>
+        <%= @menu[0]%><br><br>
+        <%= @menu[1]%><br><br>
+        <%= @menu[2]%><br><br>
+        <%= @menu[3]%><br><br>
+        <%= @menu[4]%><br><br>
+    </td>
+    <td>
+        <%= @daily_menu_MON[0] %> <br><br>
+        <%= @daily_menu_MON[1] %> <br><br>
+        <%= @daily_menu_MON[2] %> <br><br>
+        <%= @daily_menu_MON[3] %> <br><br>
+        <%= @daily_menu_MON[4] %> <br><br>
+
+    </td>
+  </tr>
+  <tr>
+
+  </tr>
+  <tr class="active">
+    <th>화요일</th>
+    <td>
+        <%= @menu[0]%><br><br>
+        <%= @menu[1]%><br><br>
+        <%= @menu[2]%><br><br>
+        <%= @menu[3]%><br><br>
+        <%= @menu[4]%><br><br>
+    </td>
+    <td>
+        <%= @daily_menu_TUE[0] %> <br><br>
+        <%= @daily_menu_TUE[1] %> <br><br>
+        <%= @daily_menu_TUE[2] %> <br><br>
+        <%= @daily_menu_TUE[3] %> <br><br>
+        <%= @daily_menu_TUE[0] %> <br><br>
+    </td>
+  </tr>
+  <tr>
+
+  </tr>
+  <tr class="active">
+    <th>수요일</th>
+    <td>
+        <%= @menu[0]%><br><br>
+        <%= @menu[1]%><br><br>
+        <%= @menu[2]%><br><br>
+        <%= @menu[3]%><br><br>
+        <%= @menu[4]%><br><br>
+    </td>
+    <td>
+        <%= @daily_menu_WED[0] %> <br><br>
+        <%= @daily_menu_WED[1] %> <br><br>
+        <%= @daily_menu_WED[2] %> <br><br>
+        <%= @daily_menu_WED[3] %> <br><br>
+        <%= @daily_menu_WED[0] %> <br><br>
+    </td>
+  </tr>
+  <tr>
+
+  </tr>
+  <tr class="active">
+    <th>목요일</th>
+    <td>
+        <%= @menu[0]%><br><br>
+        <%= @menu[1]%><br><br>
+        <%= @menu[2]%><br><br>
+        <%= @menu[3]%><br><br>
+        <%= @menu[4]%><br><br>
+    </td>
+    <td>
+        <%= @daily_menu_THU[0] %> <br><br>
+        <%= @daily_menu_THU[1] %> <br><br>
+        <%= @daily_menu_THU[2] %> <br><br>
+        <%= @daily_menu_THU[3] %> <br><br>
+        <%= @daily_menu_THU[0] %> <br><br>
+    </td>
+  </tr>
+  <tr>
+
+  </tr>
+  <tr class="active">
+    <th>금요일</th>
+    <td>
+        <%= @menu[0]%><br><br>
+        <%= @menu[1]%><br><br>
+        <%= @menu[2]%><br><br>
+        <%= @menu[3]%><br><br>
+        <%= @menu[4]%><br><br>
+    </td>
+    <td>
+        <%= @daily_menu_FRI[0] %> <br><br>
+        <%= @daily_menu_FRI[1] %> <br><br>
+        <%= @daily_menu_FRI[2] %> <br><br>
+        <%= @daily_menu_FRI[3] %> <br><br>
+        <%= @daily_menu_FRI[4] %> <br><br>
+    </td>
+  </tr>
+  <tr>
+
+  </tr>
+</table>
